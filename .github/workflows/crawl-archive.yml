@@ -1,0 +1,131 @@
+name: Crawl Archive
+
+# Retty 公開サイトの生 HTML をクロールしてミラー保存する。
+# HTML の解析（store.json 生成）は factory-entreprenais-com-builder が担う。
+#
+# 2 ステップ構成:
+#   Step① discovery（gen-csv）: エリア URL → 飲食店 URL の CSV を生成
+#   Step② archive（save-html）: CSV → 生 HTML を {domain}/{path}/index.html に保存
+#
+# public リポジトリのため GitHub hosted runner を使用する。
+
+on:
+  # 夜間バッチ（02:00 JST = 17:00 UTC）。discovery → HTML 保存を順に実行。
+  schedule:
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+    inputs:
+      area_url:
+        description: "Step① 対象 Retty エリア一覧 URL（既定: 恵比寿）"
+        required: true
+        default: "https://retty.me/area/PRE13/ARE7/SUB701/"
+      max_count:
+        description: "Step① 最大収集件数"
+        required: false
+        default: "2000"
+      sleep:
+        description: "リクエスト間 sleep 秒（robots/負荷配慮）"
+        required: false
+        default: "5"
+      csv:
+        description: "既存 CSV パス（指定時は Step① をスキップ）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crawl-archive
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show Python version
+        run: python3 --version
+
+      - name: Resolve target CSV path
+        id: target
+        run: |
+          CSV_INPUT="${{ github.event.inputs.csv }}"
+          AREA_URL="${{ github.event.inputs.area_url || 'https://retty.me/area/PRE13/ARE7/SUB701/' }}"
+          if [ -n "${CSV_INPUT}" ]; then
+            echo "csv_path=${CSV_INPUT}" >> "$GITHUB_OUTPUT"
+            echo "run_discovery=false" >> "$GITHUB_OUTPUT"
+            echo "[target] using existing CSV: ${CSV_INPUT} (discovery skipped)"
+          else
+            if [ "${AREA_URL}" = "https://retty.me/area/PRE13/ARE7/SUB701/" ]; then
+              AREA_SLUG="ebisu"
+            else
+              AREA_SLUG=$(echo "${AREA_URL}" | grep -oE 'SUB[0-9]+' | head -1)
+              [ -z "${AREA_SLUG}" ] && AREA_SLUG="area"
+              AREA_SLUG=$(echo "${AREA_SLUG}" | tr '[:upper:]' '[:lower:]')
+            fi
+            echo "csv_path=.data/crawl-targets/${AREA_SLUG}.csv" >> "$GITHUB_OUTPUT"
+            echo "run_discovery=true" >> "$GITHUB_OUTPUT"
+            echo "[target] will generate CSV: .data/crawl-targets/${AREA_SLUG}.csv from ${AREA_URL}"
+          fi
+
+      - name: "Step① discovery (area -> CSV)"
+        if: steps.target.outputs.run_discovery == 'true'
+        id: discovery
+        run: |
+          python3 scripts/crawl_archive.py gen-csv \
+            --area-url "${{ github.event.inputs.area_url || 'https://retty.me/area/PRE13/ARE7/SUB701/' }}" \
+            --out "${{ steps.target.outputs.csv_path }}" \
+            --max-count "${{ github.event.inputs.max_count || '2000' }}" \
+            --sleep "${{ github.event.inputs.sleep || '5' }}"
+
+      - name: "Commit discovery CSV"
+        if: steps.target.outputs.run_discovery == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.target.outputs.csv_path }}"
+          if git diff --cached --quiet; then
+            echo "No CSV changes to commit."
+          else
+            git commit -m "chore(crawl-targets): discovery CSV を更新 (${{ steps.target.outputs.csv_path }}) [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: "Step② archive (CSV -> raw HTML)"
+        id: archive
+        run: |
+          python3 scripts/crawl_archive.py save-html \
+            --csv "${{ steps.target.outputs.csv_path }}" \
+            --out-dir retty.com \
+            --sleep "${{ github.event.inputs.sleep || '5' }}"
+
+      - name: Commit & push HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add retty.com/
+          if git diff --cached --quiet; then
+            echo "No HTML changes to commit."
+            exit 0
+          fi
+          COUNT=$(find retty.com -name "index.html" 2>/dev/null | wc -l | tr -d ' ')
+          git commit -m "chore(archive): HTML ミラーを更新 (${COUNT} pages)"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Crawl Archive 結果" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 項目 | 値 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| csv_path | ${{ steps.target.outputs.csv_path }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| discovery | ${{ steps.target.outputs.run_discovery }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_saved | ${{ steps.archive.outputs.pages_saved }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_failed | ${{ steps.archive.outputs.pages_failed }} |" >> $GITHUB_STEP_SUMMARY
