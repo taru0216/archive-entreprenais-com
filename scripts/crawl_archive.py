@@ -55,7 +55,31 @@ RE_NEXT = re.compile(r'<a\b[^>]*?href="([^"]+)"[^>]*?rel="next"', re.S)
 RE_NEXT_ALT = re.compile(r'<a\b[^>]*?rel="next"[^>]*?href="([^"]+)"', re.S)
 
 BASE = "https://retty.me"
-DOMAIN = "retty.com"
+
+
+def archive_path(fqdn: str, url_path: str) -> str:
+    """FQDN を逆 DNS ツリー階層に変換してアーカイブパスを返す。
+
+    例:
+        archive_path("www.city.shiroi.chiba.jp", "/soshiki/norin/")
+        -> "jp/chiba.jp/shiroi.chiba.jp/city.shiroi.chiba.jp/www.city.shiroi.chiba.jp/soshiki/norin/index.html"
+
+        archive_path("retty.me", "/area/PRE13/")
+        -> "me/retty.me/area/PRE13/index.html"
+    """
+    labels = fqdn.rstrip(".").split(".")
+    labels.reverse()  # 最上位 TLD から順に並べ直す
+    dirs = []
+    for i in range(len(labels)):
+        fqdn_at_level = ".".join(reversed(labels[: i + 1]))
+        dirs.append(fqdn_at_level)
+    # URL パス末尾に index.html を付与
+    path = url_path.strip("/")
+    if not path:
+        path = "index.html"
+    elif not path.endswith(".html"):
+        path = path + "/index.html"
+    return "/".join(dirs) + "/" + path
 
 
 def http_get(url: str, timeout: int = 30) -> str | None:
@@ -201,6 +225,8 @@ def url_to_path(url: str, out_dir: str) -> str:
 
     https://retty.me/area/PRE13/ARE7/SUB701/100001234567/
     -> {out_dir}/area/PRE13/ARE7/SUB701/100001234567/index.html
+
+    Note: archive_path() を使う新パス規則では out_dir="" を渡すこと。
     """
     path = re.sub(r"^https?://[^/]+", "", url).rstrip("/")
     if not path:
@@ -208,9 +234,27 @@ def url_to_path(url: str, out_dir: str) -> str:
     return os.path.join(out_dir, path.lstrip("/"), "index.html")
 
 
-def save_html(url: str, html: str, out_dir: str) -> str:
-    """HTML を {out_dir}/{url_path}/index.html に保存する。"""
-    file_path = url_to_path(url, out_dir)
+def url_to_archive_path(url: str) -> str:
+    """URL を archive_path() 規則のファイルパスに変換する。
+
+    https://retty.me/area/PRE13/ARE7/SUB701/100001234567/
+    -> "me/retty.me/area/PRE13/ARE7/SUB701/100001234567/index.html"
+    """
+    m = re.match(r"^https?://([^/]+)(.*)", url)
+    if not m:
+        raise ValueError(f"Invalid URL: {url}")
+    fqdn = m.group(1)
+    url_path = m.group(2) or "/"
+    return archive_path(fqdn, url_path)
+
+
+def save_html(url: str, html: str, out_dir: str = "") -> str:
+    """HTML を archive_path() 規則の {url}/index.html に保存する。
+
+    out_dir を指定した場合はそのディレクトリ配下に保存する。
+    """
+    rel_path = url_to_archive_path(url)
+    file_path = os.path.join(out_dir, rel_path) if out_dir else rel_path
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -253,8 +297,8 @@ def save_html_main(argv: list[str]) -> int:
     )
     ap.add_argument("--csv", required=True,
                     help="クロール対象 CSV パス（ヘッダ retty_url,retty_id）")
-    ap.add_argument("--out-dir", default=DOMAIN,
-                    help="HTML 保存先ルートディレクトリ（既定: retty.com）")
+    ap.add_argument("--out-dir", default="",
+                    help="HTML 保存先ルートディレクトリ（既定: '' = archive_path() 規則に従う）")
     ap.add_argument("--sleep", type=float, default=0.5,
                     help="リクエスト間 sleep 秒")
     ap.add_argument("--max-count", type=int, default=0,
