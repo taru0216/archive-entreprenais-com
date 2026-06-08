@@ -231,6 +231,11 @@ def gen_csv_main(argv: list[str]) -> int:
         action="store_true",
         help="外部通信なしで URL リスト生成のみ確認（テスト用）",
     )
+    ap.add_argument(
+        "--target-domain",
+        default="",
+        help="処理対象の FQDN（指定した場合、この FQDN の自治体のみ処理する）",
+    )
     args = ap.parse_args(argv)
 
     # 自治体リスト CSV を読み込む
@@ -242,6 +247,11 @@ def gen_csv_main(argv: list[str]) -> int:
             city_slug = (row.get("city_slug") or "").strip()
             pref = (row.get("pref") or "").strip()
             if city_url and city_slug:
+                # --target-domain 指定時はそのドメインのみフィルタ
+                if args.target_domain:
+                    row_fqdn = urlparse(city_url).hostname or ""
+                    if row_fqdn != args.target_domain:
+                        continue
                 targets.append((city_url, city_slug, pref))
 
     if not targets:
