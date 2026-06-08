@@ -9,7 +9,7 @@
   python3 scripts/crawl_marche.py gen-csv \
     --target-csv .data/crawl-targets/marche-targets.csv \
     --out .data/crawl-targets/marche-pages.csv \
-    --depth 3 --sleep 3
+    --depth 1 --sleep 3
 
   python3 scripts/crawl_marche.py save-html \
     --csv .data/crawl-targets/marche-pages.csv \
@@ -52,6 +52,22 @@ MARCHE_KEYWORDS = [
 
 # robots.txt キャッシュ
 _robots_cache: dict[str, urllib.robotparser.RobotFileParser] = {}
+
+# バイナリとみなす URL 拡張子（事前スキップ対象）
+_BINARY_EXTENSIONS = (
+    ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+    ".zip", ".gz", ".tar", ".rar", ".7z",
+    ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico", ".bmp",
+    ".mp3", ".mp4", ".avi", ".mov", ".wmv", ".flv",
+    ".csv", ".tsv",
+    ".exe", ".dmg", ".pkg", ".deb", ".rpm",
+)
+
+
+def is_binary_url(url: str) -> bool:
+    """URL のパス末尾がバイナリ拡張子かどうかを判定する。"""
+    path = urlparse(url).path.lower()
+    return path.endswith(_BINARY_EXTENSIONS)
 
 
 def http_get(url: str, timeout: int = 30) -> str | None:
@@ -123,7 +139,7 @@ class LinkExtractor(HTMLParser):
 def discover_marche_urls(
     city_url: str,
     city_slug: str,
-    max_depth: int = 3,
+    max_depth: int = 1,
     sleep_sec: float = 1.0,
     dry_run: bool = False,
 ) -> list[str]:
@@ -181,6 +197,10 @@ def discover_marche_urls(
                 print(f"  [WARN] HTML parse error {url}: {e}", file=sys.stderr)
             for link in extractor.links:
                 if link not in visited and is_same_domain(link, base_domain):
+                    # バイナリ拡張子の URL はキューに追加しない
+                    if is_binary_url(link):
+                        print(f"  [SKIP] binary URL: {link}", file=sys.stderr)
+                        continue
                     queue.append((link, depth + 1))
 
         time.sleep(sleep_sec)
@@ -204,7 +224,7 @@ def gen_csv_main(argv: list[str]) -> int:
         required=True,
         help="出力 CSV パス（ヘッダ page_url,fqdn,city_slug,pref）",
     )
-    ap.add_argument("--depth", type=int, default=3, help="BFS 探索深さ上限（デフォルト: 3）")
+    ap.add_argument("--depth", type=int, default=1, help="BFS 探索深さ上限（デフォルト: 1）")
     ap.add_argument("--sleep", type=float, default=1.0, help="リクエスト間 sleep 秒")
     ap.add_argument(
         "--dry-run",

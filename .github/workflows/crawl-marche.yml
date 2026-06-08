@@ -18,7 +18,7 @@ on:
       depth:
         description: "BFS 探索深さ上限"
         required: false
-        default: "3"
+        default: "1"
       sleep:
         description: "リクエスト間 sleep 秒"
         required: false
@@ -51,7 +51,7 @@ jobs:
         if: ${{ github.event.inputs.skip_gen_csv != 'true' }}
         run: |
           TARGET_CSV="${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }}"
-          DEPTH="${{ github.event.inputs.depth || '3' }}"
+          DEPTH="${{ github.event.inputs.depth || '1' }}"
           SLEEP="${{ github.event.inputs.sleep || '3' }}"
 
           python3 scripts/crawl_marche.py gen-csv \
