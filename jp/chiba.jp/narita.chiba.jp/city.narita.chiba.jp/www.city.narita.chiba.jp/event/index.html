@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ja" dir="ltr"><head>
+<meta charset="UTF-8">
+<title>イベントカレンダー｜成田市</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/content/js/respond.js"></script>
+<script type="text/javascript" src="/content/js/html5shiv.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+
+<!-- SEO -->
+<meta name="keywords" content="成田市,なりた,ナリタ,Narita,成田市役所,千葉県,成田空港,成田国際空港,観光,市政,イベント,広報なりた">
+<meta name="description" content="千葉県成田市の公式ホームページです。行政サービスや施設の案内、イベント情報、市長の部屋、広報なりたなどをご案内しています。">
+<!-- /SEO -->
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/content/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/content/css/common.css">
+<link rel="stylesheet" type="text/css" href="/content/css/style.css">
+<link rel="stylesheet" type="text/css" href="/content/css/sp.css">
+<link rel="stylesheet" type="text/css" href="/content/css/parts.css">
+<link rel="stylesheet" type="text/css" href="/content/css/print.css">
+<!-- /CSS -->
+
+<link rel="stylesheet" type="text/css" href="https://webapp-jichitai-cdn.azureedge.net/naritacity/css/main.css">
+
+<!-- JavaScript -->
+<script type="text/javascript" src="/content/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/content/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/content/js/spnav.js"></script>
+<script type="text/javascript" src="/content/js/nav.js"></script>
+<script type="text/javascript" src="/content/js/common.js"></script>
+<!-- /JavaScript -->
+
+<script type="text/javascript" src="/content/js/jquery-jtemplates.js"></script><!-- jquery-jtemplates.js --><script type="text/javascript">
+var refDate = new Date();
+var CALENDAR_TABLE_PREFIX = '';
+var CALENDAR_TABLE_POSTFIX = (function () {/*
+<div class="sideFeedMonth">
+<p class="prevMonth"><a href="javascript:void(0)" onclick="clickMonth('last')">前月</a></p>
+<p class="thisMonth"><a href="javascript:void(0)" onclick="clickMonth('today')">今月</a></p>
+<p class="nextMonth"><a href="javascript:void(0)" onclick="clickMonth('next')">翌月</a></p>
+</div>
+</div>
+</div>
+*/}).toString().replace(/(\n)/g, '').split('*')[1];
+
+var CALENDAR_TABLE_PREFIX2 = '';
+var CALENDAR_TABLE_POSTFIX2 = (function () {/*
+<div class="sideFeedMonth">
+<p class="nextMonth"><a href="javascript:void(0)" onclick="clickMonth('next')">翌月</a></p>
+</div>
+</div>
+</div>
+*/}).toString().replace(/(\n)/g, '').split('*')[1];
+
+var Conditions = function () {
+	this.conDate = new Date();
+	this.conCtg1 = "";
+	this.conMode = 0 ; //0=month 1=day
+	this.getTime = function() {
+		return this.conDate.getTime();
+	}
+	this.getDate = function() {
+		var result = this.conDate.getDate();
+		if (result < 10 ) {
+			result = "0" + result ;
+		}
+		return result;
+	}
+	this.getMonth = function(){
+		var result = this.conDate.getMonth();
+		result = result + 1;
+		if (result < 10 ) {
+			result = "0" + result ;
+		}
+		return result;
+	}
+	this.getFullYear = function(){
+		return this.conDate.getFullYear();
+	}
+	this.setDate = function(date_val) {
+		return this.conDate.setDate(date_val);
+	}
+	this.setMonth = function(month_val){
+		month_val = month_val - 1;
+		this.conDate.setDate(1);
+		return this.conDate.setMonth(month_val);
+	}
+	this.setFullYear = function(year_val){
+		return this.conDate.setFullYear(year_val);
+	}
+
+	//ctg1
+	this.setCtg1 = function(ctg1_val){
+		this.Ctg1 = ctg1_val;
+	}
+	this.getCtg1 = function() {
+		return this.Ctg1;
+	}
+	this.resetCtg1 = function() {
+		this.Ctg1 = "";
+	}
+	//Mode
+	this.setModeDaily = function() {
+		this.conMode = "1";
+	}
+	this.setModeMonthly = function() {
+		this.conMode = "0";
+	}
+	this.getMode = function() {
+		return this.conMode
+	}
+	this.nextMonth = function() {
+		now = this.conDate.getMonth();
+		now++;
+		this.conDate.setDate(1);
+		this.conDate.setMonth(now);
+	}
+	this.lastMonth = function() {
+		now = this.conDate.getMonth();
+		now--;
+		this.conDate.setDate(1);
+		this.conDate.setMonth(now);
+	}
+	this.resetDate = function() {
+		var today = new Date();
+		this.conDate.setTime(today.getTime());
+	}
+	this.nextDay = function() {
+		now = this.conDate.getDate();
+		now++;
+		this.conDate.setDate(now);
+	}
+	this.lastDay = function() {
+		now = this.conDate.getDate();
+		now--;
+		this.conDate.setDate(now);
+	}
+}
+
+var cond = new Conditions();
+
+function loadEvents() {
+	$("#message").empty();
+	$("dl.listlink").children().remove();
+	var year;
+	var month;
+	var day;
+	year = cond.getFullYear();
+	month = cond.getMonth();
+	day = cond.getDate();
+	var printDate;
+	var printYear;
+	if (year > 2018) {
+		if (year == 2019 && month > 4) {
+			printYear = "令和元";
+		} else if (year > 2019) {
+			printYear = "令和" + ( year - 2018 );
+		} else {
+			printYear = "平成" + ( year - 1988 );
+		}
+	} else if(year > 1989){
+		printYear = "平成" + ( year - 1988 );
+			//printYear = year;
+	}
+	else{
+		printYear = year;
+	}
+
+	if ( cond.getMode() == 1){
+		printDate = printYear + "年" + parseInt(month,10) + "月" + parseInt(day,10) + "日のカレンダー";
+		printDateLI = printYear + "年" + parseInt(month,10) + "月" + parseInt(day,10) + "日";
+		$("#nextC").html("<a id=\"NextAllow\" onclick=\"clickDay('next')\" href=\"javascript:void(0)\">翌日&gt;</a>");
+		$("#nextL").html("<a onclick=\"clickMonth('next')\" href=\"javascript:void(0)\">翌月</a>");
+		$("#beforeC").html("<a id=\"BeforeAllow\" onclick=\"clickDay('last')\" href=\"javascript:void(0)\">&lt;前日</a>");
+		if (refDate.getFullYear() == year && (refDate.getMonth()+1) == parseInt(month)) {
+			$("#beforeL").html("");
+			$("#curL").html("");
+		} else {
+			$("#curL").html("<a onclick=\"clickMonth('today')\" href=\"javascript:void(0)\">今月</a>");
+			$("#beforeL").html("<a onclick=\"clickMonth('last')\" href=\"javascript:void(0)\">前月</a>");
+		}
+	}
+	else{
+		printDate = printYear + "年" + parseInt(month,10) + "月のカレンダー";
+		printDateLI = printYear + "年" + parseInt(month,10) + "月";
+		$("#nextC").html("<a id=\"NextAllow\" onclick=\"clickMonth('next')\" href=\"javascript:void(0)\">翌月&gt;</a>");
+		$("#nextL").html("<a onclick=\"clickMonth('next')\" href=\"javascript:void(0)\" id=\"nextL\">翌月</a>");
+		$("#beforeC").html("<a id=\"BeforeAllow\" onclick=\"clickMonth('last')\" href=\"javascript:void(0)\">&lt;前月</a>");
+		if (refDate.getFullYear() == year && (refDate.getMonth()+1) == parseInt(month)) {
+			$("#beforeL").html("");
+			$("#curL").html("");
+		} else {
+			$("#curL").html("<a onclick=\"clickMonth('today')\" href=\"javascript:void(0)\">今月</a>");
+			$("#beforeL").html("<a onclick=\"clickMonth('last')\" href=\"javascript:void(0)\" id=\"beforeL\">前月</a>");
+		}
+		day = undefined;
+	}
+	$("#view_date_btn").text(printDate);
+	$("#view_date_h2").text(printDate);
+	$("#view_date_li").text(printDateLI);
+	$.ajax({
+		url:"/event/cal_" + year + month + ".txt",
+		type:"get",
+		data:{},
+		dataType:"html",
+		cache:"false",
+		success:function(data,dataType){
+			//$("p.eventMonth").remove();
+
+			if (refDate.getFullYear() == year && (refDate.getMonth()+1) == parseInt(month)) {
+				$("div.eventCalendar").replaceWith(CALENDAR_TABLE_PREFIX + data + CALENDAR_TABLE_POSTFIX2);
+			} else {
+				$("div.eventCalendar").replaceWith(CALENDAR_TABLE_PREFIX + data + CALENDAR_TABLE_POSTFIX);
+			}
+			//$("table.eventCalendar").replaceWith(makeCalendar(data));
+		},
+		error:function(req, status, thrown) {
+			$("#message").html("<br />イベント情報の取得に失敗しました。[" + status + "]");
+		}
+
+
+	});
+
+
+	$.ajax({
+		url:"/event/event_all.txt",
+		type:"get",
+		data:{},
+		dataType:"json",
+		cache:"false",
+		success:function(data, dataType) {
+			if (data.events.length > 0) {
+
+
+				var filteredEvents = data.events.filter(function(item, index){
+					if	( ! $("select[name='ctg1'] option:selected").val() 
+						|| item.event_cat == $("select[name='ctg1'] option:selected").val()
+						){
+						return true;
+					};
+				});
+				var filteredEvents = filteredEvents.filter(function(item, index){
+					var beginDateTime = Date.parse(item.event_date + " 00:00:00");
+					var beginMonth = Date.parse(year + "/" + month + "/1");
+					var endMonth = new Date(year, month, 0);
+					if ( beginDateTime >=beginMonth && beginDateTime <= endMonth.getTime() ) {
+						return true;
+					}
+				});
+				if ( day ){
+					filteredEvents = filteredEvents.filter(function(item, index){
+						var beginDateTime = Date.parse(item.event_date + " 00:00:00");
+						if( item.event_date == cond.getFullYear() + "/" + cond.getMonth() + "/" + cond.getDate() ){
+							return true;
+						}
+					});
+				}
+				data.events = filteredEvents ;
+				var endMonth = new Date(year, month, 0);
+				$("dl.listlink").setTemplateURL("/event/eventlist.tmpl",null,{filter_data: false});
+				$("dl.listlink").setParam('begin_date',year + "/" + month + "/01");
+				$("dl.listlink").setParam('end_day',endMonth.getDate());
+				$("dl.listlink").setParam('daily',cond.getMode());
+				$("dl.listlink").setParam('category_array',
+					{"市制施行70周年記念事業": "type10",
+					"イベント": "type01",
+					"講演会・講座": "type02",
+					"説明会・会議": "type03",
+					"相談会": "type04",
+					"芸術・文化": "type05",
+					"健康・福祉": "type06",
+					"子育て": "type07",
+					"スポーツ": "type08",
+					"そのほか": "type09"}
+				);
+				$("dl.listlink").processTemplate(data);
+			} else {
+				$("#message").html("<br /> イベント情報がありません。");
+			}
+
+			var maxYear = new Date();
+			maxYear.setYear(maxYear.getFullYear() + 5);
+			if ( year == maxYear.getFullYear() && month == 12 ){
+				$("#nextL").text("翌月>");
+			}
+			if ( year == maxYear.getFullYear() && month == 12 ){
+				$("#nextC").text($("#NextAllow").text());
+			}
+			if ( year == 2015 && month == 1){
+				$("#beforeL").text("<前月");
+			}
+			if ( year == 2015 && month == 1){
+				$("#beforeC").text($("#BeforeAllow").text());
+			}
+			if (data.message) {
+				$("#message").text(data.message);
+			}
+		},
+		error:function(req, status, thrown) {
+			$("#message").text("イベント情報の取得に失敗しました。[" + status + "]");
+		}
+	});
+}
+
+function clickMonth(action) {
+	if (action == "next"){
+		cond.nextMonth();
+	}
+	else if(action == "last"){
+		cond.lastMonth();
+	}
+	else if(action == "today"){
+		cond.resetDate();
+	}
+
+	cond.setModeMonthly();
+
+	loadEvents();
+}
+
+function clickDay(action) {
+	if (action == "next"){
+		cond.nextDay();
+	}
+	else if(action == "last"){
+		cond.lastDay();
+	}
+	else {
+		cond.setDate(action);
+	}
+
+	cond.setModeDaily();
+	
+	loadEvents();
+}
+
+
+function setupQueryForm() {
+	var queries = document.location.search.substring(1).split('&');
+	for (var i = 0; i < queries.length; i++) {
+		var q = queries[i].split('=');
+		var v = "";
+		if (q[0] == "Y" || q[0] == "y") {
+			v = q[1];
+		if (v != ""){
+			cond.setFullYear(v);
+		}
+		continue;
+		}
+		if (q[0] == "M" || q[0] == "m") {
+			v = q[1];
+		if (v != ""){
+		v = parseInt(v,10);
+		cond.setMonth(v);
+		}
+		continue;
+		}
+		if (q[0] == "D") {
+			v = q[1];
+		if (v != ""){
+		v = parseInt(v,10);
+		cond.setDate(v);
+		cond.setModeDaily();
+		}
+		continue;
+		}
+		if (q[0] == "ctg1") {
+			v = q[1];
+			if (v != "") {
+				v = decodeURI(v);
+				$("select[name='" + q[0] + "'] option[value='" + v + "']").attr("selected","selected");
+			}
+			continue;
+		}
+		if (q[0] == "next") {
+			v = q[1];
+			if (v == "1") {
+				cond.nextMonth();
+			}
+		continue;
+		}
+		if (q[0] == "last") {
+			v = q[1];
+			if (v == "1") {
+				cond.lastMonth();
+			}
+		continue;
+		}
+	}
+}
+$().ready(function() {
+	$("#NextAllow").click(function() {
+		if ( cond.getMode() == 1 ){
+			clickDay('next');
+		}
+		else {
+			clickMonth('next');
+		}
+	});
+	$("#BeforeAllow").click(function() {
+		if ( cond.getMode() == 1 ){
+			clickDay('last');
+		}
+		else {
+			clickMonth('last');
+		}
+	});
+	
+	setupQueryForm();
+	loadEvents();
+});
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXT58B4D4T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXT58B4D4T');
+</script>
+
+<meta name="author" content="成田市">
+<meta property="og:url" content="https://www.city.narita.chiba.jp/event/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="イベントカレンダー">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.city.narita.chiba.jp/og-logo.png">
+<meta property="og:site_name" content="成田市">
+<meta property="og:locale" content="ja_JP">
+
+<script type="text/javascript" src="//typesquare.com/3/tsst/script/ja/typesquare.js?669f0818f0fc436f9f8651e1ac1e02e5" charset="utf-8"></script>
+</head>
+
+<body id="tempLayout" class="basic">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<noscript><div id="noScript">現在 JavaScriptがOFFに設定されています。ウェブサイトのすべての機能を使用するためには、JavaScriptの設定をONに変更してください。</div></noscript>
+
+<header id="header">
+
+<div class="header_logoBoxL">
+<div id="header_logo"><a href="/index.html"><img src="/content/000000004.png" alt="成田市"></a></div>
+<div class="header_btn_skip sp-none"><a href="#skip">本文へ移動</a></div>
+
+<button class="button spnavbar pc-none">メニュー</button>
+</div><!--/header_logoBoxL-->
+
+<div class="headfunctionBoxR">
+<div class="headfunction">
+<ul>
+<li class="headfunction_itemA sp-none"><a href="https://www3.zoomsight-sv2.jp/NRT/controller/index.html#https://www.city.narita.chiba.jp/event/index.html">文字拡大・音声読み上げ</a></li>
+<li class="headfunction_itemB"><a href="/faq/index.html">よくある質問</a></li>
+<li class="headfunction_itemB"><a href="/help/contact.html">お問い合わせ</a></li>
+<li class="headfunction_itemB"><a href="/help/translate.html?path=event/index.html">Multilingual</a></li>
+</ul>
+</div><!--/headfunction-->
+
+<div class="headsearch">
+
+<div class="headsearch_search-box">
+<div class="l-search">
+<form id="cse-search-box" action="/search_result.html">
+<label for="searchText">キーワード検索</label>
+<input type="text" name="q" class="l-search__text" id="searchText" title="サイト内検索 キーワードを入力してください">
+<button class="l-search__btn"><img src="/content/000046188.png" alt="検索"></button>
+<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+</form>
+</div>
+</div><!--/headsearch_search-box-->
+
+<div class="headsearch_search-btn"><a href="/help/page302300.html"><img src="/content/000046189.png" alt="情報の探し方"></a></div>
+</div><!--/headsearch-->
+
+</div><!--/boxR-->
+
+</header>
+
+<div class="pcgnav sp-none">
+<div class="container">
+<div class="row">
+<div class="col-pc-12">
+<ul class="doropnav">
+<li class="pcgnav_item01"><a href="/kurashi/index.html"><img src="/content/000000006.png" alt="くらし・手続き"></a>
+<li class="pcgnav_item02"><a href="/kosodate/index.html"><img src="/content/000000007.png" alt="子育て・教育"></a></li>
+<li class="pcgnav_item03"><a href="/kenko_fukushi/index.html"><img src="/content/000000008.png" alt="健康・福祉"></a></li>
+<li class="pcgnav_item04"><a href="/bunka_sports/index.html"><img src="/content/000001203.png" alt="文化・スポーツ"></a></li>
+<li class="pcgnav_item05"><a href="/business/index.html"><img src="/content/000000009.png" alt="産業・ビジネス"></a></li>
+<li class="pcgnav_item06"><a href="/environment/index.html"><img src="/content/000000011.png" alt="まちづくり・環境"></a></li>
+<li class="pcgnav_item07"><a href="/anshin/index.html"><img src="/content/000000012.png" alt="安全・安心"></a></li>
+<li class="pcgnav_item08"><a href="/shisei/index.html"><img src="/content/000000013.png" alt="市政情報"></a></li>
+</ul>
+</div>
+</div><!--/row-->
+</div><!--/container-->
+</div><!--/gnav-->
+
+<div class="container clear">
+<div class="row">
+
+<div class="topicpath">
+<p class="topicpathttl">現在地：</p>
+<ul class="topicpath_item">
+<li class="topicpath_item_home"><a href="/index.html">ホーム</a></li><li>イベントカレンダー</li>
+</ul>
+</div>
+
+<div class="col-pc-9 col-sp-12 boxR">
+
+<div id="skip" class="sectionBlock pageCategory15">
+<div class="sectionBlock_title"><h1>イベントカレンダー</h1></div>
+</div>
+
+<div class="utility">
+<div class="snsArea">
+<div class="fb-share-button" data-href="https://www.city.narita.chiba.jp/event/index.html" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.city.narita.chiba.jp%2Fevent%2Findex.html&amp;src=sdkpreparse">シェア</a></div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-text="イベントカレンダー" data-hashtags="成田市">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<div class="line-it-button" style="display: none;" data-lang="ja" data-type="share-a" data-url="https://www.city.narita.chiba.jp/event/index.html"></div>
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+</div>
+<p class="btn_print"><a href="#" onclick="window.print(); return false;"><img src="/content/000001204.png" alt="印刷する"></a></p>
+</div>
+
+<div id="main" class="event">
+
+
+<div class="lead">
+	<p>　すでに募集の終わっている行事についても掲載されている可能性がありますがご容赦ください。</p>
+</div>
+
+<div class="categorySearch">
+	<div class="boxL">カテゴリーから絞り込んで検索</div>
+	<!--/boxL-->
+
+	<div class="boxR">
+		<p><select id="ctg1" name="ctg1" style="margin-bottom: 5px;"><option selected="selected" value="">--カテゴリを選択してください--</option><option value="市制施行70周年記念事業">市制施行70周年記念事業</option><option value="イベント">イベント</option><option value="講演会・講座">講演会・講座</option><option value="説明会・会議">説明会・会議</option><option value="相談会">相談会</option><option value="芸術・文化">芸術・文化</option><option value="健康・福祉">健康・福祉</option><option value="子育て">子育て</option><option value="スポーツ">スポーツ</option><option value="そのほか">そのほか</option> </select></p>
+
+		<p><input class="eventsearch01" onclick="loadEvents();" type="submit" value="検索する" /></p>
+	</div>
+</div>
+
+<div class="headingA">
+	<h2><span id="view_date_h2">0000年00月のカレンダー</span></h2>
+</div>
+
+<div class="feedMonth">
+	<p class="feedMonth_now" id="curL"><a href="javascript:void(0)" onclick="clickMonth('today')">今月</a></p>
+
+	<p class="feedMonth_next" id="nextL"><a href="javascript:void(0)" onclick="clickMonth('next')">翌月</a></p>
+
+	<p class="feedMonth_prev" id="beforeL"><a href="javascript:void(0)" onclick="clickMonth('last')">前月</a></p>
+</div>
+
+<div class="tablestyleB"><!-- event_list -->
+	<div class="clearfix">
+		<div id="message">&nbsp;</div>
+		<!--	<div id="debug">&nbsp;</div>	-->
+
+		<dl class="listlink">
+		</dl>
+	</div>
+	<!-- /event_list --></div>
+
+
+
+
+
+
+</div><!--/main-->
+</div><!--/col-->
+
+<div class="col-pc-3 col-sp-12 boxL">
+
+<div class="sidenav">
+	<div class="sidenav_ttl">
+		<h2>イベントカレンダー</h2>
+	</div>
+
+	<div class="sideCalendar">
+		<div class="eventCalendar">
+			<h3>平成00年00月</h3>
+
+			<table summary="イベントカレンダーの月間表。">
+				<thead>
+					<tr>
+						<th>日</th>
+						<th>月</th>
+						<th>火</th>
+						<th>水</th>
+						<th>木</th>
+						<th>金</th>
+						<th>土</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>&nbsp;</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+					</tr>
+					<tr>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+					</tr>
+					<tr>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+					</tr>
+					<tr>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>00</td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="sideFeedMonth">
+				<p><a href="">前月</a></p>
+
+				<p><a href="">今月</a></p>
+
+				<p><a href="">翌月</a></p>
+			</div>
+		</div>
+	</div>
+	<!--/sideCalendar--></div>
+<!--/sidenav-->
+
+<div class="side_banner">
+<ul class="side_banner_item">
+<li><a href="/event/index.html"><img src="/content/000002006.png" alt="イベントカレンダー"></a></li>
+<li><a href="/kurashi/page105700.html"><img src="/content/000002013.png" alt="路線バス情報"></a></li>
+<li><a href="/jigyosha.html"><img src="/content/000002014.png" alt="事業者の方へ"></a></li>
+<li><a href="/kanko/index.html"><img src="/content/000002015.png" alt="観光案内"></a></li>
+<li><a href="/download/index.html"><img src="/content/000002016.png" alt="申請書ダウンロード"></a></li>
+<li><a href="https://logoform.jp/procedure/kR3j/1039" target="_blank"><img src="/content/000208277.png" alt="成田市オンライン申請サービス"></a></li>
+<li><a href="/boshu/index.html"><img src="/content/000051259.png" alt="募集"></a></li>
+</ul>
+</div>
+
+</div><!--/col-->
+
+</div><!--/row-->
+</div><!--/container-->
+
+
+<footer id="footer">
+
+<div class="pagetop_pc"><a href="#"><img src="/content/000000014.png" alt="ページの先頭へもどる"></a></div>
+
+<div class="footerNavi">
+<div class="container">
+<div class="row">
+<div class="col-pc-12 col-sp-12">
+<ul>
+<li><a href="/help/sitemap.html">サイトマップ</a></li>
+<li><a href="/help/contact.html">お問い合わせ</a></li>
+<li><a href="/help/index.html">このサイトについて</a></li>
+<li><a href="/help/page268000.html">プライバシーポリシー</a></li>
+<li><a href="/help/accessibility.html">ウェブアクセシビリティ方針</a></li>
+<li><a href="/help/page027800.html">リンク集</a></li>
+</ul>
+
+</div><!--/col-->
+</div><!--/row-->
+</div><!--/container-->
+</div><!--/footerNavi-->
+
+<div class="footerInfo">
+<div class="container">
+<div class="row">
+<div class="col-pc-12 col-sp-12">
+
+<div class="footerInfo_body">
+
+<div class="footerLogo">
+<p class="footerLogo_img"><img src="/content/000000015.png" alt="成田市"></p>
+<p class="footerLogo_number">法人番号：8000020122114</p>
+<p class="footerLogo_access"><a href="/shisei/page276000.html">市役所へのアクセス</a></p>
+</div>
+
+<div class="footerInfo_infolist">
+<ul>
+<li class="infolist_item01"><div class="infolistItem_caption">代表電話番号<span class="infolistItem_details tel-link">0476-22-1111</span></div></li>
+<li class="infolist_item02"><div class="infolistItem_caption">代表ファクス番号<span class="infolistItem_details">0476-24-1655</span></div></li>
+<li class="infolist_item03"><div class="infolistItem_caption">〒286-8585<span class="infolistItem_details">千葉県成田市花崎町760番地</span></div></li>
+</ul>
+</div>
+
+<div class="definition-styleA">
+<dl>
+<dt>開庁時間</dt>
+<dd>月曜日から金曜日まで（祝日・年末年始を除く）午前8時30分から午後5時15分まで<br>
+なお、一部窓口によって、開設時間が異なりますのでご注意ください。
+<div class="change-opening-hours">
+<p><strong>令和8年7月1日（水曜日）から開庁時間が変更になります。</strong><br>
+くわしくは「<a href="/shisei/page0107_00075.html">開庁時間等の変更について</a>」のページをご覧ください。</p>
+</div>
+</dd>
+</dl>
+</div>
+
+<p class="footerMap_sp pc-none"><img src="/content/000000016.png" alt="成田市地図"></p>
+</div><!--/footerInfo_body-->
+
+</div><!--/col-->
+</div><!--/row-->
+</div><!--/container-->
+
+</div><!--/footerInfo-->
+
+<div class="copyright">
+<div class="container">
+<div class="row">
+<div class="col-pc-12 col-sp-12">
+<p>このサイトの文章・画像は著作権により保護されていますので、無断での転用・転載はご遠慮ください。<br>
+Copyright  Narita City. All rights reserved.</p>
+</div><!--/col-->
+</div><!--/row-->
+</div><!--/container-->
+
+</div><!--/copyright-->
+
+</footer><!--/footer-->
+
+<nav id="slide_menu" class="pc-none">
+<p class="close_btn"><button class="button">メニューを閉じる</button></p>
+
+<div class="spNav_main">
+<ul>
+<li class="home"><a href="/index.html">トップページへ戻る</a></li>
+<li><a href="/kurashi/index.html">くらし・手続き</a></li>
+<li><a href="/kosodate/index.html">子育て・教育</a></li>
+<li><a href="/kenko_fukushi/index.html">健康・福祉</a></li>
+<li><a href="/bunka_sports/index.html">文化・スポーツ</a></li>
+<li><a href="/business/index.html">産業・ビジネス</a></li>
+<li><a href="/environment/index.html">まちづくり・環境</a></li>
+<li><a href="/anshin/index.html">安全・安心</a></li>
+<li><a href="/shisei/index.html">市政情報</a></li>
+</ul>
+</div>
+
+<div class="spNav_service">
+<ul class="spNav_service_item">
+<li><a href="/event/index.html">イベントカレンダー</a></li>
+<li><a href="/kurashi/page105700.html">路線バス情報</a></li>
+<li><a href="/jigyosha.html">事業者の方へ</a></li>
+<li><a href="/kanko/index.html">観光案内</a></li>
+<li><a href="/download/index.html">申請書ダウンロード</a></li>
+<li><a href="https://logoform.jp/procedure/kR3j/1039" target="_blank">成田市オンライン申請サービス</a></li>
+<li><a href="/boshu/index.html">募集</a></li>
+</ul>
+</div>
+
+<div class="pickupBanner">
+<ul>
+<li class="pickupBanner_item pickup-emergency"><a href="/help/life13.html"><img src="/content/000030411.png" alt="いざというとき"></a></li>
+<li class="pickupBanner_item pickup-disaster"><a href="/help/life14.html"><img src="/content/000030412.png" alt="防災・防犯情報"></a></li>
+</ul>
+</div>
+
+<div class="spNav_function">
+<ul>
+<li class="spNav_function_item itemB"><a href="/faq/index.html">よくある質問</a></li>
+<li class="spNav_function_item itemB"><a href="/help/contact.html">お問い合わせ</a></li>
+<li class="spNav_function_item itemB"><a href="/help/translate.html?path=event/index.html">Multilingual</a></li>
+<li class="spNav_function_item itemC"><a href="/help/page302300.html">情報の探し方</a></li>
+</ul>
+</div><!--/btn_nav_function-->
+
+<p class="close_btn"><button class="button">メニューを閉じる</button></p>
+</nav>
+
+
+<div id="QAWebChat"></div>
+<script type="text/javascript" src="https://webapp-jichitai-cdn.azureedge.net/naritacity/js/runtime-main.js"></script>
+<script type="text/javascript" src="https://webapp-jichitai-cdn.azureedge.net/naritacity/js/2.js"></script>
+<script type="text/javascript" src="https://webapp-jichitai-cdn.azureedge.net/naritacity/js/main.js"></script>
+
+</body>
+</html>
