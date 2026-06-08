@@ -80,19 +80,33 @@ def read_rows_from_csv(csv_path: str) -> list[dict]:
     return rows
 
 
+def _extract_url_from_row(row: dict) -> str:
+    """行から URL を抽出する。
+
+    URL カラムの優先順:
+      1. "url" カラム（存在し、空でない場合）
+      2. "city_url" カラム（marche ターゲット CSV 用）
+      3. "retty_url" カラム
+    """
+    for key in ("url", "city_url", "retty_url"):
+        val = (row.get(key) or "").strip()
+        if val:
+            return val
+    return ""
+
+
 def group_by_domain(rows: list[dict]) -> list[list[dict]]:
     """URL の FQDN でレコードをグルーピングし、グループのリストを返す。
 
     URL は以下の優先順で参照する:
       1. "url" カラム（存在し、空でない場合）
-      2. "retty_url" カラム
+      2. "city_url" カラム（marche ターゲット CSV 用）
+      3. "retty_url" カラム
     FQDN が取得できない行は "unknown" グループに入る。
     """
     groups: dict[str, list[dict]] = {}
     for row in rows:
-        url = (row.get("url") or "").strip()
-        if not url:
-            url = (row.get("retty_url") or "").strip()
+        url = _extract_url_from_row(row)
         try:
             fqdn = urlparse(url).hostname or "unknown"
         except Exception:
@@ -104,14 +118,14 @@ def group_by_domain(rows: list[dict]) -> list[list[dict]]:
 def build_matrix_by_domain(rows: list[dict]) -> dict:
     """ドメイングループを GHA matrix dict に変換する。
 
+    URL カラムの優先順は _extract_url_from_row() に従う（url / city_url / retty_url）。
+
     Returns:
         {"include": [{"shard_id": 0, "domain": "retty.me", "count": 42}, ...]}
     """
     groups: dict[str, list[dict]] = {}
     for row in rows:
-        url = (row.get("url") or "").strip()
-        if not url:
-            url = (row.get("retty_url") or "").strip()
+        url = _extract_url_from_row(row)
         try:
             fqdn = urlparse(url).hostname or "unknown"
         except Exception:
