@@ -32,7 +32,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: crawl-marche
+  group: "crawl-marche-${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }}"
   cancel-in-progress: false
 
 jobs:
