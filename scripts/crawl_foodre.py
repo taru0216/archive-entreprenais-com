@@ -195,6 +195,20 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             self.failed = 0
 
         def start_requests(self):
+            # Scrapy 2.11+ では StartSpiderMiddleware が start() を呼ぶため
+            # start_requests() が迂回される。start_urls を直接設定して回避する。
+            for url in self.target_urls:
+                parsed = urllib.parse.urlparse(url)
+                rel = archive_path(parsed.netloc, parsed.path or "/")
+                dest = os.path.join(self.out_directory, rel)
+                if self.skip and os.path.exists(dest):
+                    self.skipped += 1
+                    continue
+                yield scrapy.Request(url, callback=self.parse, errback=self.errback, meta={"dest": dest})
+
+        async def start(self):
+            # Scrapy 2.11+ の StartSpiderMiddleware 対応: start() を override して
+            # start_requests() と同じロジックを async generator で実装する。
             for url in self.target_urls:
                 parsed = urllib.parse.urlparse(url)
                 rel = archive_path(parsed.netloc, parsed.path or "/")
