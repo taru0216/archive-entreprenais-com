@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""tests/test_crawl_marche.py — crawl_marche.py のユニットテスト"""
+"""tests/test_crawl_marche.py — crawl_cities.py のユニットテスト（後方互換）
+
+NOTE: crawl_marche.py は crawl_cities.py にリネームされました。
+このファイルは後方互換のため残していますが、新しいテストは test_city_spider.py を参照してください。
+"""
 import sys
 import os
 import csv
@@ -7,7 +11,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
-from crawl_marche import is_marche_url, is_same_domain, gen_csv_main  # noqa: E402
+from crawl_cities import is_marche_url, is_same_domain, load_targets  # noqa: E402
 
 
 class TestIsMarcheUrl(unittest.TestCase):
@@ -45,44 +49,29 @@ class TestIsSameDomain(unittest.TestCase):
         )
 
 
-class TestGenCsvDryRun(unittest.TestCase):
-    def test_gen_csv_dry_run(self):
-        """dry-run モードで gen-csv が実行できること（外部通信なし）"""
+class TestLoadTargetsDryRun(unittest.TestCase):
+    def test_load_targets_with_domain_filter(self):
+        """load_targets が target_domain でフィルタリングできること（外部通信なし）"""
         with tempfile.NamedTemporaryFile(
             mode="w", suffix=".csv", delete=False, encoding="utf-8"
         ) as f:
             writer = csv.writer(f)
             writer.writerow(["city_url", "city_slug", "pref"])
-            writer.writerow(["https://www.city.shiroi.chiba.jp/", "shiroi", "chiba"])
+            writer.writerow(["https://www.city.shiroi.chiba.jp/sangyo/", "shiroi", "chiba"])
+            writer.writerow(["https://www.city.matsudo.chiba.jp/jigyosya/", "matsudo", "chiba"])
             target_csv = f.name
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False, encoding="utf-8"
-        ) as f:
-            out_csv = f.name
-
         try:
-            result = gen_csv_main(
-                [
-                    "--target-csv", target_csv,
-                    "--out", out_csv,
-                    "--dry-run",
-                ]
-            )
-            # dry-run では外部通信なしで正常終了（0 ページなので 0 を返す）
-            self.assertEqual(result, 0)
+            # フィルタあり: shiroi のみ
+            targets = load_targets(target_csv, target_domain="www.city.shiroi.chiba.jp")
+            self.assertEqual(len(targets), 1)
+            self.assertEqual(targets[0][0], "shiroi")
 
-            # 出力 CSV が作成されていること
-            self.assertTrue(os.path.exists(out_csv))
-
-            with open(out_csv, newline="", encoding="utf-8") as f:
-                reader = csv.DictReader(f)
-                rows = list(reader)
-            # dry-run では 0 件（外部通信なし）
-            self.assertEqual(len(rows), 0)
+            # フィルタなし: 全件
+            all_targets = load_targets(target_csv)
+            self.assertEqual(len(all_targets), 2)
         finally:
             os.unlink(target_csv)
-            os.unlink(out_csv)
 
 
 class TestTargetsCsvFormat(unittest.TestCase):
@@ -102,7 +91,10 @@ class TestTargetsCsvFormat(unittest.TestCase):
             rows = list(reader)
 
         self.assertGreater(len(rows), 0, "marche-targets.csv が空")
-        slugs = [r.get("city_slug", "") for r in rows]
+        # city_slug または slug 列で白井市を探す
+        slugs = [
+            (r.get("city_slug") or r.get("slug") or "") for r in rows
+        ]
         self.assertIn("shiroi", slugs, "白井市エントリが存在しない")
 
 
