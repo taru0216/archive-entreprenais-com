@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""crawl_foodre.py — foodre（Retty）飲食店 CSV を分散クロールして HTML を保存
+"""crawl_retty.py — retty（Retty）飲食店 CSV を分散クロールして HTML を保存
 
 crawl-stores-v2.yml から呼ばれる分散クローラ。
 Scrapy が利用可能な場合は Scrapy Spider で並列クロール、
 未インストールの場合は urllib フォールバックを使用する。
 
 使い方:
-  python3 archive-entreprenaIs-com/scripts/crawl_foodre.py \\
+  python3 archive-entreprenaIs-com/scripts/crawl_retty.py \\
     --csv archive-entreprenaIs-com/.data/crawl-targets/ebisu.csv \\
     --shard-id 0 \\
     --batch-size 100 \\
@@ -225,8 +225,8 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool, max_ag
         crawl_with_urllib(urls, out_dir, skip_existing, max_age_days)
         return
 
-    class FoodreSpider(scrapy.Spider):
-        name = "foodre"
+    class RettySpider(scrapy.Spider):
+        name = "retty"
         allowed_domains = ["retty.me"]
         custom_settings = {
             "CONCURRENT_REQUESTS": 4,
@@ -308,7 +308,7 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool, max_ag
             )
 
     process = CrawlerProcess()
-    process.crawl(FoodreSpider, target_urls=urls, out_directory=out_dir, skip=skip_existing, max_age_days=max_age_days)
+    process.crawl(RettySpider, target_urls=urls, out_directory=out_dir, skip=skip_existing, max_age_days=max_age_days)
     process.start()
 
 
@@ -351,7 +351,7 @@ def crawl_with_urllib(urls: List[str], out_dir: str, skip_existing: bool, max_ag
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="foodre 分散クローラ")
+    parser = argparse.ArgumentParser(description="retty 分散クローラ")
     parser.add_argument("--csv", required=True, help="クロール対象 CSV パス")
     parser.add_argument("--shard-id", type=int, default=0, help="シャード ID (0-indexed)")
     parser.add_argument("--batch-size", type=int, default=100, help="このジョブで処理する件数")

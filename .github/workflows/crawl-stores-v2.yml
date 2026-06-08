@@ -1,10 +1,10 @@
-name: Crawl Foodre Stores (v2 parallel)
+name: Crawl Retty Stores (v2 parallel)
 
-# foodre（Retty）飲食店の生 HTML を並列分散クロールして archive に保存する。
+# retty（Retty）飲食店の生 HTML を並列分散クロールして archive に保存する。
 #
 # アーキテクチャ:
 #   shard ジョブ: shard_targets.py で CSV を batch_size 行ごとに分割し matrix JSON を生成
-#   crawl ジョブ: matrix 並列（max-parallel: 20）で各シャードを crawl_foodre.py でクロール
+#   crawl ジョブ: matrix 並列（max-parallel: 20）で各シャードを crawl_retty.py でクロール
 #
 # パイプライン位置:
 #   本ワークフロー: CSV → archive（このリポジトリ）に生 HTML を保存
@@ -61,7 +61,7 @@ jobs:
       - name: Generate shard matrix
         id: gen
         run: |
-          # --group-by-domain: 同一ドメイン URL を同一シャードに集約（foodre rate limit 対策）
+          # --group-by-domain: 同一ドメイン URL を同一シャードに集約（retty rate limit 対策）
           # retty.me のような単一ドメインターゲットは 1 シャード（1 ジョブ）になる
           python3 scripts/shard_targets.py \
             --csv "${{ steps.resolve.outputs.csv_path }}" \
@@ -93,7 +93,7 @@ jobs:
           fi
           # --group-by-domain モードでは matrix.count がそのドメインの全件数
           # shard_id=0, batch_size=count とすることで全件を1ジョブで処理する
-          python3 scripts/crawl_foodre.py \
+          python3 scripts/crawl_retty.py \
             --csv "${{ needs.shard.outputs.csv_path }}" \
             --shard-id "${{ matrix.shard_id }}" \
             --batch-size "${{ matrix.count }}" \
@@ -110,7 +110,7 @@ jobs:
             exit 0
           fi
           SAVED=$(git diff --cached --name-only | wc -l)
-          git commit -m "crawl(foodre): shard-${{ matrix.shard_id }} ${SAVED} pages [skip ci]"
+          git commit -m "crawl(retty): shard-${{ matrix.shard_id }} ${SAVED} pages [skip ci]"
           # リトライ付き push（並列ジョブのコンフリクト対策）
           for attempt in 1 2 3; do
             git pull --rebase origin HEAD && git push && break || {
