@@ -21,6 +21,11 @@ CSV フォーマット（ebisu.csv 等）:
   archive_path(fqdn, url_path) で逆 DNS ツリー階層に変換。
   例: retty.me/area/PRE13/.../1234567890/index.html
 
+変更検知:
+  各ページディレクトリに .data/meta.json を保存し TTL ベースのスキップを実現。
+  --max-age-days N（デフォルト: 7）以内に last_crawled があれば再クロールをスキップ。
+  mtime ベースは GHA clone で機能しないため sha256 + epoch で管理する。
+
 - robots.txt を遵守する（ROBOTSTXT_OBEY=True）
 - AUTOTHROTTLE で自動レート調整（CONCURRENT_REQUESTS=4）
 - --skip-existing で保存済み HTML をスキップ（増分クロール）
@@ -29,6 +34,8 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import json
 import os
 import re
 import sys
@@ -111,8 +118,60 @@ def get_shard_urls(urls: List[str], shard_id: int, batch_size: int) -> List[str]
     return urls[start:end]
 
 
-def save_html(url: str, out_dir: str, skip_existing: bool = False) -> bool:
-    """URL を fetch して out_dir 配下に保存。成功したら True を返す。"""
+# ---------------------------------------------------------------------------
+# .data/meta.json ヘルパー
+# ---------------------------------------------------------------------------
+
+def get_meta_path(url: str, out_dir: str) -> str:
+    """URL に対応する .data/meta.json のパスを返す。"""
+    parsed = urllib.parse.urlparse(url)
+    fqdn = parsed.netloc
+    url_path = parsed.path or "/"
+    rel_path = archive_path(fqdn, url_path)  # 既存関数
+    page_dir = os.path.join(out_dir, os.path.dirname(rel_path))
+    return os.path.join(page_dir, ".data", "meta.json")
+
+
+def is_fresh(meta_path: str, max_age_days: float) -> bool:
+    """meta.json が存在し last_crawled が max_age_days 以内なら True。
+
+    max_age_days <= 0 の場合は常に False（常に再クロール）。
+    """
+    if max_age_days <= 0:
+        return False  # 0 = 常に再クロール
+    if not os.path.exists(meta_path):
+        return False
+    try:
+        with open(meta_path) as f:
+            meta = json.load(f)
+        age_days = (time.time() - meta.get("last_crawled", 0)) / 86400
+        return age_days < max_age_days
+    except Exception:
+        return False
+
+
+def update_meta(url: str, content: bytes, out_dir: str) -> None:
+    """クロール後に .data/meta.json を更新する。"""
+    meta_path = get_meta_path(url, out_dir)
+    os.makedirs(os.path.dirname(meta_path), exist_ok=True)
+    meta = {
+        "url": url,
+        "last_crawled": int(time.time()),
+        "sha256": hashlib.sha256(content).hexdigest(),
+    }
+    with open(meta_path, "w") as f:
+        json.dump(meta, f, separators=(",", ":"))
+
+
+# ---------------------------------------------------------------------------
+# urllib ベースのシングルページ保存
+# ---------------------------------------------------------------------------
+
+def save_html(url: str, out_dir: str, skip_existing: bool = False, max_age_days: float = 7.0) -> bool:
+    """URL を fetch して out_dir 配下に保存。成功したら True を返す。
+
+    skip_existing=True かつ is_fresh() の場合はフェッチをスキップする。
+    """
     parsed = urllib.parse.urlparse(url)
     fqdn = parsed.netloc
     url_path = parsed.path or "/"
@@ -120,8 +179,10 @@ def save_html(url: str, out_dir: str, skip_existing: bool = False) -> bool:
     rel_path = archive_path(fqdn, url_path)
     dest = os.path.join(out_dir, rel_path)
 
-    if skip_existing and os.path.exists(dest):
-        return True  # スキップ
+    if skip_existing:
+        meta_path = get_meta_path(url, out_dir)
+        if is_fresh(meta_path, max_age_days):
+            return True  # 新鮮なのでスキップ
 
     os.makedirs(os.path.dirname(dest), exist_ok=True)
 
@@ -134,10 +195,13 @@ def save_html(url: str, out_dir: str, skip_existing: bool = False) -> bool:
                 (".jpg", ".png", ".gif", ".css", ".js", ".pdf", ".zip")
             ):
                 return False
+            content = resp.read()
             charset = resp.headers.get_content_charset() or "utf-8"
-            html = resp.read().decode(charset, errors="replace")
+            html = content.decode(charset, errors="replace")
         with open(dest, "w", encoding="utf-8") as f:
             f.write(html)
+        # meta.json を更新（content は raw bytes）
+        update_meta(url, content, out_dir)
         return True
     except urllib.error.HTTPError as e:
         print(f"  [WARN] HTTP {e.code}: {url}", file=sys.stderr)
@@ -150,7 +214,7 @@ def save_html(url: str, out_dir: str, skip_existing: bool = False) -> bool:
 # Scrapy Spider（Scrapy 利用可能時）
 # ---------------------------------------------------------------------------
 
-def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> None:
+def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool, max_age_days: float = 7.0) -> None:
     """Scrapy Spider で並列クロール。"""
     try:
         import scrapy
@@ -158,7 +222,7 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
         from scrapy.http import Response
     except ImportError:
         print("[INFO] Scrapy not available, falling back to urllib", file=sys.stderr)
-        crawl_with_urllib(urls, out_dir, skip_existing)
+        crawl_with_urllib(urls, out_dir, skip_existing, max_age_days)
         return
 
     class FoodreSpider(scrapy.Spider):
@@ -185,11 +249,12 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             "DOWNLOAD_TIMEOUT": 30,
         }
 
-        def __init__(self, target_urls: List[str], out_directory: str, skip: bool, **kwargs):
+        def __init__(self, target_urls: List[str], out_directory: str, skip: bool, max_age_days: float = 7.0, **kwargs):
             super().__init__(**kwargs)
             self.target_urls = target_urls
             self.out_directory = out_directory
             self.skip = skip
+            self.max_age_days = max_age_days
             self.saved = 0
             self.skipped = 0
             self.failed = 0
@@ -198,31 +263,36 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             # Scrapy 2.11+ では StartSpiderMiddleware が start() を呼ぶため
             # start_requests() が迂回される。start_urls を直接設定して回避する。
             for url in self.target_urls:
+                meta_path = get_meta_path(url, self.out_directory)
+                if self.skip and is_fresh(meta_path, self.max_age_days):
+                    self.skipped += 1
+                    continue
                 parsed = urllib.parse.urlparse(url)
                 rel = archive_path(parsed.netloc, parsed.path or "/")
                 dest = os.path.join(self.out_directory, rel)
-                if self.skip and os.path.exists(dest):
-                    self.skipped += 1
-                    continue
                 yield scrapy.Request(url, callback=self.parse, errback=self.errback, meta={"dest": dest})
 
         async def start(self):
             # Scrapy 2.11+ の StartSpiderMiddleware 対応: start() を override して
             # start_requests() と同じロジックを async generator で実装する。
             for url in self.target_urls:
+                meta_path = get_meta_path(url, self.out_directory)
+                if self.skip and is_fresh(meta_path, self.max_age_days):
+                    self.skipped += 1
+                    continue
                 parsed = urllib.parse.urlparse(url)
                 rel = archive_path(parsed.netloc, parsed.path or "/")
                 dest = os.path.join(self.out_directory, rel)
-                if self.skip and os.path.exists(dest):
-                    self.skipped += 1
-                    continue
                 yield scrapy.Request(url, callback=self.parse, errback=self.errback, meta={"dest": dest})
 
         def parse(self, response: Response):
             dest: str = response.meta["dest"]
+            target_url = response.url
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             with open(dest, "w", encoding="utf-8") as f:
                 f.write(response.text)
+            # meta.json を更新（response.body は raw bytes）
+            update_meta(target_url, response.body, self.out_directory)
             self.saved += 1
             if self.saved % 10 == 0:
                 print(f"  [INFO] saved {self.saved} pages", file=sys.stderr)
@@ -238,7 +308,7 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             )
 
     process = CrawlerProcess()
-    process.crawl(FoodreSpider, target_urls=urls, out_directory=out_dir, skip=skip_existing)
+    process.crawl(FoodreSpider, target_urls=urls, out_directory=out_dir, skip=skip_existing, max_age_days=max_age_days)
     process.start()
 
 
@@ -246,14 +316,14 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
 # urllib フォールバック
 # ---------------------------------------------------------------------------
 
-def crawl_with_urllib(urls: List[str], out_dir: str, skip_existing: bool) -> None:
+def crawl_with_urllib(urls: List[str], out_dir: str, skip_existing: bool, max_age_days: float = 7.0) -> None:
     """urllib で逐次クロール（Scrapy 未インストール時のフォールバック）。"""
     saved = 0
     skipped = 0
     failed = 0
 
     for i, url in enumerate(urls, 1):
-        success = save_html(url, out_dir, skip_existing=skip_existing)
+        success = save_html(url, out_dir, skip_existing=skip_existing, max_age_days=max_age_days)
         if success:
             if skip_existing:
                 # skip_existing で既存なら True だが実際に保存したかは判断しにくい
@@ -288,6 +358,12 @@ def main() -> None:
     parser.add_argument("--out-dir", default=".", help="HTML 保存先ディレクトリ（archive submodule のルート）")
     parser.add_argument("--skip-existing", action="store_true", help="保存済み HTML をスキップ")
     parser.add_argument("--use-urllib", action="store_true", help="Scrapy を使わず urllib で処理")
+    parser.add_argument(
+        "--max-age-days",
+        type=float,
+        default=7.0,
+        help="この日数より古い .data/meta.json は再クロール対象（0=常に再クロール、デフォルト: 7）",
+    )
     args = parser.parse_args()
 
     if not os.path.exists(args.csv):
@@ -305,9 +381,9 @@ def main() -> None:
         return
 
     if args.use_urllib:
-        crawl_with_urllib(shard_urls, args.out_dir, args.skip_existing)
+        crawl_with_urllib(shard_urls, args.out_dir, args.skip_existing, args.max_age_days)
     else:
-        crawl_with_scrapy(shard_urls, args.out_dir, args.skip_existing)
+        crawl_with_scrapy(shard_urls, args.out_dir, args.skip_existing, args.max_age_days)
 
 
 if __name__ == "__main__":
