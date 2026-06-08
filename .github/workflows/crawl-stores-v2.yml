@@ -1,0 +1,120 @@
+name: Crawl Foodre Stores (v2 parallel)
+
+# foodre（Retty）飲食店の生 HTML を並列分散クロールして archive に保存する。
+#
+# アーキテクチャ:
+#   shard ジョブ: shard_targets.py で CSV を batch_size 行ごとに分割し matrix JSON を生成
+#   crawl ジョブ: matrix 並列（max-parallel: 20）で各シャードを crawl_foodre.py でクロール
+#
+# パイプライン位置:
+#   本ワークフロー: CSV → archive（このリポジトリ）に生 HTML を保存
+#   ↓ factory-entreprenaIs-com-builder の crawl-stores.yml: archive HTML → store.json 抽出
+#   ↓ auto-build.yml: store.json 変更 → 静的サイト build
+#
+# 注意:
+#   各 crawl ジョブが archive リポジトリに直接 git commit & push するため
+#   push コンフリクトが発生しうる。--skip-existing で増分クロールを推奨。
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "1ジョブあたりの処理件数"
+        default: "100"
+        required: false
+      csv:
+        description: "クロール対象 CSV パス（空なら .data/crawl-targets/ebisu.csv を使用）"
+        default: ""
+        required: false
+      skip_existing:
+        description: "保存済み HTML をスキップ（増分クロール）"
+        default: "true"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crawl-stores-v2
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+      csv_path: ${{ steps.resolve.outputs.csv_path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve target CSV path
+        id: resolve
+        run: |
+          CSV_INPUT="${{ github.event.inputs.csv }}"
+          if [ -n "${CSV_INPUT}" ]; then
+            echo "csv_path=${CSV_INPUT}" >> "$GITHUB_OUTPUT"
+          else
+            DEFAULT_CSV=".data/crawl-targets/ebisu.csv"
+            echo "csv_path=${DEFAULT_CSV}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate shard matrix
+        id: gen
+        run: |
+          # --group-by-domain: 同一ドメイン URL を同一シャードに集約（foodre rate limit 対策）
+          # retty.me のような単一ドメインターゲットは 1 シャード（1 ジョブ）になる
+          python3 scripts/shard_targets.py \
+            --csv "${{ steps.resolve.outputs.csv_path }}" \
+            --group-by-domain \
+            --output-json
+
+  crawl:
+    needs: shard
+    if: needs.shard.outputs.matrix != '{"include":[]}'
+    strategy:
+      matrix: ${{ fromJson(needs.shard.outputs.matrix) }}
+      max-parallel: 20
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Scrapy
+        run: pip install scrapy
+
+      - name: Crawl shard ${{ matrix.shard_id }} (domain=${{ matrix.domain }}, count=${{ matrix.count }})
+        run: |
+          SKIP_FLAG=""
+          if [ "${{ github.event.inputs.skip_existing || 'true' }}" = "true" ]; then
+            SKIP_FLAG="--skip-existing"
+          fi
+          # --group-by-domain モードでは matrix.count がそのドメインの全件数
+          # shard_id=0, batch_size=count とすることで全件を1ジョブで処理する
+          python3 scripts/crawl_foodre.py \
+            --csv "${{ needs.shard.outputs.csv_path }}" \
+            --shard-id "${{ matrix.shard_id }}" \
+            --batch-size "${{ matrix.count }}" \
+            --out-dir . \
+            ${SKIP_FLAG}
+
+      - name: Commit archive (shard ${{ matrix.shard_id }})
+        run: |
+          git config user.name "eai-cto"
+          git config user.email "eai-cto@entreprenais"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "[shard-${{ matrix.shard_id }}] no new HTML — skip commit"
+            exit 0
+          fi
+          SAVED=$(git diff --cached --name-only | wc -l)
+          git commit -m "crawl(foodre): shard-${{ matrix.shard_id }} ${SAVED} pages [skip ci]"
+          # リトライ付き push（並列ジョブのコンフリクト対策）
+          for attempt in 1 2 3; do
+            git pull --rebase origin HEAD && git push && break || {
+              echo "push attempt ${attempt} failed, retrying..."
+              sleep $((attempt * 5))
+            }
+          done
