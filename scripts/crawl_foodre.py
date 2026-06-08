@@ -163,6 +163,7 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
 
     class FoodreSpider(scrapy.Spider):
         name = "foodre"
+        allowed_domains = ["retty.me"]
         custom_settings = {
             "CONCURRENT_REQUESTS": 4,
             "AUTOTHROTTLE_ENABLED": True,
@@ -174,6 +175,10 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             # /area/PRE13/ARE7/ をブロックする問題が確認されたため ROBOTSTXT_OBEY=False に変更。
             # 対象は公開飲食店ページのみであり robots.txt の意図に沿っている。
             "ROBOTSTXT_OBEY": False,
+            # OffsiteMiddleware を無効化（allowed_domains 外への誤フィルタ防止）
+            "SPIDER_MIDDLEWARES": {
+                "scrapy.spidermiddlewares.offsite.OffsiteMiddleware": None,
+            },
             "USER_AGENT": USER_AGENT,
             "LOG_LEVEL": "INFO",
             "DOWNLOAD_TIMEOUT": 30,
