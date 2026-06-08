@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """shard_targets.py — CSV ターゲット一覧を GHA matrix 用バッチに分割する
 
-foodre / marche 両クローラで共用できる汎用シャーディングスクリプト。
+retty / marche 両クローラで共用できる汎用シャーディングスクリプト。
 入力 CSV の行数を --batch-size で分割し、GHA matrix JSON を GITHUB_OUTPUT に出力する。
 
 使い方:
@@ -11,7 +11,7 @@ foodre / marche 両クローラで共用できる汎用シャーディングス�
     --batch-size 100 \\
     --output-json
 
-  # --group-by-domain: 同一 FQDN を同一シャードに集約（foodre rate limit 対策）
+  # --group-by-domain: 同一 FQDN を同一シャードに集約（retty rate limit 対策）
   python3 scripts/shard_targets.py \\
     --csv .data/crawl-targets/ebisu.csv \\
     --group-by-domain \\
@@ -182,7 +182,7 @@ def main() -> int:
     ap.add_argument(
         "--group-by-domain",
         action="store_true",
-        help="同一 FQDN の URL を同一シャードに集約する（foodre rate limit 対策）",
+        help="同一 FQDN の URL を同一シャードに集約する（retty rate limit 対策）",
     )
     ap.add_argument(
         "--output-json",
