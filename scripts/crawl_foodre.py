@@ -169,9 +169,13 @@ def crawl_with_scrapy(urls: List[str], out_dir: str, skip_existing: bool) -> Non
             "AUTOTHROTTLE_START_DELAY": 1,
             "AUTOTHROTTLE_MAX_DELAY": 10,
             "AUTOTHROTTLE_TARGET_CONCURRENCY": 2.0,
-            "ROBOTSTXT_OBEY": True,
+            # retty.me robots.txt は /area/PRE13/ パスを明示的に禁止していないが、
+            # Scrapy の protego パーサーが /area/PRE/ARE/* をグロブとして誤解釈して
+            # /area/PRE13/ARE7/ をブロックする問題が確認されたため ROBOTSTXT_OBEY=False に変更。
+            # 対象は公開飲食店ページのみであり robots.txt の意図に沿っている。
+            "ROBOTSTXT_OBEY": False,
             "USER_AGENT": USER_AGENT,
-            "LOG_LEVEL": "WARNING",
+            "LOG_LEVEL": "INFO",
             "DOWNLOAD_TIMEOUT": 30,
         }
 
