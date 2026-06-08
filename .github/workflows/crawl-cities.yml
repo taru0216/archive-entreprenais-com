@@ -1,11 +1,12 @@
-name: Crawl Marche
+name: Crawl Cities
 
-# 自治体公式サイト・道の駅の農業・マルシェ関連ページを自動クロールしてアーカイブする。
-# crawl_marche.py の 2 ステップ（gen-csv + save-html）を週次で自動実行する。
+# 自治体公式サイトの農業・産業関連ページを自動クロールしてアーカイブする。
+# crawl_cities.py の 2 ステップ（gen-csv + save-html）を週次で自動実行する。
+# 収集した cities データは marche ページの build 等、複数の用途に利用される。
 #
 # アーキテクチャ:
 #   shard ジョブ: shard_targets.py で target_csv を自治体ドメインごとに分割し matrix JSON を生成
-#   crawl ジョブ: matrix 並列（max-parallel: 20）で各自治体を crawl_marche.py でクロール
+#   crawl ジョブ: matrix 並列（max-parallel: 20）で各自治体を crawl_cities.py でクロール
 #
 # 毎週月曜 02:00 JST（= 日曜 17:00 UTC）に自動起動。
 # public リポジトリのため GitHub hosted runner を使用する。
@@ -32,7 +33,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: "crawl-marche-${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }}"
+  group: "crawl-cities-${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }}"
   cancel-in-progress: false
 
 jobs:
@@ -54,7 +55,7 @@ jobs:
         id: gen
         run: |
           # --group-by-domain: 同一 FQDN の自治体を同一シャードに集約
-          # marche-targets.csv の各行は異なる自治体ドメインなので 1 自治体 1 シャードになる
+          # 各行は異なる自治体ドメインなので 1 自治体 1 シャードになる
           python3 scripts/shard_targets.py \
             --csv "${{ steps.resolve.outputs.target_csv }}" \
             --group-by-domain \
@@ -76,6 +77,9 @@ jobs:
       - name: Show Python version
         run: python3 --version
 
+      - name: Install Scrapy
+        run: pip install scrapy --quiet
+
       - name: "Step① gen-csv: shard ${{ matrix.shard_id }} (domain=${{ matrix.domain }})"
         id: gen_csv
         run: |
@@ -83,7 +87,7 @@ jobs:
           SLEEP="${{ github.event.inputs.sleep || '3' }}"
           TARGET_CSV="${{ needs.shard.outputs.target_csv }}"
 
-          python3 scripts/crawl_marche.py gen-csv \
+          python3 scripts/crawl_cities.py gen-csv \
             --target-csv "${TARGET_CSV}" \
             --target-domain "${{ matrix.domain }}" \
             --out ".data/crawl-targets/marche-pages-shard-${{ matrix.shard_id }}.csv" \
@@ -98,7 +102,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No CSV changes to commit."
           else
-            git commit -m "chore(marche): discovery CSV shard-${{ matrix.shard_id }} (${{ matrix.domain }}) を更新 [skip ci]"
+            git commit -m "chore(cities): discovery CSV shard-${{ matrix.shard_id }} (${{ matrix.domain }}) を更新 [skip ci]"
             for attempt in 1 2 3; do
               git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break || {
                 echo "push attempt ${attempt} failed, retrying..."
@@ -120,7 +124,7 @@ jobs:
             exit 0
           fi
 
-          python3 scripts/crawl_marche.py save-html \
+          python3 scripts/crawl_cities.py save-html \
             --csv "${SHARD_CSV}" \
             --sleep "${SLEEP}"
 
@@ -138,7 +142,7 @@ jobs:
           fi
 
           COUNT=$(git diff --cached --name-only | grep "index\.html" | wc -l | tr -d ' ')
-          git commit -m "[bot] marche crawl ${TODAY} shard-${{ matrix.shard_id }} (${{ matrix.domain }}) (${COUNT} pages)"
+          git commit -m "[bot] cities crawl ${TODAY} shard-${{ matrix.shard_id }} (${{ matrix.domain }}) (${COUNT} pages)"
           for attempt in 1 2 3; do
             git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break || {
               echo "push attempt ${attempt} failed, retrying..."
@@ -149,7 +153,7 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          echo "## Crawl Marche — shard ${{ matrix.shard_id }} (${{ matrix.domain }})" >> $GITHUB_STEP_SUMMARY
+          echo "## Crawl Cities — shard ${{ matrix.shard_id }} (${{ matrix.domain }})" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| 項目 | 値 |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
