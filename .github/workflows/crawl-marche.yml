@@ -1,0 +1,120 @@
+name: Crawl Marche
+
+# 自治体公式サイト・道の駅の農業・マルシェ関連ページを自動クロールしてアーカイブする。
+# crawl_marche.py の 2 ステップ（gen-csv + save-html）を週次で自動実行する。
+#
+# 毎週月曜 02:00 JST（= 日曜 17:00 UTC）に自動起動。
+# public リポジトリのため GitHub hosted runner を使用する。
+
+on:
+  schedule:
+    - cron: "0 17 * * 0"  # 毎週日曜 UTC 17:00 = 月曜 02:00 JST
+  workflow_dispatch:
+    inputs:
+      target_csv:
+        description: "自治体リスト CSV パス"
+        required: false
+        default: ".data/crawl-targets/marche-targets.csv"
+      depth:
+        description: "BFS 探索深さ上限"
+        required: false
+        default: "3"
+      sleep:
+        description: "リクエスト間 sleep 秒"
+        required: false
+        default: "3"
+      skip_gen_csv:
+        description: "gen-csv をスキップして save-html のみ実行（既存 marche-pages.csv を使用）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crawl-marche
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show Python version
+        run: python3 --version
+
+      - name: "Step① gen-csv: 自治体サイトから農業・マルシェページ URL を探索"
+        id: gen_csv
+        if: ${{ github.event.inputs.skip_gen_csv != 'true' }}
+        run: |
+          TARGET_CSV="${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }}"
+          DEPTH="${{ github.event.inputs.depth || '3' }}"
+          SLEEP="${{ github.event.inputs.sleep || '3' }}"
+
+          python3 scripts/crawl_marche.py gen-csv \
+            --target-csv "${TARGET_CSV}" \
+            --out .data/crawl-targets/marche-pages.csv \
+            --depth "${DEPTH}" \
+            --sleep "${SLEEP}"
+
+      - name: "Commit discovery CSV"
+        if: ${{ github.event.inputs.skip_gen_csv != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .data/crawl-targets/marche-pages.csv
+          if git diff --cached --quiet; then
+            echo "No CSV changes to commit."
+          else
+            git commit -m "chore(marche): discovery CSV を更新 [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: "Step② save-html: CSV から生 HTML を archive_path() 規則で保存"
+        id: save_html
+        run: |
+          SLEEP="${{ github.event.inputs.sleep || '3' }}"
+
+          # marche-pages.csv が存在しない場合はスキップ
+          if [ ! -f .data/crawl-targets/marche-pages.csv ]; then
+            echo "[save-html] .data/crawl-targets/marche-pages.csv が存在しません — スキップ"
+            echo "pages_saved=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          python3 scripts/crawl_marche.py save-html \
+            --csv .data/crawl-targets/marche-pages.csv \
+            --sleep "${SLEEP}"
+
+      - name: "Commit & push HTML archive"
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 新規追加された HTML を git add
+          git add --all
+
+          if git diff --cached --quiet; then
+            echo "No HTML changes to commit."
+            exit 0
+          fi
+
+          COUNT=$(git diff --cached --name-only | grep "index\.html" | wc -l | tr -d ' ')
+          git commit -m "[bot] weekly marche crawl ${TODAY} (${COUNT} pages)"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Crawl Marche 結果" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 項目 | 値 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| target_csv | ${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets.csv' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_saved | ${{ steps.save_html.outputs.pages_saved || 0 }} |" >> $GITHUB_STEP_SUMMARY
