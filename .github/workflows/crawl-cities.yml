@@ -1,12 +1,12 @@
 name: Crawl Cities
 
 # 自治体公式サイトの農業・産業関連ページを自動クロールしてアーカイブする。
-# crawl_cities.py の 2 ステップ（gen-csv + save-html）を週次で自動実行する。
+# crawl_cities.py の CitySpider（1ステップ）で週次自動実行する。
 # 収集した cities データは marche ページの build 等、複数の用途に利用される。
 #
 # アーキテクチャ:
 #   shard ジョブ: shard_targets.py で target_csv を自治体ドメインごとに分割し matrix JSON を生成
-#   crawl ジョブ: matrix 並列（max-parallel: 20）で各自治体を crawl_cities.py でクロール
+#   crawl ジョブ: matrix 並列（max-parallel: 20）で各自治体を crawl_cities.py 1コマンドでクロール
 #
 # 毎週月曜 02:00 JST（= 日曜 17:00 UTC）に自動起動。
 # public リポジトリのため GitHub hosted runner を使用する。
@@ -20,14 +20,10 @@ on:
         description: "自治体リスト CSV パス"
         required: false
         default: ".data/crawl-targets/marche-targets.csv"
-      depth:
-        description: "BFS 探索深さ上限"
+      max_age_days:
+        description: "TTL（日数）: この日数より古い場合のみ再クロール"
         required: false
-        default: "1"
-      sleep:
-        description: "リクエスト間 sleep 秒"
-        required: false
-        default: "3"
+        default: "7"
 
 permissions:
   contents: write
@@ -80,53 +76,16 @@ jobs:
       - name: Install Scrapy
         run: pip install scrapy --quiet
 
-      - name: "Step① gen-csv: shard ${{ matrix.shard_id }} (domain=${{ matrix.domain }})"
-        id: gen_csv
+      - name: "Crawl city (1ステップ): shard ${{ matrix.shard_id }} (domain=${{ matrix.domain }})"
+        id: crawl
         run: |
-          DEPTH="${{ github.event.inputs.depth || '1' }}"
-          SLEEP="${{ github.event.inputs.sleep || '3' }}"
+          MAX_AGE="${{ github.event.inputs.max_age_days || '7' }}"
           TARGET_CSV="${{ needs.shard.outputs.target_csv }}"
 
-          python3 scripts/crawl_cities.py gen-csv \
+          python3 scripts/crawl_cities.py \
             --target-csv "${TARGET_CSV}" \
             --target-domain "${{ matrix.domain }}" \
-            --out ".data/crawl-targets/marche-pages-shard-${{ matrix.shard_id }}.csv" \
-            --depth "${DEPTH}" \
-            --sleep "${SLEEP}"
-
-      - name: "Commit discovery CSV (shard ${{ matrix.shard_id }})"
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ".data/crawl-targets/marche-pages-shard-${{ matrix.shard_id }}.csv"
-          if git diff --cached --quiet; then
-            echo "No CSV changes to commit."
-          else
-            git commit -m "chore(cities): discovery CSV shard-${{ matrix.shard_id }} (${{ matrix.domain }}) を更新 [skip ci]"
-            for attempt in 1 2 3; do
-              git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break || {
-                echo "push attempt ${attempt} failed, retrying..."
-                sleep $((attempt * 5))
-              }
-            done
-          fi
-
-      - name: "Step② save-html: shard ${{ matrix.shard_id }} (domain=${{ matrix.domain }})"
-        id: save_html
-        run: |
-          SLEEP="${{ github.event.inputs.sleep || '3' }}"
-          SHARD_CSV=".data/crawl-targets/marche-pages-shard-${{ matrix.shard_id }}.csv"
-
-          # shard CSV が存在しない場合はスキップ
-          if [ ! -f "${SHARD_CSV}" ]; then
-            echo "[save-html] ${SHARD_CSV} が存在しません — スキップ"
-            echo "pages_saved=0" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          python3 scripts/crawl_cities.py save-html \
-            --csv "${SHARD_CSV}" \
-            --sleep "${SLEEP}"
+            --max-age-days "${MAX_AGE}"
 
       - name: "Commit & push HTML archive (shard ${{ matrix.shard_id }})"
         run: |
@@ -158,4 +117,5 @@ jobs:
           echo "| 項目 | 値 |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
           echo "| domain | ${{ matrix.domain }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| pages_saved | ${{ steps.save_html.outputs.pages_saved || 0 }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_saved | ${{ steps.crawl.outputs.pages_saved || 0 }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_skipped | ${{ steps.crawl.outputs.pages_skipped || 0 }} |" >> $GITHUB_STEP_SUMMARY
