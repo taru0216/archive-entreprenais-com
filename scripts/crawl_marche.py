@@ -58,6 +58,10 @@ def http_get(url: str, timeout: int = 30) -> str | None:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
+            content_type = resp.headers.get_content_type() or ""
+            # text/html 以外（PDF・画像・バイナリ等）はリンク探索対象外
+            if not content_type.startswith("text/html"):
+                return None
             charset = resp.headers.get_content_charset() or "utf-8"
             return resp.read().decode(charset, errors="replace")
     except urllib.error.HTTPError as e:
@@ -171,7 +175,10 @@ def discover_marche_urls(
         # 深さ上限以内なら子リンクを追加
         if depth < max_depth:
             extractor = LinkExtractor(url)
-            extractor.feed(html)
+            try:
+                extractor.feed(html)
+            except Exception as e:  # noqa: BLE001
+                print(f"  [WARN] HTML parse error {url}: {e}", file=sys.stderr)
             for link in extractor.links:
                 if link not in visited and is_same_domain(link, base_domain):
                     queue.append((link, depth + 1))
