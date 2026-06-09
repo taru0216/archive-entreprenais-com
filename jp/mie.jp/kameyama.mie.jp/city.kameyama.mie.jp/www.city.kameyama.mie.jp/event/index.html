@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>イベントカレンダー | 亀山市</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="/_themes/asset/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="/_themes/asset/slick/slick.css"/>
+
+<link rel="alternate stylesheet" href="/_themes/asset/colors/white.css" title="white" />
+<link rel="alternate stylesheet" href="/_themes/asset/colors/blue.css" title="blue" />
+<link rel="alternate stylesheet" href="/_themes/asset/colors/black.css" title="black" />
+<link rel="stylesheet" href="/_themes/asset/css/style.css" />
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="/_themes/js/jquery-migrate.min.js"></script>
+
+<script src="/_themes/js/common.js"></script>
+
+<script src="/_themes/js/jquery.cookie.js"></script>
+<script src="/_themes/asset/js/navigation.js"></script>
+
+<script>
+$(function() {
+Navigation.initialize({
+theme : { '#themeBlack' : 'black', '#themeBlue': 'blue', '#themeWhite' : 'white' },
+fontSize: { '#fontMiddleNew': '10px', '#fontLargeNew' : '12px' },
+notice : '#headerBody',
+ruby : '#navigationRuby',
+talk : '#navigationTalk',
+player : '#navigationTalkPlayer'
+});
+
+  $('a.rubyOn').text('ふりがなをはずす');
+  $('#navigationTalk').on('click',function(e){
+    e.preventDefault();
+    if($(this).hasClass("active")){
+      $(this).text('よみあげる');
+    } else {
+      $(this).text('よみあげ中');
+    }
+    $(this).toggleClass('active');
+  });
+});
+</script>
+    
+<link rel="stylesheet" href="/_common/assets/vendor-e7d78e8a.css" />
+<script src="/_common/assets/vendor-191fcd61.js"></script>
+<link rel="stylesheet" href="/_common/assets/common-2305d2b7.css" />
+<script src="/_common/assets/common-fd377dbb.js"></script>
+<link rel="stylesheet" href="/_common/assets/public-4b7c3c44.css" />
+<script src="/_common/assets/public-f5bd4790.js"></script>
+
+  
+</head>
+<body id="page-event-index" class="dir-event">
+    	<header class="container">
+		<div class="row">
+			<h1 class="col-12 col-md-6 d-flex align-items-center justify-content-start"><a href="/"><img src="/_themes/asset/images/logo.png" alt="亀山市"></a><a href="/" class="hbtn ml-3 d-none d-md-block">ホーム</a></h1>
+			<span id="blockskip"><a href="#top">このページの本文へ移動</a></span>
+			<div class="col-12 col-md d-flex align-items-center justify-content-end">
+				<div class="row">
+					<div class="col-auto d-none d-md-block">
+						<a class="hbtn dd" data-toggle="collapse" href="#vsupport" role="button" aria-expanded="false" aria-controls="vsupport">閲覧支援</a>
+					</div>
+					<div class="col-auto d-none d-md-block">
+						<a class="hbtn dd" data-toggle="collapse" href="#flang" role="button" aria-expanded="false" aria-controls="flang">Foreign Language</a>
+					</div>
+					<div class="col-auto d-block d-md-none">
+						<div class="hamburger-menu">
+							<input type="checkbox" id="menu-btn-check">
+							<label for="menu-btn-check" class="menu-btn"><span></span></label>
+							<div class="menu-content">
+								<nav class="container">
+									<h2>グローバルナビ</h2>
+									<ul class="row px-5">
+										<li class="col-12">
+											<a href="/">ホーム</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/anzen.html">防災・安全情報</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/iryo.html">休日・夜間当番医</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/life.html">くらしの情報</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/business.html">事業者向け情報</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/iju.html">移住・定住</a>
+										</li>
+										<li class="col-12">
+											<a href="/kanko/">観光情報</a>
+										</li>
+										<li class="col-12">
+											<a href="/navi/kigyo.html">企業立地</a>
+										</li>
+										<li class="col-12">
+											<a href="/kosodate_yuyu/">魅力発信</a>
+										</li>
+									</ul>
+									
+									<h2>Foreign Language</h2>
+									<ul class="row px-5">
+										<li class="col-6"><a href="/docs/2014112303322/en.html">English</a></li>
+										<li class="col-6"><a href="/docs/2014112303339/es.html">Español</a></li>
+										<li class="col-6"><a href="/docs/2014112303360/po.html">Português</a></li>
+										<li class="col-6"><a href="/docs/2014112303315/cn.html">中国語</a></li>
+										<li class="col-12"><a href="/docs/2018111900018/">やさしいにほんご</a></li>
+									</ul>
+								</nav>
+					        	</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="col-12 d-flex align-items-center justify-content-end">
+				<div class="row">
+					<div class="collapse col-auto" id="vsupport"><span id="navigationTalkPlayer"></span>
+						<div>
+							<div class="txtsize">
+								<i class="fas fa-font"></i>文字の大きさ
+								<div class="btn-group btn-toolbar" role="toolbar" aria-label="Toolbar">
+									<a class="btn" href="#fontMiddleNew" id="fontMiddleNew" title="標準の文字サイズに戻す">標準</a>
+									<a class="btn txtl" href="#fontLargeNew" id="fontLargeNew" title="文字のサイズを大きくする">拡大</a>
+								</div>
+							</div>
+							<div class="bgcolor">
+								<i class="fas fa-fill-drip"></i>背景色
+								<div class="btn-group btn-toolbar" role="toolbar" aria-label="Toolbar">
+									<a class="btn black" href="#themeBlack" id="themeBlack" title="背景色を黒にする">黒</a>
+									<a class="btn blue" href="#themeBlue" id="themeBlue" title="背景色を青にする">青</a>
+									<a class="btn white" href="#themeWhite" id="themeWhite" title="背景色を白にする">白</a>
+								</div>
+							</div>
+							<div class="voice"><i class="fas fa-book-reader"></i><a href="#navigationRuby" id="navigationRuby">ふりがなをつける</a></div>
+							<div class="voice"><i class="fas fa-volume-up"></i><a href="#navigationTalk" id="navigationTalk">音声読み上げ</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 d-flex align-items-center justify-content-end">
+				<div class="row">
+					<div class="collapse col-auto" id="flang">
+						<div><i class="fas fa-globe-asia"></i>Language <div class="bg"><a href="/docs/2014112303322/en.html">English</a>　<a href="/docs/2014112303339/es.html"> Español</a>　<a href="/docs/2014112303360/po.html">Português</a>　<a href="/docs/2014112303315/cn.html">中国語</a>　<a href="/docs/2018111900018/">やさしいにほんご</a></div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<nav class="container d-none d-md-block">
+		<div class="row text-center">
+			<div class="col">
+				<a href="/navi/anzen.html"><img src="/_themes/asset/images/nav-icon2.png" width="71" alt=""><span>防災・安全情報</span></a>
+			</div>
+			<div class="col">
+				<a href="/navi/iryo.html"><img src="/_themes/asset/images/nav-icon3.png" width="71" alt=""><span>休日・夜間当番医</span></a>
+			</div>
+			<div class="col">
+				<a href="/navi/life.html"><img src="/_themes/asset/images/nav-icon4.png" width="71" alt=""><span>くらしの情報</span></a>
+			</div>
+			<div class="col">
+				<a href="/navi/business.html"><img src="/_themes/asset/images/nav-icon5.png" width="71" alt=""><span>事業者向け情報</span></a>
+			</div>
+			<div class="col">
+				<a href="/navi/iju.html"><img src="/_themes/asset/images/nav-icon6.png" width="71" alt=""><span>移住・定住</span></a>
+			</div>
+			<div class="col">
+				<a href="/kanko/"><img src="/_themes/asset/images/nav-icon7.png" width="71" alt=""><span>観光情報</span></a>
+			</div>
+			<div class="col">
+				<a href="/navi/kigyo.html"><img src="/_themes/asset/images/nav-icon8.png" width="71" alt=""><span>企業立地</span></a>
+			</div>
+			<div class="col">
+				<a href="/kosodate_yuyu/"><img src="/_themes/asset/images/nav-icon9_new.png" width="71" alt=""><span>魅力発信</span></a>
+			</div>
+		</div>
+	</nav>
+<a id="top"></a>
+
+<section id="contets">
+<article class="container">
+<div class="row">
+<div class="post col">
+<div id="panList" class="piece"
+     data-controller="cms--public--piece--bread-crumbs"
+     data-serial-id="cms_pieces-7">
+  <div class="pieceContainer">
+    <div class="pieceBody">
+      <ol><li><a href="/">ホーム</a></li><li><a href="/event/">イベントカレンダー</a></li></ol>
+
+    </div>
+  </div>
+</div>
+
+<div id="pageTitle" class="piece"
+     data-controller="cms--public--piece--page-titles"
+     data-serial-id="cms_pieces-6">
+  <div class="pieceContainer">
+    <div class="pieceBody">
+      <h1>イベントカレンダー</h1>
+
+    </div>
+  </div>
+</div>
+
+<div id="snsbtn" class="piece"
+     data-controller="cms--public--piece--sns-parts"
+     data-serial-id="cms_pieces-73">
+  <div class="pieceContainer">
+    <div class="pieceBody">
+      <span class="twitter-wrapper">
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</span>
+
+<div class="fb-wrapper">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v9.0&appId=" nonce="aCtYvj3d"></script>
+<div class="fb-share-button" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="printBtn" style="margin: 10px 0; text-align: right;">
+<a href="#" onclick="window.print(); return false;"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 512 512" width="16" height="16"><path d="M168.084 335.709h175.831v20.29H168.084zM168.084 387.871h175.831v20.29H168.084zM168.084 434.242h83.085v20.29h-83.085z"/><path d="M488.338 163.731a44.4 44.4 0 00-31.44-13.028h-47.304V78.276L331.319 0H102.405v150.703H55.102a44.4 44.4 0 00-31.448 13.028 44.395 44.395 0 00-13.012 31.436v169.958a44.397 44.397 0 0013.012 31.453c8.017 8.012 19.208 13.02 31.448 13.004h47.303V512h307.189V409.582h47.304c12.233.016 23.419-4.992 31.428-13.004a44.345 44.345 0 0013.033-31.453V195.168a44.389 44.389 0 00-13.021-31.437zM324.587 26.048l57.024 57.041h-57.024V26.048zm61.822 462.771H125.59V398h-.012v-94.655H386.4v106.238h.008v79.236zm-50.596-258.532c0-9.216 7.475-16.679 16.675-16.679 9.216 0 16.679 7.463 16.679 16.679 0 9.208-7.463 16.671-16.679 16.671-9.199 0-16.675-7.463-16.675-16.671zm50.596-79.584H125.59V23.189h175.811v83.074h85.007v44.44zm37.058 96.255c-9.204 0-16.667-7.463-16.667-16.671 0-9.216 7.463-16.679 16.667-16.679 9.212 0 16.675 7.463 16.675 16.679 0 9.208-7.463 16.671-16.675 16.671z" /></svg><span style="margin-left: 5px; vertical-align: middle;">このページを印刷する</span></a>
+</div>
+
+  <div class="calendarEvents calendarCalendarEvents">
+  <h2>2026年06月</h2>
+
+  <div class="pagination upperPagination">
+      <a class="prev_page" href="/event/2026/05/">前の月</a>
+    <span class="separator">|</span>
+      <a class="next_page" href="/event/2026/07/">次の月</a>
+</div>
+
+
+  <table>
+  <thead class="wdays">
+    <tr>
+      <th class="wday sun">日</th>
+      <th class="wday mon">月</th>
+      <th class="wday tue">火</th>
+      <th class="wday wed">水</th>
+      <th class="wday thu">木</th>
+      <th class="wday fri">金</th>
+      <th class="wday sat">土</th>
+    </tr>
+  </thead>
+  <tbody class="days">
+      <tr class="week">
+          <td id="" class="day sun prevMonth">
+            <p class="date notranslate">31</p>
+          </td>
+          <td id="day01" class="day mon">
+            <p class="date notranslate">1</p>
+          </td>
+          <td id="day02" class="day tue">
+            <p class="date notranslate">2</p>
+          </td>
+          <td id="day03" class="day wed">
+            <p class="date notranslate">3</p>
+          </td>
+          <td id="day04" class="day thu">
+            <p class="date notranslate">4</p>
+          </td>
+          <td id="day05" class="day fri">
+            <p class="date notranslate">5</p>
+          </td>
+          <td id="day06" class="day sat">
+            <p class="date notranslate">6</p>
+          </td>
+      </tr>
+        <tr>
+              <td>
+                  <span><a href="/docs/2026043000065/">亀山市水防訓練</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+        </tr>
+      <tr class="week">
+          <td id="day07" class="day sun">
+            <p class="date notranslate">7</p>
+          </td>
+          <td id="day08" class="day mon">
+            <p class="date notranslate">8</p>
+          </td>
+          <td id="day09" class="day tue">
+            <p class="date notranslate">9</p>
+          </td>
+          <td id="day10" class="day wed">
+            <p class="date notranslate">10</p>
+          </td>
+          <td id="day11" class="day thu">
+            <p class="date notranslate">11</p>
+          </td>
+          <td id="day12" class="day fri">
+            <p class="date notranslate">12</p>
+          </td>
+          <td id="day13" class="day sat">
+            <p class="date notranslate">13</p>
+          </td>
+      </tr>
+        <tr>
+              <td>
+                  <span><a href="/docs/2025092400215/">ニュースポーツ体験会（モルック）に参加しませんか？</a></span>
+              </td>
+              <td>
+                  <span><a href="/docs/2026052600461/">妊婦教室</a></span>
+              </td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2026052600478/">個別健康相談</a></span>
+              </td>
+              <td>
+                  <span><a href="/docs/2026052600485/">健康づくりのための料理講習会～減塩食～</a></span>
+              </td>
+              <td></td>
+              <td></td>
+        </tr>
+        <tr>
+              <td>
+                  <span><a href="/docs/2026052600454/">第27回花しょうぶまつり</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2026052600539/">かめやま健康セミナー～健康長寿をめざそう！〔口腔編〕お口の元気はからだの元気！～</a></span>
+              </td>
+              <td></td>
+              <td></td>
+        </tr>
+      <tr class="week">
+          <td id="day14" class="day sun">
+            <p class="date notranslate">14</p>
+          </td>
+          <td id="day15" class="day mon">
+            <p class="date notranslate">15</p>
+          </td>
+          <td id="day16" class="day tue">
+            <p class="date notranslate">16</p>
+          </td>
+          <td id="day17" class="day wed">
+            <p class="date notranslate">17</p>
+          </td>
+          <td id="day18" class="day thu">
+            <p class="date notranslate">18</p>
+          </td>
+          <td id="day19" class="day fri">
+            <p class="date notranslate">19</p>
+          </td>
+          <td id="day20" class="day sat">
+            <p class="date notranslate">20</p>
+          </td>
+      </tr>
+        <tr>
+              <td>
+                  <span><a href="/docs/2026052600492/">里山塾2026　虫の観察会～里山公園にはどんな虫がいるのかな～</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2026052600508/">離乳食教室</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2026052600515/">天文台「童夢」無料開放日</a></span>
+              </td>
+        </tr>
+      <tr class="week">
+          <td id="day21" class="day sun">
+            <p class="date notranslate">21</p>
+          </td>
+          <td id="day22" class="day mon">
+            <p class="date notranslate">22</p>
+          </td>
+          <td id="day23" class="day tue">
+            <p class="date notranslate">23</p>
+          </td>
+          <td id="day24" class="day wed">
+            <p class="date notranslate">24</p>
+          </td>
+          <td id="day25" class="day thu">
+            <p class="date notranslate">25</p>
+          </td>
+          <td id="day26" class="day fri">
+            <p class="date notranslate">26</p>
+          </td>
+          <td id="day27" class="day sat">
+            <p class="date notranslate">27</p>
+          </td>
+      </tr>
+        <tr>
+              <td></td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2026052600522/">助産師による授乳相談</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+        </tr>
+      <tr class="week">
+          <td id="day28" class="day sun">
+            <p class="date notranslate">28</p>
+          </td>
+          <td id="day29" class="day mon">
+            <p class="date notranslate">29</p>
+          </td>
+          <td id="day30" class="day tue">
+            <p class="date notranslate">30</p>
+          </td>
+          <td id="" class="day wed nextMonth">
+            <p class="date notranslate">1</p>
+          </td>
+          <td id="" class="day thu nextMonth">
+            <p class="date notranslate">2</p>
+          </td>
+          <td id="" class="day fri nextMonth">
+            <p class="date notranslate">3</p>
+          </td>
+          <td id="" class="day sat nextMonth">
+            <p class="date notranslate">4</p>
+          </td>
+      </tr>
+        <tr>
+              <td></td>
+              <td></td>
+              <td>
+                  <span><a href="/docs/2023070400028/">【令和8年度前期分】かめやま生物多様性共生区域の認定申請を受け付けています</a></span>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+        </tr>
+  </tbody>
+</table>
+
+
+  <div class="pagination lowerPagination">
+      <a class="prev_page" href="/event/2026/05/">前の月</a>
+    <span class="separator">|</span>
+      <a class="next_page" href="/event/2026/07/">次の月</a>
+</div>
+
+</div>
+
+
+
+<div id="feedback" class="piece"
+     data-controller="survey--public--piece--forms"
+     data-serial-id="cms_pieces-121">
+  <div class="pieceContainer">
+    <div class="pieceBody">
+        <div class="upper_text"><script src="/_common/js/jquery.iframe-auto-height.js"></script><script src="/_common/js/jquery.browser.min.js"></script></div>
+
+  <iframe title="ページアンケート"
+          src="/pageenq/page_enq/?inlining=true&amp;piece=10157&amp;t=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC&amp;u=%2Fevent%2F"
+          style="width: 100%; height: 100%;" class="survey" data-controller="iframe-auto-height"></iframe>
+
+
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="col-12 col-lg-3 d-print-none">
+<aside>
+<div class="gsearch">
+<h2>サイト内検索</h2>
+<form id="cse-search-box" action="https://google.com/cse">
+<input type="hidden" name="cx" value="011627259443317743218:iqbhzaoske4" />
+<input type="hidden" name="ie" value="UTF-8" />
+<input id="gform" type="text" name="q" placeholder="検索" />
+<input id="gbtn" type="submit" name="sa" value="&#xf002;">
+</form>
+</div>
+
+<div id="sceneTop" class="piece"
+     data-controller="gp-category--public--piece--category-lists"
+     data-serial-id="cms_pieces-96">
+  <div class="pieceContainer">
+      <div class="pieceHeader"><h2>ライフシーン</h2></div>
+    <div class="pieceBody">
+        <div class="level1">
+      <section class="category konin">
+        <h3><a href="/categories/scene/konin/">結婚・離婚</a></h3>
+          <ul class="level2">
+              <li class="kekkon">
+    <a href="/categories/scene/konin/kekkon/">結婚</a>
+  </li>
+  <li class="rikon">
+    <a href="/categories/scene/konin/rikon/">離婚</a>
+  </li>
+  <li class="shien">
+    <a href="/categories/scene/konin/shien/">結婚支援</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/konin/sodan/">相談窓口</a>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category kosodate cycle">
+        <h3><a href="/categories/scene/kosodate/">妊娠・出産・子育て</a></h3>
+          <ul class="level2">
+              <li class="ninshin">
+    <a href="/categories/scene/kosodate/ninshin/">妊娠</a>
+  </li>
+  <li class="shussan">
+    <a href="/categories/scene/kosodate/shussan/">出産</a>
+  </li>
+  <li class="kosodate">
+    <a href="/categories/scene/kosodate/kosodate/">子育て</a>
+      <ul class="level3">
+          <li class="shien">
+    <a href="/categories/scene/kosodate/kosodate/shien/">支援・取り組み</a>
+  </li>
+  <li class="josei">
+    <a href="/categories/scene/kosodate/kosodate/josei/">手当・助成</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/kosodate/kosodate/sodan/">相談窓口</a>
+  </li>
+
+      </ul>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category nyugaku">
+        <h3><a href="/categories/scene/nyugaku/">入園・入学</a></h3>
+          <ul class="level2">
+              <li class="ho-yo">
+    <a href="/categories/scene/nyugaku/ho-yo/">保育所・幼稚園・認定こども園など</a>
+  </li>
+  <li class="sho-chu">
+    <a href="/categories/scene/nyugaku/sho-chu/">小学校・中学校</a>
+  </li>
+  <li class="josei">
+    <a href="/categories/scene/nyugaku/josei/">手当・助成</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/nyugaku/sodan/">相談窓口</a>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category shoku-jukyo cycle">
+        <h3><a href="/categories/scene/shoku-jukyo/">しごと・住まい</a></h3>
+          <ul class="level2">
+              <li class="shigoto">
+    <a href="/categories/scene/shoku-jukyo/shigoto/">しごと</a>
+      <ul class="level3">
+          <li class="shushoku">
+    <a href="/categories/scene/shoku-jukyo/shigoto/shushoku/">就職</a>
+  </li>
+  <li class="taishoku">
+    <a href="/categories/scene/shoku-jukyo/shigoto/taishoku/">退職</a>
+  </li>
+
+      </ul>
+  </li>
+  <li class="jukyo">
+    <a href="/categories/scene/shoku-jukyo/jukyo/">引っ越し・住居</a>
+      <ul class="level3">
+          <li class="sumai">
+    <a href="/categories/scene/shoku-jukyo/jukyo/sumai/">住まい</a>
+  </li>
+  <li class="todokede">
+    <a href="/categories/scene/shoku-jukyo/jukyo/todokede/">届出・手続き</a>
+  </li>
+  <li class="gomi-kankyo">
+    <a href="/categories/scene/shoku-jukyo/jukyo/gomi-kankyo/">ごみ・し尿処理・生活環境</a>
+  </li>
+  <li class="kotsu-catv">
+    <a href="/categories/scene/shoku-jukyo/jukyo/kotsu-catv/">交通・行政情報番組</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/shoku-jukyo/jukyo/sodan/">相談窓口</a>
+  </li>
+
+      </ul>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category kenko">
+        <h3><a href="/categories/scene/kenko/">健康・医療</a></h3>
+          <ul class="level2">
+              <li class="jigyo">
+    <a href="/categories/scene/kenko/jigyo/">健康づくり</a>
+  </li>
+  <li class="kenshin">
+    <a href="/categories/scene/kenko/kenshin/">健（検）診</a>
+  </li>
+  <li class="iryo">
+    <a href="/categories/scene/kenko/iryo/">医療</a>
+  </li>
+  <li class="kikan">
+    <a href="/categories/scene/kenko/kikan/">医療機関</a>
+  </li>
+  <li class="yobo">
+    <a href="/categories/scene/kenko/yobo/">予防接種</a>
+      <ul class="level3">
+          <li class="otona">
+    <a href="/categories/scene/kenko/yobo/otona/">おとな</a>
+  </li>
+  <li class="kodomo">
+    <a href="/categories/scene/kenko/yobo/kodomo/">子ども</a>
+  </li>
+
+      </ul>
+  </li>
+  <li class="hoken">
+    <a href="/categories/scene/kenko/hoken/">国民健康保険</a>
+  </li>
+  <li class="covid19">
+    <a href="/categories/scene/kenko/covid19/">新型コロナウイルス・ワクチン接種</a>
+  </li>
+  <li class="oshirase">
+    <a href="/categories/scene/kenko/oshirase/">お知らせ</a>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category fukushi cycle">
+        <h3><a href="/categories/scene/fukushi/">高齢者・障がい者福祉</a></h3>
+          <ul class="level2">
+              <li class="korei">
+    <a href="/categories/scene/fukushi/korei/">高齢者福祉</a>
+      <ul class="level3">
+          <li class="nenkin">
+    <a href="/categories/scene/fukushi/korei/nenkin/">保険・年金・税金</a>
+  </li>
+  <li class="shien">
+    <a href="/categories/scene/fukushi/korei/shien/">支援・取り組み</a>
+  </li>
+  <li class="josei">
+    <a href="/categories/scene/fukushi/korei/josei/">助成</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/fukushi/korei/sodan/">相談窓口</a>
+  </li>
+
+      </ul>
+  </li>
+  <li class="shogai">
+    <a href="/categories/scene/fukushi/shogai/">障がい者福祉</a>
+      <ul class="level3">
+          <li class="nenkin">
+    <a href="/categories/scene/fukushi/shogai/nenkin/">保険・年金・税金</a>
+  </li>
+  <li class="shien">
+    <a href="/categories/scene/fukushi/shogai/shien/">支援・取り組み</a>
+  </li>
+  <li class="josei">
+    <a href="/categories/scene/fukushi/shogai/josei/">手当・助成・補助金</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/fukushi/shogai/sodan/">相談窓口</a>
+  </li>
+
+      </ul>
+  </li>
+
+          </ul>
+      </section>
+      <section class="category sozoku">
+        <h3><a href="/categories/scene/sozoku/">死亡・相続</a></h3>
+          <ul class="level2">
+              <li class="todokede">
+    <a href="/categories/scene/sozoku/todokede/">届出・手続き</a>
+  </li>
+  <li class="saijo">
+    <a href="/categories/scene/sozoku/saijo/">斎場</a>
+  </li>
+  <li class="sodan">
+    <a href="/categories/scene/sozoku/sodan/">相談窓口</a>
+  </li>
+
+          </ul>
+      </section>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+</aside>
+</div>
+<div class="post col-12 forsp"><div id="feedbackSp" class="piece"
+     data-controller="survey--public--piece--forms"
+     data-serial-id="cms_pieces-122">
+  <div class="pieceContainer">
+    <div class="pieceBody">
+        <div class="upper_text"><script src="/_common/js/jquery.iframe-auto-height.js"></script><script src="/_common/js/jquery.browser.min.js"></script></div>
+
+  <iframe title="ページアンケート"
+          src="/pageenq/page_enq/?inlining=true&amp;piece=10158&amp;t=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC&amp;u=%2Fevent%2F"
+          style="width: 100%; height: 100%;" class="survey" data-controller="iframe-auto-height"></iframe>
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="commonAdBanner" class="piece"
+     data-controller="ad-banner--public--piece--banners"
+     data-serial-id="cms_pieces-128">
+  <div class="pieceContainer">
+      <div class="pieceHeader"><h2>広告</h2></div>
+    <div class="pieceBody">
+      
+
+  <div class="lower_text"><a href="/docs/2014112312843/">バナー広告について</a></div>
+
+
+    </div>
+  </div>
+</div>
+
+	<footer class="container-fluid">
+		<div class="container cityinfo">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+					<div class="row">
+						<div class="col-12 col-lg-7">
+							<img src="/_themes/asset/images/footer-logo.png" alt="亀山市">
+							<span class="hojinnumber uk-text-bottom">法人番号：9000020242101</span>
+							<p>〒519-0195 三重県亀山市本丸町577番地<br><a href="/shisei/2014112311174/renraku.html">各部・課の問い合わせ先はこちら</a></p>
+						</div>
+						<div class="btns">
+							<div class="row">
+								<a href="/docs/2021032500083/" class="abtn">アクセス</a>
+								<a href="/shisei/2014112311167/" class="abtn">部局案内</a>
+							</div>
+						</div>
+					</div>
+					<h2>開庁時間</h2>
+					<p class="open">月曜日から金曜日の午前8時30分から午後5時15分まで(祝日・休日・12月29日から1月3日を除く)<br>※一部の業務においては、<a href="/docs/2020020700016/">日曜窓口</a>（8時30分から正午まで）を行っています。</p>
+				</div>
+				<div class="col px-0 text-right">
+					<img src="/_themes/asset/images/footer-map.png" alt="亀山市の地図">
+				</div>
+				<div class="col px-0 align-self-end data">
+<dl class="row">
+<caption>亀山市の人口・世帯数</caption>
+<dt class="col-6 px-0">総人口：</dt>
+<dd class="col-6 px-0">48,838人</dd>
+<dt class="col-6 px-0">世帯数：</dt>
+<dd class="col-6 px-0">22,805世帯</dd>
+<dt class="col-6 px-0">男性：</dt>
+<dd class="col-6 px-0">24,736人</dd>
+<dt class="col-6 px-0">女性：</dt>
+<dd class="col-6 px-0">24,102人</dd>
+</dl>
+<span>（令和8年6月1日現在）</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<footer id="copyright" class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="footnav col-12 col-md-7">
+					<a href="/sitemap.html"><i class="fas fa-arrow-alt-circle-right"></i>サイトマップ</a><a href="/docs/2014110900509/"><i class="fas fa-arrow-alt-circle-right"></i>個人情報の取扱い</a><a href="/docs/2014110900493/"><i class="fas fa-arrow-alt-circle-right"></i>サイトポリシー</a><a href="/docs/2014112312850/"><i class="fas fa-arrow-alt-circle-right"></i>リンク集</a>
+				</div>
+				<div class="copy col-12 col-md-5 text-right">
+					<p>Copyright (c) 2021 Kameyama City AllRights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<script src="/_themes/asset/js/navigation.js"></script>
+	<script src="/_common/js/bowser.min.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFVW26ZXL8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RFVW26ZXL8');
+</script>
+
+
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=185028075" async></script></body>
+</html>
