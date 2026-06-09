@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="「神奈川県南足柄市公式Webサイト」神奈川県南足柄市のホームページです。南足柄市から「くらしの情報」「観光情報」「事業者向け情報」「市政情報」などを発信していきます。" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />  
+<link rel="Shortcut Icon" type="img/x-icon" href="/favicon.ico" />
+
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js?load=effects,builder"></script>
+<script type='text/javascript' src='/js/prototip2.2.0.2/js/prototip/prototip.js'></script>
+<link rel="stylesheet" type="text/css" href="/js/prototip2.2.0.2/css/prototip.css" />
+<script type='text/javascript' src='/js/tooltip.js'></script>
+<link href="/js/google_translate.css?2022051713" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/js/jq/jquery-1.8.0.min.cus.js"></script>
+<script type="text/javascript" src="/js/jq/jquery.cookie.js"></script>
+<script type="text/javascript" src="/js/lightbox2/js/lightbox.js"></script>
+<link type="text/css" href="/js/lightbox2/css/lightbox.css" rel="stylesheet" media="all" />
+
+<script type="text/javascript" src="/js/imported.js?2022051713"></script>
+<style type="text/css">span.brClr { display:block; }</style><link id="fsstyle" href="/usr-data/template/top/css/common_m.css" rel="stylesheet" type="text/css" media="all" />
+<link id="fscolor" href="/usr-data/template/top/css/color.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/top/css/imported.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://www.city.minamiashigara.kanagawa.jp/_cache/AllUnits.css?20150212" rel="stylesheet" type="text/css" media="all" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3, minimum-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" media="only screen and (max-width: 740px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/top/css/sp.css?2022052017" />
+<!--スマフォ向け-->
+<link rel="stylesheet" media="only screen and (min-width: 741px) and (max-width: 910px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/top/css/tablet.css" />
+<!--タブレット向け-->
+<link rel="stylesheet" media="only screen and (min-width: 911px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/top/css/layout.css" />
+<!--PC向け-->
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/top/css/layout.css" type="text/css" media="all" />
+<![endif]-->
+<link href="/usr-data/template/top/css/print.css" rel="stylesheet" type="text/css" media="print" />
+<title>南足柄市公式ホームページ|自然あふれる金太郎のふる里へようこそ</title>
+<!--[if IE 6]>
+<script src="https://www.city.minamiashigara.kanagawa.jp/js/DD_belatedPNG.js" type="text/javascript"></script>
+<script>
+	DD_belatedPNG.fix('.transparentImg');
+</script>
+<![endif]-->
+
+
+<link rel="stylesheet" href="/js/bxSlider/jquery.bxslider.css" />
+<script type="text/javascript" src="/js/bxSlider/jquery.bxslider.min.js"></script>
+</head>
+
+<body id="pageBody">
+<div id="wrapper" > 
+	<!--ヘッダーエリア/-->
+	<div id="headerAreaOuter">
+		<div id="headerArea">
+			<div id="headerSubArea" class="clearfix">
+				<div id="headerSubAreaInner" class="transparentImg"> 
+					<!--言語/-->
+					<div id="subLang">
+						<div id="subLangInner">
+							<div id="google_translate_element"></div>
+                            	<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+						</div>
+					</div>
+					<!--/言語--> 
+					<!--文字オプション/-->
+					<div class="headerOption">
+						<div class="headerOptionInner clearfix">
+							<dl id="tsBox">
+								<dt><span class="transparentImg">文字サイズ</span></dt>
+								<dd id="tsBtnS"><a id="fonts" class="transparentImg" href="javascript:chgFsize('s');" title="文字サイズを小に変更する">小</a></dd>
+								<dd id="tsBtnM"><a id="fontm" class="transparentImg active" href="javascript:chgFsize('m');" title="文字サイズを中に変更する">中</a></dd>
+								<dd id="tsBtnL"><a id="fontl" class="transparentImg" href="javascript:chgFsize('l');" title="文字サイズを大に変更する">大</a></dd>
+							</dl>
+							<p><a href="javascript:chgFcolor();" id="fontC" title="文字色変更" class="transparentImg">文字色変更</a></p>
+						</div>
+					</div>
+					<!--/文字オプション--> 
+				</div>
+			</div>
+			<div id="headerAreaInner" class="clearfix">
+				<div id="innerLeftBox"><a href="http://www.city.minamiashigara.kanagawa.jp" title="南足柄市" >南足柄市</a></div>
+				<div id="innerRightBox"> 
+					<!--グローバルナビゲーションサイドエリア/-->
+					<div id="globalNaviAreaOuter">
+						<div id="globalNaviArea">
+							<ul class="clearfix">
+								<li class="navi1"><a href="http://www.city.minamiashigara.kanagawa.jp" title="ホーム">ホーム</a></li>
+								<li class="navi2"><a href="http://www.city.minamiashigara.kanagawa.jp/kurashi/" title="くらしの情報">くらしの情報</a></li>
+								<li class="navi3"><a href="http://www.city.minamiashigara.kanagawa.jp/kankou/" title="観光">観光</a></li>
+								<li class="navi4"><a href="http://www.city.minamiashigara.kanagawa.jp/business/" title="事業者向け">事業者向け</a></li>
+								<li class="navi5"><a href="http://www.city.minamiashigara.kanagawa.jp/machi/" title="市政情報">市政情報</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--/グローバルナビゲーションサイドエリア--> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ヘッダーエリア--> 
+	<!--カバーエリア/-->
+	<div id="coverAreaOuter">
+		<div id="coverArea" class="clearfix">
+			<div id="coverWrap" style="position: relative; overflow: hidden;">
+            				<div id="itemzoom" style="postion:relative; height:600px;">
+					<ul class="bjqs">
+																								<li style="background-image: url(https://www.city.minamiashigara.kanagawa.jp/global-image/units/35505_20250502083857_1.jpg);"><a href="https://minamiashigara-furusato.com/" target="_blank" ></a></li>
+																														<li style="background-image: url(https://www.city.minamiashigara.kanagawa.jp/global-image/units/35505_20250502083857_2.jpg);display:none;"><a href="https://minamiashigara-furusato.com/" target="_blank" ></a></li>
+																														<li style="background-image: url(https://www.city.minamiashigara.kanagawa.jp/global-image/units/35505_20250502083857_3.jpg);display:none;"><a href="https://minamiashigara-furusato.com/" target="_blank" ></a></li>
+																	</ul>
+				</div>
+				 
+			</div>
+		</div>
+	</div>
+	<!--/カバーエリア--> 
+	<!--ページコンテナー/-->
+	<div id="container" class="transparentImg"> 
+		<!--コンテンツエリア/-->
+		<div id="contentsArea" class="transparentImg clearfix"> 
+			<!-- 検索ボックス/-->
+			<div class="extSiteSearch">
+				<form action="/sitesearch.php" id="cse-search-box36079">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<th><input type="text" name="q" size="31" title="ここに検索語を入力" /></th>
+							<td><input id="searchSubmit" type="submit" name="sa" value="サイト内検索" title="サイト内検索" /></td>
+						</tr>
+					</table>
+					<input type="hidden" name="cx" value="013258386838613825276:t11qe8gukjs" />
+					<input type="hidden" name="cof" value="FORID:11" />
+										<input type="hidden" name="ie" value="UTF-8" />
+				</form>
+								<dl>
+					<dt>おすすめキーワード：</dt>
+										<dd><a href="javascript:onWord('ふるさと寄附', 36079)" title="ふるさと寄附">ふるさと寄附</a></dd>
+										<dd><a href="javascript:onWord('移住・定住', 36079)" title="移住・定住">移住・定住</a></dd>
+										<dd><a href="javascript:onWord('子育て', 36079)" title="子育て">子育て</a></dd>
+										<dd><a href="javascript:onWord('ジオパーク', 36079)" title="ジオパーク">ジオパーク</a></dd>
+										<dd><a href="javascript:onWord('空き家バンク', 36079)" title="空き家バンク">空き家バンク</a></dd>
+									</dl>
+							</div>
+			<script type="text/javascript">
+			//<![CDATA[
+			function onWord(word, page_code) {
+				$("cse-search-box"+page_code).q.focus();
+				$("cse-search-box"+page_code).q.value = word;
+				$("cse-search-box"+page_code).submit();
+			}
+			//]]>
+			</script> 
+			<!-- /検索ボックス--> 
+			<div id="contentsAreaInner" class="clearfix">
+				<!--メインエリア/-->
+				<div id="mainArea">
+					<div id="user-area" class="mainBg"> <div class="col1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-42941">
+<script type="text/javascript">
+jQuery(function() {
+	jQuery.ajax({
+		type: 'GET',
+		url: 'https://www.city.minamiashigara.kanagawa.jp/usr-data/modules/extMdlEmergencyMngr/units/extMdlEmergencyList/o.php',
+		cache: false,
+		//async: false,
+		data: {},
+		dataType: 'html',
+		success: function(response) {
+			if(response!='') {
+				var puthtml = '';
+				puthtml = '<div>'+response+'</div>';
+				j$('#unit-42941').append(puthtml);
+			}
+		}
+	});
+});
+</script>
+</div>
+</div>
+	</div>
+</div>
+<div class="col1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-35459" class="hsNormal"><div class="extBannerMngrScroll" id="extBannerMngrScroll35459">
+		<div class="slbxouter">
+		<div class="slbx">
+			<ul>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/newsTopics/p08948.html" onclick="return bannerClick('173','1','136','35459');" target="_blank"><img alt="" src="/global-image/Banner/20260204115807.jpg" /></a></li>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/fukushi/jyouhou/p05775.html" onclick="return bannerClick('175','1','133','35459');" target="_blank"><img alt="熱中症対策をしましょう" src="/global-image/Banner/20250808085208.jpg" /></a></li>
+								<li><a href="https://youtu.be/Epny7l-uXdk?si=LdlwEFEP37V9CeRX" onclick="return bannerClick('161','1','125','35459');" target="_blank"><img alt="春めきを題材にした観光プロモーション動画です" src="/global-image/Banner/20240502132521.jpg" /></a></li>
+								<li><a href="https://www.youtube.com/watch?v=BcR64RwvQtM" onclick="return bannerClick('160','1','123','35459');" target="_blank"><img alt="大雄山最乗寺を題材にした観光プロモーション動画です" src="/global-image/Banner/20240502132449.jpg" /></a></li>
+								<li><a href="https://www.youtube.com/watch?v=lkPZcccQpoE" onclick="return bannerClick('159','1','122','35459');" target="_blank"><img alt="アウトドアを題材にした観光プロモーション動画です" src="/global-image/Banner/20240502132438.jpg" /></a></li>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/kankou/mt-kintoki-livecamera.html" onclick="return bannerClick('152','1','115','35459');" target="_self"><img alt="金時山山頂に設置したライブカメラの映像が見れます。" src="/global-image/Banner/20210331131236.jpg" /></a></li>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/machi/kouhou/promotion/mediafreesupport.html" onclick="return bannerClick('153','1','117','35459');" target="_blank"><img alt="取材や撮影は南足柄で" src="/global-image/Banner/20210604164839.jpg" /></a></li>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/welcome/index.html" onclick="return bannerClick('78','1','59','35459');" target="_blank"><img alt="南足柄市シティプロモーションサイト" src="/global-image/Banner/20160531085939.png" /></a></li>
+								<li><a href="/kurashi/zeikin/furusato/p05525.html" onclick="return bannerClick('23','1','15','35459');" target="_self"><img alt="ふるさと寄附" src="/global-image/Banner/20140319144507.gif" /></a></li>
+								<li><a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/mizu/suishitsu/p08415.html" onclick="return bannerClick('165','1','129','35459');" target="_blank"><img alt="水道水のＰＦＯＳ・ＰＦＯＡの検査結果は国が定める暫定目標値以下です。 安心してご利用ください。" src="/global-image/Banner/20241227103111.jpg" /></a></li>
+							</ul>
+		</div>
+		<a href="#" class="prev transparentImg">&nbsp</a> <a href="#" class="next transparentImg">&nbsp</a>
+	</div><div class="slbx-controls"><div class="slbx-controls-item"><a href="javascript:void(0)" class="play active">再生</a></div><div class="slbx-controls-item"><a href="javascript:void(0)" class="pause">一時停止</a></div></div>
+	 
+	<script type="text/javascript">
+		if(!window.jqcrslload){
+			window.jqcrslload = 1;
+			var s = document.createElement("script");
+			with(s){
+				src = "/js/jq/jcarousellite.min.js";
+				type="text/javascript";
+			}
+			document.getElementsByTagName("head").item(0).appendChild(s);
+		}
+		j$(window).load(function() {
+			j$("#extBannerMngrScroll35459 .slbx").jCarouselLite({
+			auto: true,
+			timeout: 6000,
+			speed: 400,
+			responsive:true,
+			btnNext:"#extBannerMngrScroll35459 .next",
+			btnPrev:"#extBannerMngrScroll35459 .prev"
+			});
+		});
+		
+		j$("#extBannerMngrScroll35459 .pause").on('click', function(e) {
+	j$("#extBannerMngrScroll35459 .slbx").trigger('stopCarousel');
+	j$("#extBannerMngrScroll35459 .pause").addClass("active");
+	j$("#extBannerMngrScroll35459 .play").removeClass("active");
+});
+j$("#extBannerMngrScroll35459 .play").on('click', function(e) {
+	j$("#extBannerMngrScroll35459 .slbx").trigger('startCarousel');
+		j$("#extBannerMngrScroll35459 .play").addClass("active");
+		j$("#extBannerMngrScroll35459 .pause").removeClass("active");
+});
+
+
+if (typeof bannerClick == "undefined") {
+	function bannerClick(odr_id, grp_id, bnr_id, pageu_code) {
+		var rtn=true;
+		j$.ajax({
+			url: "https://www.city.minamiashigara.kanagawa.jp/usr-data/modules/extMdlBannerMngr/units/extMdlBannerMngr/countup.php",
+			type: "POST",
+			async: false,//同期通信
+			data: "odr_id="+odr_id+"&grp_id="+grp_id+"&bnr_id="+bnr_id+"&pageu_code="+pageu_code,
+			success: function(res){
+				if (res==1) {
+
+				} else {
+					//alert(res);
+					rtn=false;
+				}
+			},
+			complete: function(){
+
+			}
+		});
+		return rtn;
+	}
+}
+</script> 
+	
+	</div></div></div>
+	</div>
+</div>
+<div class="col1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-35950" class="hsNormal bgColor bdSolid"><div class="bExtCatList" id="CatList35950">
+<h2>防災・防犯速報</h2><ul class="bExtCatListInner0">
+		<li class="clearfix ">
+				<div class="innerRight">
+			<h5>
+								<a href="https://minamiashigara-city.site.ktaiwork.jp/" target="_blank" title="防災行政無線放送内容" >防災行政無線放送内容</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+				<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/bouhan/hushinsha_jyouhou.html" title="不審者情報" >不審者情報</a>
+							</h5>
+					</div>
+	</li>
+	</ul>
+<div class="bExtCatListOption">
+	<ul>
+<li class="bExtCatListRss"><a href="https://www.city.minamiashigara.kanagawa.jp/rss.php?&amp;d=&amp;s=1123&amp;o=4" title="RSSを取得する">RSS</a></li>
+	</ul>
+</div>
+</div></div></div>
+	</div>
+</div>
+<div class="col1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-35461" class="hsNormal bgColor bdSolid"><div class="bExtCatList" id="CatList35461">
+<h2>新着情報</h2><ul class="bExtCatListInner0">
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月09日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/machi/toukei/info/p06153.html" title="令和8年 経済センサス-活動調査を実施しています!" class="newIco">令和8年 経済センサス-活動調査を実施しています!</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月08日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/gomi/kankyou/p08554.html" title="【受付中】エアコン・冷蔵庫★★★省エネ家電製品買替え補助事業" class="newIco">【受付中】エアコン・冷蔵庫★★★省エネ家電製品買替え補助事業</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月08日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/gomi/kankyou/jyoukasou_hojyokin.html" title="【受付中】合併処理浄化槽の設置補助金制度" class="newIco">【受付中】合併処理浄化槽の設置補助金制度</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月08日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/manabi/park/p09157.html" title="南足柄市体育センタープール棟既存空調設備更新工事　設計・施工一括発注公募型プロポーザルの実施について" class="newIco">南足柄市体育センタープール棟既存空調設備更新工事　設計・施工一括発注公募型プロポーザルの実施について</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月05日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/sumai/siei/p04622.html" title="令和8年度市営住宅入居者募集について" >令和8年度市営住宅入居者募集について</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月05日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/sumai/siei/p06758.html" title="市営住宅の一部屋を子育て支援住宅に改修しました!!" >市営住宅の一部屋を子育て支援住宅に改修しました!!</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月04日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/manabi/syougai/p09168.html" target="_blank" title="令和8年度家庭教育講演会～参加者募集中!まだ間に合います!～" >令和8年度家庭教育講演会～参加者募集中!まだ間に合います!～</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月04日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/newsTopics/p06929.html" title="寺子屋事業に参加しよう!～夏休み寺子屋参加者募集中!～" >寺子屋事業に参加しよう!～夏休み寺子屋参加者募集中!～</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月03日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/gomi/kankyou/p07144.html" title="令和8年度　南足柄市環境フェアを開催!!" >令和8年度　南足柄市環境フェアを開催!!</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月02日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/kosodate/houkago/p07647.html" title="南足柄市放課後子ども教室" >南足柄市放課後子ども教室</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月01日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/newsTopics/p09162.html" title="【重要】台風6号の影響によるゆめクラブ南足柄シニアセミナー(2日目)(6月3日)の中止について" >【重要】台風6号の影響によるゆめクラブ南足柄シニアセミナー(2日目)(6月3日)の中止について</a>
+							</h5>
+					</div>
+	</li>
+		<li class="clearfix ">
+		<div class="innerLeft">
+			<p class="bExtCatListDate color11">06月01日</p>
+		</div>		<div class="innerRight">
+			<h5>
+								<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/kosodate/syugakuenjo/p05264.html" title="南足柄市育英奨学金" >南足柄市育英奨学金</a>
+							</h5>
+					</div>
+	</li>
+	</ul>
+<p class="bExtCatListPage"><b>[1]</b>&nbsp;&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=2" title="page 2">2</a>&nbsp;&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=3" title="page 3">3</a>&nbsp;&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=4" title="page 4">4</a>&nbsp;&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=5" title="page 5">5</a>&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=2" title="next page">&nbsp;&gt;&gt; </a>&nbsp;&nbsp;<a href="/index.php?d=&amp;c=&amp;p=&amp;pageu_code=35461&amp;idx=22" title="last page">[最後]</a></p><div class="bExtCatListOption">
+	<ul>
+<li class="bExtCatListRss"><a href="https://www.city.minamiashigara.kanagawa.jp/rss.php?&amp;d=&amp;s=1001&amp;o=2" title="RSSを取得する">RSS</a></li>
+<li class="bExtCatListLink"><a href="https://www.city.minamiashigara.kanagawa.jp/newsTopics/" title="一覧を見る">一覧を見る</a></li>	</ul>
+</div>
+</div></div></div>
+	</div>
+</div>
+<div class="col3-1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-44454" class="hsNormal"><div class="bImg">
+	<a href="/shisetsu/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/44454/1-20140317180551.png" alt="施設案内" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box2">
+		<div class="containerInner"><div id="unit-44455" class="hsNormal"><div class="bImg">
+	<a href="/public/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/44455/1-20140304192550.png" alt="広報 みなみあしがら" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box3">
+		<div class="containerInner"><div id="unit-72059" class="hsNormal"><div class="bImg">
+	<a href="/welcome/index.html" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/72059/1-20160407171619.png" alt="シティプロモーション特設サイト" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<br class="clr" />
+</div>
+<div class="col3-1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-35466" class="hsNormal"><div class="bImg">
+	<a href="https://www2.wagmap.jp/minamiashigara/Portal" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35466/1-20140114172517.png" alt="南足柄市地域情報システム「ミナミナビ」" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box2">
+		<div class="containerInner"><div id="unit-35465" class="hsNormal"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/machi/kouhou/kouhou/p03661.html"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35465/1-20251202162726.jpg" alt="くらしのガイド・子育て応援ガイド 電子書籍版" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box3">
+		<div class="containerInner"><div id="unit-175870" class="hsNormal"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/kosodate/kosodateguidebook/p08016.html" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/175870/1-20240422093905.JPG" alt="子育てガイドブックバナー" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<br class="clr" />
+</div>
+<div class="col3-1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-35467" class="hsNormal"><div class="bImg">
+	<a href="/kurashi/zeikin/furusato/p05525.html"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35467/1-20181121095102.gif" alt="ふるさと寄附" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box2">
+		<div class="containerInner"><div id="unit-35464" class="hsNormal"><div class="bImg">
+	<a href="/teiju/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35464/1-20140114172457.png" alt="南足柄市に住もう！" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box3">
+		<div class="containerInner"><div id="unit-115429" class="hsNormal"><div class="bImg">
+	<a href="/machi/seisaku/chihou-sousei/p05843.html"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/115429/1-20200908140552.png" alt="企業版ふるさと納税（地方創生応援税制）" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<br class="clr" />
+</div>
+<div class="col3-1">
+	<div class="box1">
+		<div class="containerInner"><div id="unit-177595" class="hsNormal"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/jitikai/jichikaikanyuu/" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/177595/1-20240529092645.jpg" alt="自治会加入の申し込みはこちらから" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box2">
+		<div class="containerInner"><div id="unit-177596" class="hsNormal"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/katudou/volunteer_action/" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/177596/1-20240529092705.jpg" alt="ボランティア団体の紹介" border="0" /></span></a>
+	</div></div>
+</div>
+	</div>
+	<div class="box3">
+		<div class="containerInner">&nbsp;</div>
+	</div>
+	<br class="clr" />
+</div>
+ </div>
+																				 
+					<!--フッターナビゲーションエリア/--> 
+				</div>
+				<!--/メインエリア--> 
+				<!--サイドバーエリア/-->
+				<div id="sidebarArea">
+					<div id="usersidearea">
+						<div id="unit-35303" class="hsNarrow bgColor bdSolid"><div class="extLinkList">
+<div><h2 class="color11">いざという時に</h2></div>
+	<ul>
+		<li><a href="/kurashi/fukushi/kyuukyuu/kyubyonin.html" title="休日夜間診療">休日夜間診療</a></li>
+		<li><a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/saigaikanren/" title="災害関連情報">災害関連情報</a></li>
+		<li><a href="https://www.jma.go.jp/jp/warn/1421700.html" title="気象情報を新規ページで開く" class="linkBlank" target="_blank">気象情報</a></li>
+		<li><a href="https://www.city.minamiashigara.kanagawa.jp/machi/kouhou/kouhou/jyohou_mail.html" title="情報配信メール">情報配信メール</a></li>
+		<li><a href="/kurashi/soudan/soudan/" title="各種相談">各種相談</a></li>
+		<li><a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/shouhi/" title="消費生活センター">消費生活センター</a></li>
+	</ul>
+</div></div>
+<div id="unit-35310" class="hsNarrow"><div class="bImg">
+	<a href="/shichou/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35310/1-20140114163351.png" alt="ようこそ市長室へ" border="0" /></span></a>
+	</div></div>
+<div id="unit-35311"><div class="bImg">
+	<a href="/gikai/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35311/1-20140319180035.png" alt="南足柄市議会" border="0" /></span></a>
+	</div></div>
+
+<div id="unit-46510" class="hsNarrow"><div class="bImg">
+	<a href="https://minamiashigara-city.stream.jfit.co.jp/" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/46510/1-20140319180702.png" alt="議会中継を見る" border="0" /></span></a>
+	</div></div>
+<div id="unit-103290" class="hsNarrow"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/machi/kouhou/public/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/103290/1-20190919142308.PNG" alt="パブリックコメントを募集します" border="0" /></span></a>
+	</div></div>
+<div id="unit-46430" class="hsNarrow"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/machi/kouhou/minamipress/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/46430/1-20210521104941.jpg" alt="記者発表資料　「金太郎通信」" border="0" /></span></a>
+	</div></div>
+<div id="unit-43368" class="hsNarrow"><div class="bImg">
+	<a href="/event/"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/43368/1-20140318202033.png" alt="イベントかレンダー" border="0" /></span></a>
+	</div></div>
+<div id="unit-35304" class="hsNarrow bgColor bdSolid"><div class="extLinkList">
+<div><h2 class="color11">東日本大震災関連</h2></div>
+	<ul>
+		<li><a href="/housyasen/" title="放射線情報">放射線情報</a></li>
+		<li><a href="/shinsai/" title="その他">その他</a></li>
+	</ul>
+</div></div>
+<div id="unit-35312" class="bgColor bdSolid"><div class="extLinkList">
+	<ul>
+		<li><a href="https://dshinsei.e-kanagawa.lg.jp/142174-u/offer/offerList_initDisplay.action" title="電子申請・届出サービスを新規ページで開く" class="linkBlank" target="_blank">電子申請・届出サービス</a></li>
+		<li><a href="/etc_shinsei/" title="各種申請書ダウンロード">各種申請書ダウンロード</a></li>
+		<li><a href="http://www.city.minamiashigara.kanagawa.jp/koukyo_yoyaku/p03594.html" title="公共施設利用予約システム">公共施設利用予約システム</a></li>
+		<li><a href="/business/nyuusatu/system/denshi_nyusatu_system.html" title="電子入札">電子入札</a></li>
+		<li><a href="/machi/soshiki/jyourei/" title="条例・例規">条例・例規</a></li>
+		<li><a href="https://www.city.minamiashigara.kanagawa.jp/kouji/" title="公示送達を新規ページで開く" class="linkBlank" target="_blank">公示送達</a></li>
+		<li><a href="http://lib.ed-minamiashigara.jp/" title="図書館の本を探す">図書館の本を探す</a></li>
+		<li><a href="http://www.city.minamiashigara.kanagawa.jp/machi/toukei/monthlydata/jinkouto_setai.html" title="人口と世帯数">人口と世帯数</a></li>
+		<li><a href="http://www.city.minamiashigara.kanagawa.jp/about/link.html" title="リンク集">リンク集</a></li>
+		<li><a href="http://www.city.minamiashigara.kanagawa.jp/machi/soshiki/gyoumu/" title="各課へのお問い合わせ先">各課へのお問い合わせ先</a></li>
+	</ul>
+</div></div>
+<div id="unit-107853" class="hsNormal bgColor"><div class="extLinkList">
+	<ul>
+		<li><a href="https://www.city.minamiashigara.kanagawa.jp/opendata/" title="オープンデータ">オープンデータ</a></li>
+	</ul>
+</div></div>
+<div id="unit-35318" class="hsNarrow"><div class="bImg">
+	<a href="https://twitter.com/bousai_minami" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35318/1-20250708112330.jpg" alt="南足柄市防災安全課ツイッター" border="0" /></span></a>
+	</div></div>
+<div id="unit-35316" class="hsNarrow"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/boutai/shiryou/saigai_dairi_moriyacity.html"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/35316/1-20170418162913.png" alt="茨城県守谷市 災害時ホームページ代理掲載" border="0" /></span></a>
+	</div></div>
+<div id="unit-77489" class="hsNarrow"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/boutai/shiryou/p04020.html"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/77489/1-20170418162935.png" alt="岩手県遠野市 災害時ホームページ代理掲載" border="0" /></span></a>
+	</div></div>
+<div id="unit-81386" class="hsNormal"><div class="bImg">
+	<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/bouan/boutai/shiryou/p04462.html" target="_blank"><span><img src="https://www.city.minamiashigara.kanagawa.jp/global-image/units/81386/1-20170420170417.png" alt="災害時ホームページ代理掲載（兵庫県川西市）" border="0" /></span></a>
+	</div></div>
+
+					</div>
+				</div>
+				<!--/サイドバーエリア--> 
+			</div>
+		</div>
+		<!--/コンテンツエリア--> 
+		 
+		<!--バナーエリア/-->
+		<div class="extBannerTopBtnOuter">
+			<div class="extBannerTopBtn">
+				<div class="extBannerTopBtnTitle clearfix">
+					<p>バナー広告</p>
+					<a href="/business/syoukou/koukoku/banner.html" title="バナー広告掲載についてはこちら">バナー広告掲載についてはこちら</a>
+				</div>
+				<ul class="clearfix">
+										<li><a href="https://kensui-mc.jp/access/" onclick="return bannerClick('168','2','132','43365');" target="_blank" title="小田原マタニティクリニック" rel="nofollow sponsored"><img alt="小田原マタニティクリニック" src="/global-image/Banner/20250729144202.gif" width="150"/></a></li>
+									</ul>
+			</div>
+		</div>
+		 
+		<script type="text/javascript">
+			<!--
+			if (typeof bannerClick == "undefined") {
+				function bannerClick(odr_id, grp_id, bnr_id, pageu_code) {
+					var rtn=true;
+					j$.ajax({
+						url: "https://www.city.minamiashigara.kanagawa.jp/usr-data/modules/extMdlBannerMngr/units/extMdlBannerMngr/countup.php",
+						type: "POST",
+						async: false,//同期通信
+						data: "odr_id="+odr_id+"&grp_id="+grp_id+"&bnr_id="+bnr_id+"&pageu_code="+pageu_code,
+						success: function(res){
+							if (res==1) {
+							} else {
+								alert(res);
+								//rtn=false;
+							}
+						},
+						complete: function(){
+						}
+					});
+					return rtn;
+				}
+			}
+			// -->
+		</script> 
+		 
+		<!--/バナーエリア--> 
+		 
+		<!--フッターエリア/-->
+		<div id="footerAreaOuter">
+			<div id="footerArea"> 
+				<!--ページトップ/-->
+				<div id="pPageTop">
+					<p><a href="#wrapper" title="ページの一番上に戻る">ページの一番上に戻る</a></p>
+				</div>
+				<!--/ページトップ--> 
+				<!--フッターナビゲーションエリア/-->
+				<div id="footerNaviArea">
+					<ul><li><a href="https://www.city.minamiashigara.kanagawa.jp/about/about.html"  title="このサイトについて">このサイトについて</a></li>
+<li><a href="https://www.city.minamiashigara.kanagawa.jp/machi/soshiki/gyoumu/"  title="各課へのお問い合わせ">各課へのお問い合わせ</a></li>
+<li><a href="https://www.city.minamiashigara.kanagawa.jp/about/request.html"  title="ご意見・ご提案">ご意見・ご提案</a></li>
+<li><a href="https://www.city.minamiashigara.kanagawa.jp/about/link.html"  title="リンク集">リンク集</a></li>
+<li><a href="https://www.city.minamiashigara.kanagawa.jp/SiteMap/"  title="サイトマップ">サイトマップ</a></li></ul>
+				</div>
+				<!--/フッターナビゲーションエリア--> 
+				<!--フッターアドレス/-->
+				<div id="footerAddress">
+					<address>
+					南足柄市役所&nbsp;&nbsp;〒250-0192&nbsp;神奈川県南足柄市関本440番地&nbsp;&nbsp;電話：0465-74-2111(代表)
+					</address>
+				</div>
+				<!--/フッターアドレス--> 
+				<!--コピーライト/-->
+				<div id="pCopyright">
+					<p>Copyright &copy; City of Minamiashigara, All Rights Reserved.</p>
+				</div>
+				<!--/コピーライト--> 
+			</div>
+		</div>
+		<!--/フッターエリア--> 
+	</div>
+	<!--/ページコンテナー--> 
+</div>
+ 
+<script>
+j$(document).ready(function($) {
+var j$slider = j$('#itemzoom ul').bxSlider({
+	mode: 'fade', //fade // vertical
+	speed: 6000,
+	slideMargin: 0,
+	pause: 3000,
+	infiniteLoop: true,
+	captions: false,
+	touchEnabled: true,
+	auto: true,
+	autoStart:true,
+	autoControls: true,
+	controls: false,
+	pager: false,
+	buildPager:null
+						   });
+});
+</script> 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-8091700-1', 'city.minamiashigara.kanagawa.jp');
+  ga('send', 'pageview');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKS335MBDV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JKS335MBDV');
+</script>
+</body>
+</html>

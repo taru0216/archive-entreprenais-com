@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta property="og:title" content="イベントカレンダー | 南足柄市" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.city.minamiashigara.kanagawa.jp/event/" />
+<meta property="og:description" content="" /><meta property="og:site_name" content="南足柄市" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />  
+<link rel="Shortcut Icon" type="img/x-icon" href="/favicon.ico" />
+
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js?load=effects,builder"></script>
+<script type='text/javascript' src='/js/prototip2.2.0.2/js/prototip/prototip.js'></script>
+<link rel="stylesheet" type="text/css" href="/js/prototip2.2.0.2/css/prototip.css" />
+<script type='text/javascript' src='/js/tooltip.js'></script>
+<link href="/js/google_translate.css?2022051713" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/js/jq/jquery-1.8.0.min.cus.js"></script>
+<script type="text/javascript" src="/js/jq/jquery.cookie.js"></script>
+<script type="text/javascript" src="/js/lightbox2/js/lightbox.js"></script>
+<link type="text/css" href="/js/lightbox2/css/lightbox.css" rel="stylesheet" media="all" />
+
+<script type="text/javascript" src="/js/imported.js?2022051713"></script>
+<style type="text/css">span.brClr { display:block; }</style><link id="fsstyle" href="/usr-data/template/system/css/common_m.css" rel="stylesheet" type="text/css" media="all" />
+<link id="fscolor" href="/usr-data/template/system/css/color.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/system/css/imported.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://www.city.minamiashigara.kanagawa.jp/_cache/AllUnits.css?20150212" rel="stylesheet" type="text/css" media="all" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3, minimum-scale=1.0, user-scalable=yes" />
+
+<link rel="stylesheet" media="only screen and (max-width: 740px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/system/css/sp.css" /><!--スマフォ向け-->
+<link rel="stylesheet" media="only screen and (min-width: 741px) and (max-width: 910px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/system/css/tablet.css" /><!--タブレット向け-->
+<link rel="stylesheet" media="only screen and (min-width: 911px)" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/system/css/layout.css" /><!--PC向け-->
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="https://www.city.minamiashigara.kanagawa.jp/usr-data/template/system/css/layout.css" type="text/css" media="all" />
+<![endif]-->
+
+<link href="/usr-data/template/system/css/print.css" rel="stylesheet" type="text/css" media="print" />
+<title>イベントカレンダー | 南足柄市</title>
+<!--[if IE 6]>
+<script src="https://www.city.minamiashigara.kanagawa.jp/js/DD_belatedPNG.js" type="text/javascript"></script>
+<script>
+	DD_belatedPNG.fix('.transparentImg');
+</script>
+<![endif]-->
+
+</head>
+
+<body id="pageBodyevent" class="pageBodyDetail">
+<div id="wrapper" class="pageBodyDetail">
+	<!--ヘッダーエリア/-->
+	<div id="headerAreaOuter">
+		<div id="headerArea">
+			<div id="headerSubArea" class="clearfix">
+				<div id="headerSubAreaInner" class="transparentImg">
+					<!--言語/-->
+					<div id="subLang">
+						<div id="subLangInner">
+							<div id="google_translate_element"></div>
+							<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+						</div>
+					</div>
+					<!--/言語-->
+					<!--検索/-->
+					<div class="headerSiteSearch">
+						<form action="https://www.city.minamiashigara.kanagawa.jp/sitesearch.php">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tbody>
+									<tr>
+										<td><input name="q" id="searchField" type="text" class="siteSearchText" title="ここに検索語を入力" /></td>
+										<td><input id="searchGo" name="sa" type="submit" class="siteSearchBtn transparentImg" value="サイト内検索" title="サイト内検索" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<input type="hidden" name="cx" value="013258386838613825276:t11qe8gukjs" />
+							<input type="hidden" name="cof" value="FORID:11" />
+							<input type="hidden" name="ie" value="UTF-8" />
+						</form>
+					</div>
+					<!--/検索-->
+					<!--文字オプション/-->
+					<div class="headerOption">
+						<div class="headerOptionInner clearfix">
+							<dl id="tsBox">
+								<dt><span class="transparentImg">文字サイズ</span></dt>
+								<dd id="tsBtnS"><a id="fonts" class="transparentImg" href="javascript:chgFsize('s');" title="文字サイズを小に変更する">小</a></dd>
+								<dd id="tsBtnM"><a id="fontm" class="transparentImg active" href="javascript:chgFsize('m');" title="文字サイズを中に変更する">中</a></dd>
+								<dd id="tsBtnL"><a id="fontl" class="transparentImg" href="javascript:chgFsize('l');" title="文字サイズを大に変更する">大</a></dd>
+							</dl>
+							<p><a href="javascript:chgFcolor();" id="fontC" title="文字色変更" class="transparentImg">文字色変更</a></p>
+						</div>
+					</div>
+					<!--/文字オプション-->
+				</div>
+			</div>
+			<div id="headerAreaInner" class="clearfix">
+				<div id="innerLeftBox"><a href="http://www.city.minamiashigara.kanagawa.jp" title="南足柄市" >南足柄市</a></div>
+				<div id="innerRightBox">
+					<!--グローバルナビゲーションサイドエリア/-->
+					<div id="globalNaviAreaOuter">
+						<div id="globalNaviArea">
+							<ul class="clearfix">
+								<li class="navi1"><a href="http://www.city.minamiashigara.kanagawa.jp" title="ホーム">ホーム</a></li>
+								<li class="navi2"><a href="http://www.city.minamiashigara.kanagawa.jp/kurashi/" title="くらしの情報">くらしの情報</a></li>
+								<li class="navi3"><a href="http://www.city.minamiashigara.kanagawa.jp/kankou/" title="観光">観光</a></li>
+								<li class="navi4"><a href="http://www.city.minamiashigara.kanagawa.jp/business/" title="事業者向け">事業者向け</a></li>
+								<li class="navi5"><a href="http://www.city.minamiashigara.kanagawa.jp/machi/" title="市政情報">市政情報</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--/グローバルナビゲーションサイドエリア-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ヘッダーエリア-->
+		<!--パンくずリスト/-->
+	<div id="breadcrumbsList">
+		<ul>
+			<li><a title="南足柄市公式サイトトップ" href="http://www.city.minamiashigara.kanagawa.jp">南足柄市公式サイトトップ</a></li>
+						<li>イベントカレンダー</li>
+					</ul>
+	</div>
+	<!--/パンくずリスト-->
+		<!--ページコンテナー/-->
+	<div id="container">
+		<!--コンテンツエリア/-->
+		<div id="contentsArea" class="clearfix">
+			<!--メインエリア/-->
+			<div id="mainArea">
+				<div id="user-area" class="mainBg">
+					<div>
+<form  action="index.php" method="post" name="form" id="form">
+<input name="_qf__form" type="hidden" value="" />
+
+	<div class="bTtl hsNormal">
+		<h2 class="color10">イベント</h2>
+	</div>
+
+	<div class="col2-3 hsWide">
+		<div class="box1">
+			<div class="containerInner">
+				<!--エラーコメント/-->
+								<!--/エラーコメント-->
+
+				<!--イベント検索/-->
+                    <div class="bTtlBg color09 hsNarrow">
+                        <h2>イベント・会議検索</h2>
+                    </div>
+					<div class="bList2">
+						<table border="0" cellspacing="0" cellpadding="0" class="color13" summary="イベント検索">
+							<tr>
+								<th width="20%" class="color11 color12 color13">開催期間</th>
+								<td class="color13"><select id="start_y" onchange="changePulldown(1);" name="start_y">
+	<option value="">--</option>
+	<option value="2025">2025</option>
+	<option value="2026" selected="selected">2026</option>
+	<option value="2027">2027</option>
+</select>年&nbsp;<select id="start_m" onchange="changePulldown(1);" name="start_m">
+	<option value="">--</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6" selected="selected">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+</select>月&nbsp;<select id="start_d" name="start_d">
+	<option value="">--</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9" selected="selected">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+</select>日から<br />
+								<select id="end_y" onchange="changePulldown(2);" name="end_y">
+	<option value="" selected="selected">--</option>
+	<option value="2025">2025</option>
+	<option value="2026">2026</option>
+	<option value="2027">2027</option>
+</select>年&nbsp;<select id="end_m" onchange="changePulldown(2);" name="end_m">
+	<option value="" selected="selected">--</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+</select>月&nbsp;<select id="end_d" name="end_d">
+	<option value="" selected="selected">--</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+</select>日まで</td>
+							</tr>
+							<tr>
+								<th class="color11 color12 color13">ジャンル</th>
+								<td class="color13 evsrchbox"><ul><li><input name="evt_genre_chk[1]" type="checkbox" value="1" id="qf_e121b2" /><label for="qf_e121b2">イベント</label><li><input name="evt_genre_chk[2]" type="checkbox" value="1" id="qf_a4539e" /><label for="qf_a4539e">講座・講演</label><li><input name="evt_genre_chk[3]" type="checkbox" value="1" id="qf_eb5b92" /><label for="qf_eb5b92">相談</label><li><input name="evt_genre_chk[4]" type="checkbox" value="1" id="qf_637ed6" /><label for="qf_637ed6">子育て・教育</label><li><input name="evt_genre_chk[5]" type="checkbox" value="1" id="qf_a64f2a" /><label for="qf_a64f2a">スポーツ</label><li><input name="evt_genre_chk[6]" type="checkbox" value="1" id="qf_0b6290" /><label for="qf_0b6290">健康</label><li><input name="evt_genre_chk[7]" type="checkbox" value="1" id="qf_76c798" /><label for="qf_76c798">文化・芸術</label><li><input name="evt_genre_chk[8]" type="checkbox" value="1" id="qf_19a3d0" /><label for="qf_19a3d0">説明会・審議会等</label><li><input name="evt_genre_chk[9]" type="checkbox" value="1" id="qf_8cbf6d" /><label for="qf_8cbf6d">議会</label><li><input name="evt_genre_chk[10]" type="checkbox" value="1" id="qf_292a7d" /><label for="qf_292a7d">観光</label><li><input name="evt_genre_chk[11]" type="checkbox" value="1" id="qf_94eb29" /><label for="qf_94eb29">その他</label></ul></td>
+							</tr>
+						</table>
+						<div style="padding: 10px 0 0 0; text-align: center;"><input id="BTNsearch" class="bBtnSearch" name="buttons[BTNsearch]" value=" 検索 " type="submit" /></div>
+					</div>
+
+                    
+
+				<!--/イベント検索-->
+			</div>
+		</div>
+		<div class="box2">
+			<div class="containerInner">
+
+            <!--イベントカレンダー/-->
+            <table class="calendarHeader" width="100%" cellspacing="0">
+                <tr>
+                    <td colspan="3" class="calendarHeaderLeft"><a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=5&start_d=1&end_y=2026&end_m=5&end_d=31">前月へ</a></td>
+                    <td colspan="1" class="calendarHeaderCenter"><strong>2026</strong>年<strong>6</strong>月</td>
+                    <td colspan="3" class="calendarHeaderRight"><a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=7&start_d=1&end_y=2026&end_m=7&end_d=31">翌月へ</a></td>
+                </tr>
+            </table>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="calendarTable" summary="イベントカレンダー">
+                <tr>
+                    <th class="rmsSun"><span>日</span></th>
+                    <th><span>月</span></th>
+                    <th><span>火</span></th>
+                    <th><span>水</span></th>
+                    <th><span>木</span></th>
+                    <th><span>金</span></th>
+                    <th class="rmsSat"><span>土</span></th>
+                </tr>
+                            <tr>
+                                <td class="rmsSun">
+                                                &nbsp;
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=1&end_y=2026&end_m=6&end_d=1">1</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=2&end_y=2026&end_m=6&end_d=2">2</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=3&end_y=2026&end_m=6&end_d=3">3</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=4&end_y=2026&end_m=6&end_d=4">4</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=5&end_y=2026&end_m=6&end_d=5">5</a>
+                                            </td>
+                                <td class="rmsSat">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=6&end_y=2026&end_m=6&end_d=6">6</a>
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="rmsSun">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=7&end_y=2026&end_m=6&end_d=7">7</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=8&end_y=2026&end_m=6&end_d=8">8</a>
+                                            </td>
+                                <td class="toDay">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=9&end_y=2026&end_m=6&end_d=9">9</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=10&end_y=2026&end_m=6&end_d=10">10</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=11&end_y=2026&end_m=6&end_d=11">11</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=12&end_y=2026&end_m=6&end_d=12">12</a>
+                                            </td>
+                                <td class="rmsSat">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=13&end_y=2026&end_m=6&end_d=13">13</a>
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="rmsSun">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=14&end_y=2026&end_m=6&end_d=14">14</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=15&end_y=2026&end_m=6&end_d=15">15</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=16&end_y=2026&end_m=6&end_d=16">16</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=17&end_y=2026&end_m=6&end_d=17">17</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=18&end_y=2026&end_m=6&end_d=18">18</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=19&end_y=2026&end_m=6&end_d=19">19</a>
+                                            </td>
+                                <td class="rmsSat">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=20&end_y=2026&end_m=6&end_d=20">20</a>
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="rmsSun">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=21&end_y=2026&end_m=6&end_d=21">21</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=22&end_y=2026&end_m=6&end_d=22">22</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=23&end_y=2026&end_m=6&end_d=23">23</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=24&end_y=2026&end_m=6&end_d=24">24</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=25&end_y=2026&end_m=6&end_d=25">25</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=26&end_y=2026&end_m=6&end_d=26">26</a>
+                                            </td>
+                                <td class="rmsSat">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=27&end_y=2026&end_m=6&end_d=27">27</a>
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="rmsSun">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=28&end_y=2026&end_m=6&end_d=28">28</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=29&end_y=2026&end_m=6&end_d=29">29</a>
+                                            </td>
+                                <td class="">
+                                                <a href="https://www.city.minamiashigara.kanagawa.jp/event/?start_y=2026&start_m=6&start_d=30&end_y=2026&end_m=6&end_d=30">30</a>
+                                            </td>
+                                <td class="">
+                                                &nbsp;
+                                            </td>
+                                <td class="">
+                                                &nbsp;
+                                            </td>
+                                <td class="">
+                                                &nbsp;
+                                            </td>
+                                <td class="rmsSat">
+                                                &nbsp;
+                                            </td>
+                            </tr>
+                        </table>
+            <!--/イベントカレンダー-->
+
+			</div>
+		</div>
+		<br class="clr">
+	</div>
+
+	<div class="col1">
+		<div class="box1">
+			<div class="containerInner">
+
+
+
+				<!--イベント一覧/-->
+                <div class="bSubTtl">
+                    <h3 class="color11">イベント・会議一覧</h3>
+                </div>
+                <p style="margin:0; color: #F30;">※すべてのイベントが表示されています。「イベント検索」で絞込み検索ができます。</p>
+                <div class="bCatList">
+					<ul>
+									<li>
+							<p class="bCatListDate color11">開催日：4月01日 ～ 3月31日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/manabi/bunka/p04432.html" target="_blank" title="後継者育成講座(相模人形芝居・足柄ささら踊)の受講者を募集しています!" >後継者育成講座(相模人形芝居・足柄ささら踊)の受講者を募集しています!</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月09日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/zeimu_soudan.html" target="_blank" title="税務相談" >税務相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月09日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/joseibengoshi_soudan.html" target="_blank" title="女性弁護士による法律相談" >女性弁護士による法律相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月12日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/gyousei_soudan.html" target="_blank" title="行政相談" >行政相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月15日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/houritu_soudan.html" target="_blank" title="弁護士相談" >弁護士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月17日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/p04372.html" target="_blank" title="行政書士相談" >行政書士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：6月17日 ～ 6月20日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/gomi/kankyou/p07144.html" target="_blank" title="令和8年度　南足柄市環境フェアを開催!!" >令和8年度　南足柄市環境フェアを開催!!</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：7月10日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/gyousei_soudan.html" target="_blank" title="行政相談" >行政相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：7月13日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/houritu_soudan.html" target="_blank" title="弁護士相談" >弁護士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：7月22日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/takuchitatemono_soudan.html" target="_blank" title="宅地建物取引相談" >宅地建物取引相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：8月04日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/joseibengoshi_soudan.html" target="_blank" title="女性弁護士による法律相談" >女性弁護士による法律相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：8月17日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/houritu_soudan.html" target="_blank" title="弁護士相談" >弁護士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：8月18日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/zeimu_soudan.html" target="_blank" title="税務相談" >税務相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：8月19日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/p04372.html" target="_blank" title="行政書士相談" >行政書士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：8月21日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/gyousei_soudan.html" target="_blank" title="行政相談" >行政相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：9月11日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/gyousei_soudan.html" target="_blank" title="行政相談" >行政相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：9月14日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/houritu_soudan.html" target="_blank" title="弁護士相談" >弁護士相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：9月30日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/takuchitatemono_soudan.html" target="_blank" title="宅地建物取引相談" >宅地建物取引相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：10月09日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/gyousei_soudan.html" target="_blank" title="行政相談" >行政相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+									<li>
+							<p class="bCatListDate color11">開催日：10月13日</p>
+							<h5>
+<a href="https://www.city.minamiashigara.kanagawa.jp/kurashi/soudan/soudan/zeimu_soudan.html" target="_blank" title="税務相談" >税務相談</a>
+			</h5>
+							<p class="bCatListTxt"></p>
+						</li>
+								</ul>
+					<!--pager/-->
+					<p class="bCatListPage"><b>[1]</b>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='var form = document.createElement("form"); var input = ""; form.action = "/event/index.php"; form.method = "POST"; input = document.createElement("input"); input.type = "hidden"; input.name = "start_y"; input.value = "2026"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_m"; input.value = "6"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_d"; input.value = "9"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_y"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_m"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_d"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_genre_chk"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_section"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "pager_num"; input.value = "2"; form.appendChild(input); document.getElementsByTagName("body")[0].appendChild(form);form.submit(); return false;' title='page 2'>2</a>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='var form = document.createElement("form"); var input = ""; form.action = "/event/index.php"; form.method = "POST"; input = document.createElement("input"); input.type = "hidden"; input.name = "start_y"; input.value = "2026"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_m"; input.value = "6"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_d"; input.value = "9"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_y"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_m"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_d"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_genre_chk"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_section"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "pager_num"; input.value = "3"; form.appendChild(input); document.getElementsByTagName("body")[0].appendChild(form);form.submit(); return false;' title='page 3'>3</a>&nbsp;&nbsp;<a href='javascript:void(0)' onclick='var form = document.createElement("form"); var input = ""; form.action = "/event/index.php"; form.method = "POST"; input = document.createElement("input"); input.type = "hidden"; input.name = "start_y"; input.value = "2026"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_m"; input.value = "6"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "start_d"; input.value = "9"; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_y"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_m"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "end_d"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_genre_chk"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "evt_section"; input.value = ""; form.appendChild(input); input = document.createElement("input"); input.type = "hidden"; input.name = "pager_num"; input.value = "2"; form.appendChild(input); document.getElementsByTagName("body")[0].appendChild(form);form.submit(); return false;' title='next page'>&nbsp;&gt;&gt; </a>&nbsp;&nbsp;</p>
+					<!--/pager-->
+				</div>
+				<!--/イベント一覧-->
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+
+<script type="text/javascript">
+<!--
+
+Event.observe(window, 'load', function(){
+	changePulldown(1);
+	changePulldown(2);
+});
+
+function changePulldown(type){
+	if(type==1){
+		var elem_name = 'start_';
+	}else{
+		var elem_name = 'end_';
+	}
+	elem_y = $(elem_name + 'y');
+	elem_m = $(elem_name + 'm');
+	elem_d = $(elem_name + 'd');
+	var tmp_sel_day = elem_d.value;
+
+	var sel_days = getDays(elem_y.value, elem_m.value);
+	if(!isNaN(sel_days)){
+		elem_d.options.length = 0;
+		elem_d.options[0] = new Option('--', '');
+		for(var i=1; i<=sel_days; i++){
+			elem_d.options[i] = new Option(i, i);
+			if(i == tmp_sel_day){
+				elem_d.options[i].selected = true;
+			}
+		}
+	}
+}
+
+function getDays(year, month){
+	if(isNaN(month)){
+		return null;
+	}
+	var day_ary = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+	if(isFinite(year)){
+		if ( ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0) ) {
+			day_ary[1] = 29;
+		}
+	}
+	return day_ary[month - 1];
+}
+
+-->
+</script>
+				</div>
+															</div>
+			<!--/メインエリア-->
+		</div>
+		<!--/コンテンツエリア-->
+		<!--フッターエリア/-->
+		<div id="footerAreaOuter">
+			<div id="footerArea">
+				<!--ページトップ/-->
+				<div id="pPageTop">
+					<p><a href="#wrapper" title="ページの一番上に戻る">ページの一番上に戻る</a></p>
+				</div>
+				<!--/ページトップ-->
+				<!--フッターナビゲーションエリア/-->
+				<div id="footerNaviArea">
+					<ul><li><a href="http://www.city.minamiashigara.kanagawa.jp/about/about.html"  title="このサイトについて">このサイトについて</a></li>
+<li><a href="http://www.city.minamiashigara.kanagawa.jp/about/request.html"  title="ご意見・ご提案">ご意見・ご提案</a></li>
+<li><a href="http://www.city.minamiashigara.kanagawa.jp/about/link.html"  title="リンク集">リンク集</a></li>
+<li><a href="http://www.city.minamiashigara.kanagawa.jp/SiteMap/"  title="サイトマップ">サイトマップ</a></li></ul>
+				</div>
+				<!--/フッターナビゲーションエリア-->
+				<!--フッターアドレス/-->
+				<div id="footerAddress">
+					<address>南足柄市役所&nbsp;&nbsp;〒250-0192&nbsp;神奈川県南足柄市関本440番地&nbsp;&nbsp;電話：0465-74-2111(代表)</address>
+				</div>
+				<!--/フッターアドレス-->
+				<!--コピーライト/-->
+				<div id="pCopyright">
+					<p>Copyright &copy; City of Minamiashigara, All Rights Reserved.</p>
+				</div>
+				<!--/コピーライト-->
+			</div>
+		</div>
+		<!--/フッターエリア--> 
+	</div>
+	<!--/ページコンテナー-->
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-8091700-1', 'city.minamiashigara.kanagawa.jp');
+  ga('send', 'pageview');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKS335MBDV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JKS335MBDV');
+</script>
+</body>
+</html>
