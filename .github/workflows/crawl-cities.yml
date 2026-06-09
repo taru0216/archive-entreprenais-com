@@ -6,10 +6,17 @@ name: Crawl Cities
 #
 # アーキテクチャ:
 #   shard ジョブ: shard_targets.py で target_csv を自治体ドメインごとに分割し matrix JSON を生成
-#   crawl ジョブ: matrix 並列（max-parallel: 20）で各自治体を crawl_cities.py 1コマンドでクロール
+#   crawl ジョブ: matrix 並列（max-parallel: 54）で各自治体を crawl_cities.py 1コマンドでクロール
 #
 # 毎週月曜 02:00 JST（= 日曜 17:00 UTC）に自動起動。
 # public リポジトリのため GitHub hosted runner を使用する。
+#
+# クロール対象 CSV 一覧（.data/crawl-targets/）:
+#   marche-targets.csv       — デフォルト: 千葉県54市町村（新形式 slug/url/pref/display_name）
+#   marche-targets-chiba.csv — 千葉県54市町村（同上・互換用途で残存）
+#
+# 手動実行（workflow_dispatch）で target_csv を切り替えることで
+# 都道府県別 CSV など任意のターゲットをクロールできる。
 
 on:
   schedule:
@@ -17,7 +24,7 @@ on:
   workflow_dispatch:
     inputs:
       target_csv:
-        description: "自治体リスト CSV パス"
+        description: "自治体リスト CSV パス（例: .data/crawl-targets/marche-targets.csv）"
         required: false
         default: ".data/crawl-targets/marche-targets.csv"
       max_age_days:
@@ -62,7 +69,7 @@ jobs:
     if: needs.shard.outputs.matrix != '{"include":[]}'
     strategy:
       matrix: ${{ fromJson(needs.shard.outputs.matrix) }}
-      max-parallel: 20
+      max-parallel: 54
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
