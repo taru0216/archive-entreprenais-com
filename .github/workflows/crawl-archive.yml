@@ -101,19 +101,18 @@ jobs:
         run: |
           python3 scripts/crawl_archive.py save-html \
             --csv "${{ steps.target.outputs.csv_path }}" \
-            --out-dir retty.com \
             --sleep "${{ github.event.inputs.sleep || '5' }}"
 
       - name: Commit & push HTML
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add retty.com/
+          git add me/
           if git diff --cached --quiet; then
             echo "No HTML changes to commit."
             exit 0
           fi
-          COUNT=$(find retty.com -name "index.html" 2>/dev/null | wc -l | tr -d ' ')
+          COUNT=$(find me -name "index.html" 2>/dev/null | wc -l | tr -d ' ')
           git commit -m "chore(archive): HTML ミラーを更新 (${COUNT} pages)"
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git push origin "HEAD:${GITHUB_REF_NAME}"
