@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="平塚市">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="copyright" content="Copyright(C) Hiratsuka City. All Rights Reserved.">
+<title>イベントカレンダー | 平塚市</title>
+<link rel="shortcut icon" href="/common/200000007.png" type="image/x-icon">
+<link rel="stylesheet" href="/common/normalize.css">
+<link rel="stylesheet" href="/common/common.css">
+<link rel="stylesheet" href="/common/module.css">
+<link rel="stylesheet" href="/common/utility.css">
+<link rel="stylesheet" href="/common/aly.css">
+<link rel="stylesheet" href="/common/common-sp.css" media="only screen and (max-width:768px)">
+<link rel="stylesheet" href="/common/module-sp.css" media="only screen and (max-width:768px)">
+<link rel="stylesheet" href="/common/utility-sp.css" media="only screen and (max-width:768px)">
+<link rel="stylesheet" href="/common/aly.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-86ND00XBJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-86ND00XBJF');
+</script>
+
+<!-- Googleカスタム検索 -->
+<script>
+  (function() {
+    var cx = '015670724692484244135:wlfdwhn8hcg';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<script src="/common/jquery.min.js"></script>
+<script src="/common/jquery.cookie.js"></script>
+<script src="/common/common.js"></script>
+<!--[if lte IE 9]>
+<script src="/common/jquery.placeholder.min.js"></script>
+<script src="/common/ie9.js"></script>
+<link rel="stylesheet" href="/common/ie9.css">
+<![endif]-->
+
+<link rel="canonical" href="https://www.city.hiratsuka.kanagawa.jp/events/index.html">
+
+<script src="/common/jquery-jtemplates.js"></script>
+<script><!--
+var refDate = new Date();
+
+var CALENDAR_TABLE_PREFIX = '';
+
+var Conditions = function () {
+	this.conDate = new Date();
+	this.conArea = "";
+	this.conCtg1 = "";
+	this.conMode = 0 ; //0=month 1=day
+	this.getDate = function() {
+		var result = this.conDate.getDate();
+		if (result < 10 ) {
+			result = "0" + result ;
+		}
+		return result;
+	}
+	this.getMonth = function(){
+		var result = this.conDate.getMonth();
+		result = result + 1;
+		if (result < 10 ) {
+			result = "0" + result ;
+		}
+		return result;
+	}
+	this.getFullYear = function(){
+		return this.conDate.getFullYear();
+	}
+	this.setDate = function(date_val) {
+		return this.conDate.setDate(date_val);
+	}
+	this.setMonth = function(month_val){
+		month_val = month_val - 1;
+		this.conDate.setDate(1);
+		return this.conDate.setMonth(month_val);
+	}
+	this.setFullYear = function(year_val){
+		return this.conDate.setFullYear(year_val);
+	}
+
+	//area and ctg1
+	this.setArea = function(area_val){
+		this.Area = area_val;
+	}
+	this.getArea = function() {
+		return this.Area;
+	}
+	this.resetArea = function() {
+		this.Area = "";
+	}
+	this.setCtg1 = function(ctg1_val){
+		this.Ctg1 = ctg1_val;
+	}
+	this.getCtg1 = function() {
+		return this.Ctg1;
+	}
+	this.resetCtg1 = function() {
+		this.Ctg1 = "";
+	}
+
+	//Mode
+	this.setModeDaily = function() {
+		this.conMode = "1";
+	}
+	this.setModeMonthly = function() {
+		this.conMode = "0";
+	}
+	this.getMode = function() {
+		return this.conMode
+	}
+	this.nextMonth = function() {
+		now = this.conDate.getMonth();
+		now++;
+		this.conDate.setDate(1);
+		this.conDate.setMonth(now);
+	}
+	this.lastMonth = function() {
+		now = this.conDate.getMonth();
+		now--;
+		this.conDate.setDate(1);
+		this.conDate.setMonth(now);
+	}
+	this.resetDate = function() {
+		var today = new Date();
+		this.conDate.setTime(today.getTime());
+	}
+	this.nextDay = function() {
+		now = this.conDate.getDate();
+		now++;
+		this.conDate.setDate(now);
+	}
+	this.lastDay = function() {
+		now = this.conDate.getDate();
+		now--;
+		this.conDate.setDate(now);
+	}
+}
+
+var cond = new Conditions();
+
+function loadEvents() {
+    $("#message").empty();
+    $("div.eventlist").children().remove();
+    var year;
+    var month;
+    var day;
+    year = cond.getFullYear();
+    month = cond.getMonth();
+    day = cond.getDate();
+    var printDate;
+    var printDate2;
+    var printYear = year;
+    if ( cond.getMode() == 1){
+	    printDate = "（" + printYear + "年" + parseInt(month,10) + "月" + parseInt(day,10) + "日）";
+	    //$("#nextC").html("<a id=\"NextAllow\" onclick=\"clickDay('next')\" href=\"#\">次の日へ</a>");
+	    $("#nextL").html("<a onclick=\"clickMonth('next')\" href=\"#\">翌月</a>");
+	    //$("#beforeC").html("<a id=\"BeforeAllow\" onclick=\"clickDay('last')\" href=\"#\">前の日へ</a>");
+	    $("#beforeL").html("<a onclick=\"clickMonth('last')\" href=\"#\">前月</a>");
+    }
+    else{
+	    printDate = "（" + printYear + "年" + parseInt(month,10) + "月）";
+	    //$("#nextC").html("<a id=\"NextAllow\" onclick=\"clickMonth('next')\" href=\"#\">翌月</a>");
+	    $("#nextL").html("<a onclick=\"clickMonth('next')\" href=\"#\">翌月</a>");
+	    //$("#beforeC").html("<a id=\"BeforeAllow\" onclick=\"clickMonth('last')\" href=\"#\">前月</a>");
+	    $("#beforeL").html("<a onclick=\"clickMonth('last')\" href=\"#\">前月</a>");
+	    day = undefined;
+    }
+    printDate2 = printYear + "年" + parseInt(month,10) + "月";
+    $("#view_date_btn").text(printDate);
+    $("#view_date_h1").text(printDate);
+    $("#view_date_h2").text(printDate2);
+    document.title="イベントカレンダー" + printDate + "  | 神奈川県 平塚市";
+    $("span.page_title").text("イベントカレンダー " + printDate);
+    $.ajax({
+	    url:"/htbin/event/cal.cgi",
+	    type:"get",
+	    data:{
+		    "Y"	: year,
+		    "M" : month
+	    },
+	    dataType:"html",
+	    cache:"false",
+	    success:function(data,dataType){
+                    $("p.eventMessage").remove();
+		    $("table.eventCalendar").replaceWith(CALENDAR_TABLE_PREFIX + data);
+	    },
+	    error:function(req, status, thrown) {
+		    $("#message").html("<br />イベント情報の取得に失敗しました。[" + status + "]");
+            }
+    });
+
+    $.ajax({
+        url:"/htbin/event/api.cgi",
+        type:"get",
+        data:{
+	    "Y"     : year,
+	    "M"     : month,
+            "D"     : day,
+            "Area"  : $("select[name='Area'] option:selected").val(),
+            "ctg1"  : $("select[name='ctg1'] option:selected").val(),
+            "m"     : 0,
+            "o"     : "asc"
+        },
+        dataType:"json",
+        cache:"false",
+        success:function(data, dataType) {
+            if (data.status == 200) {
+                if (data.events.length > 0) {
+			$("div.eventlist").setTemplateURL("./eventlist.tmpl",null,{filter_data: false});
+			$("div.eventlist").setParam('date',year + "/" + month + "/01");
+			$("div.eventlist").setParam('daily',cond.getMode());
+			$("div.eventlist").setParam('category_array',''
+				/*{"イベント": "100000142.gif",
+				"講座・教室": "100000143.gif",
+				"講演・説明会": "100000144.gif",
+				"相談": "100000145.gif",
+				"展示": "100000146.gif",
+				"七夕まつり": "100000147.gif"}*/
+			);
+			$("div.eventlist").processTemplate(data);
+                } else {
+                    $("div.eventlist").html("<br /><br /><p> イベント情報がありません。</p><br />");
+                }
+		if ( data.links.next == 0 ){
+			//$("#nextL").text("次の月へ");
+		}
+		if ( data.links.next_center == 0 ){
+			//$("#nextC").text($("#NextAllow").text());
+		}
+		if ( data.links.last == 0 ){
+			//$("#beforeL").text("前の月へ");
+		}
+		if ( data.links.before_center == 0 ){
+			//$("#beforeC").text($("#BeforeAllow").text());
+		}
+            }
+            if (data.message) {
+                $("#message").text(data.message);
+            }
+        },
+        error:function(req, status, thrown) {
+            $("#message").text("イベント情報の取得に失敗しました。[" + status + "]");
+        }
+    });
+}
+function clickMonth(action) {
+	if (action == "next"){
+		cond.nextMonth();
+	}
+	else if(action == "last"){
+		cond.lastMonth();
+	}
+	else if(action == "today"){
+		cond.resetDate();
+	}
+
+	cond.setModeMonthly();
+
+	loadEvents();
+}
+
+function clickDay(action) {
+	if (action == "next"){
+		cond.nextDay();
+	}
+	else if(action == "last"){
+		cond.lastDay();
+	}
+	else {
+		cond.setDate(action);
+	}
+
+	cond.setModeDaily();
+	
+	loadEvents();
+}
+
+
+function setupQueryForm() {
+    var queries = document.location.search.substring(1).split('&');
+    for (var i = 0; i < queries.length; i++) {
+        var q = queries[i].split('=');
+        var v = "";
+        if (q[0] == "Y" || q[0] == "y") {
+            v = q[1];
+	    if (v != ""){
+		    cond.setFullYear(v);
+	    }
+	    continue;
+        }
+        if (q[0] == "M" || q[0] == "m") {
+            v = q[1];
+	    if (v != ""){
+		v = parseInt(v,10);
+		cond.setMonth(v);
+	    }
+	    continue;
+        }
+        if (q[0] == "D") {
+            v = q[1];
+	    if (v != ""){
+		v = parseInt(v,10);
+		cond.setDate(v);
+		cond.setModeDaily();
+	    }
+	    continue;
+        }
+        if (q[0] == "Area") {
+            v = q[1];
+            if (v != "") {
+		v= decodeURI(v);
+                $("select[name='" + q[0] + "'] option[value='" + (v) + "']").attr("selected","selected");
+            }
+	    continue;
+        }
+        if (q[0] == "ctg1") {
+            v = q[1];
+            if (v != "") {
+		v = decodeURI(v);
+                $("select[name='" + q[0] + "'] option[value='" + v + "']").attr("selected","selected");
+            }
+	    continue;
+        }
+        if (q[0] == "next") {
+            v = q[1];
+            if (v == "1") {
+                cond.nextMonth();
+            }
+	    continue;
+        }
+    }
+}
+$().ready(function() {
+    /*$("select[name='Area'],select[name='ctg1']").change(function () {
+        var name = $(this).attr("name");
+        var val = $(this).val();
+        loadEvents();
+	});
+	$("#NextAllow").click(function() {
+		if ( cond.getMode() == 1 ){
+			clickDay('next');
+		}
+		else {
+			clickMonth('next');
+		}
+	});
+	$("#BeforeAllow").click(function() {
+		if ( cond.getMode() == 1 ){
+			clickDay('last');
+		}
+		else {
+			clickMonth('last');
+		}
+	});
+	*/
+    setupQueryForm();
+    loadEvents();
+});
+//--></script>
+
+
+</head>
+
+<body>
+<noscript>平塚市ウェブサイトではJavaScriptを使用しています。JavaScriptを無効にしている場合、機能が制限されますのでご了承ください。</noscript>
+<ul class="m-header-skip" id="m-header-skip">
+  <li><a href="#main">本文にスキップします。</a></li>
+  <li id="js-skip-searchbox"><a href="#search">サイト内検索にスキップします。</a></li>
+</ul>
+<div id="pagetop" class="l-header">
+  <div class="l-header-inner">
+    <div class="m-header-logo"><a href="/index.html"><img src="/common/200169129.png" alt="平塚市"></a></div>
+    <div class="m-header-box01">
+      <div class="m-header-link01">
+        <ul class="m-header-list01">
+          <li class="ext-languages"><a href="/koho/index-e.html"><span lang="en">Foreign <br>Languages</span></a></li>
+        </ul><!-- / .m-header-list01 -->
+        <dl class="m-fz">
+          <dt>文字サイズ</dt>
+          <dd>
+            <ul class="m-fz-list">
+              <li id="js-fz-normal"><a href="javascript:textSizeReset();">標準</a></li>
+              <li id="js-fz-large"><a href="javascript:textSizeUp();">拡大</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div><!-- / .m-header-list01 -->
+    </div><!-- / .m-header-box01 -->
+  </div><!-- / .l-header-inner -->
+
+
+  <div class="l-gnav">
+    <nav>
+    <ul class="m-gnav-list">
+      <li class="ext-home"><a href="/index.html"><img src="/common/200004127.png" alt="トップページアイコン" class="u-rps-pc"><span class="u-text-outside-pc">トップページ</span></a></li>
+      <li class="nav-item"><a href="/category01.html">暮らし・手続き</a></li>
+      <li class="nav-item"><a href="/category02.html">子育て・教育</a></li>
+      <li class="nav-item"><a href="/category03.html">健康・福祉</a></li>
+      <li class="nav-item is-active"><a href="/category04.html">観光・文化・スポーツ</a></li>
+      <li class="nav-item"><a href="/category05.html">産業・ビジネス</a></li>
+      <li class="nav-item"><a href="/category06.html">市政の情報</a></li>
+    </ul>
+    </nav>
+    <div class="m-header-link02">
+      <ul class="m-header-list02">
+        <li><a href="/shiyakusho/page-c_01785.html">各課お問い合わせ</a></li>
+        <li class="ext-sitemap"><a href="/sitemap.html">サイトマップ</a></li>
+      </ul>
+    </div>
+  </div><!-- / .l-gnav -->
+
+  <div class="l-header-group">
+    <div id="search" class="l-search">
+      <div class="m-search-box">
+        <div id="js-searchbox">
+          <gcse:searchbox-only enableHistory="true" resultsUrl="/searchresult.html"></gcse:searchbox-only>
+        </div>
+        <p class="m-search-link"><a href="/koho/page-c_00381.html">サイト内検索について</a></p>
+      </div>
+      <div class="m-header-nav-btn"><p>メニュー</p></div>
+    </div><!-- / .l-search -->
+    <div class="l-breadcrumb">
+      <ul class="l-breadcrumb-list">
+        <li><a href="/index.html">トップページ</a></li>
+        <li><a href="/category04.html">観光・文化・スポーツ</a></li>
+        <li>イベントカレンダー</li>
+      </ul>
+    </div><!-- / .l-breadcrumb -->
+  </div><!-- / .l-header-group -->
+</div><!-- / .l-header -->
+
+
+<div class="l-wrap">
+  <div id="main" class="l-main" role="main">
+    <h1 class="m-ttl-lv01"><span class="page_title">イベントカレンダー</span></h1>
+<!--
+　　<p>ただいまイベントカレンダーに不具合が生じているため、イベント情報がご覧いただけません。<br>
+ご迷惑をおかけして申し訳ありませんが、復旧まで今しばらくお待ちください。</p>
+-->
+    <div class="eventlist">
+    </div>
+
+    <div class="m-section">
+      <ul class="m-page-control">
+        <li class="ext-prev"><span id="beforeL1"><a href="#" onclick="clickMonth('last')" >前の月へ</a></span></li>
+        <li class="ext-next"><span id="nextL1"><a href="#" onclick="clickMonth('next')" >次の月へ</a></span></li>
+      </ul>
+    </div><!-- / .m-section -->
+
+
+
+  </div><!-- / .l-main -->
+  <!-- /本文 -->
+
+  <!-- 左カラム -->
+  <div class="l-side">
+    <div class="m-side-calendar">
+      <h2 id="view_date_h2" class="m-side-calendar-ttl">平成28年6月</h2>
+
+      <table class="eventCalendar m-side-calendar-tbl">
+      </table>
+
+      <ul class="m-side-calendar-control">
+        <li class="ext-prev"><span id="beforeL"><a href="#" onclick="clickMonth('last')" >前月</a></span></li>
+        <li><a href="#" onclick="clickMonth('today')" >今月</a></li>
+        <li class="ext-next"><span id="nextL"><a href="#" onclick="clickMonth('next')" >翌月</a></span></li>
+      </ul>
+    </div>
+
+  </div><!-- / .l-side -->
+  <!-- /左カラム -->
+</div><!-- / .l-wrap -->
+
+
+<div class="l-footer">
+  <div class="l-footer-box01">
+    <div class="m-footer-group">
+      <p class="m-pagetop"><a href="#pagetop">ページの先頭へ</a></p>
+      <ul class="m-footer-list01">
+        <li><a href="/koho/page-c_00374.html">平塚市ウェブサイトの考え方</a></li>
+        <li><a href="/koho/page-c_02395.html">平塚市ウェブサイトの使い方</a></li>
+        <li><a href="/koho/page-c_00036.html">ウェブアクセシビリティ方針</a></li>
+      </ul>
+    </div><!-- / .m-footer-group -->
+  </div><!-- / .l-footer-box01 -->
+
+  <div class="l-footer-box02">
+    <div class="m-footer-logo"><a href="/index.html"><img src="/common/200168773.svg" alt="あったかひらつか"></a></div>
+
+    <div class="m-footer-address">
+      <div class="m-footer-name"><a href="/index.html">平塚市役所</a></div>
+      <p>法人番号3000020142034</p>
+      <address>
+        <p>
+          〒254-8686<br>
+          神奈川県平塚市浅間町9番1号
+        </p>
+        <dl class="m-footer-item">
+          <dt>電話番号</dt>
+          <dd><span>：</span>0463-23-1111（代表）</dd>
+        </dl>
+        <dl class="m-footer-item">
+          <dt>ファクス番号</dt>
+          <dd><span>：</span>0463-23-9467</dd>
+        </dl>
+        <dl class="m-footer-item">
+          <dt>開庁時間</dt>
+          <dd>
+            <span>：</span>月曜から金曜日の午前8時30分から午後5時まで<br>
+            土曜日、日曜日、祝日及び年末年始（12月29日から1月3日まで）を除く
+          </dd>
+        </dl>
+      </address>
+    </div><!-- / #m-footer_address -->
+
+    <ul class="m-footer-list02">
+      <li><a href="/shiyakusho/page-c_00760.html">開庁時間、アクセス等</a></li>
+      <li><a href="/shiyakusho/page-c_00383.html">お問い合わせ</a></li>
+    </ul>
+  </div><!-- / .l-footer-box02 -->
+
+  <p class="m-footer-copyright" lang="en">&copy;Hiratsuka City</p>
+
+</div><!-- / .l-footer -->
+
+</body>
+</html>
