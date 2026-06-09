@@ -45,6 +45,9 @@ MARCHE_KEYWORDS = [
     # 日本語
     "農業", "農林", "産地", "直売", "マルシェ", "農産", "地産", "収穫", "栽培",
     "イベント", "祭", "産業祭", "収穫祭",
+    # スコープ B 拡張（道の駅・特産品・ふるさと納税・旬）
+    "道の駅", "特産", "名産", "ふるさと納税", "ふるさと", "旬", "観光", "物産",
+    "市民農園", "体験農園", "グルメ", "食",
     # ローマ字 / 英語（自治体 URL で使われる主要パターン）
     "norin",       # 農林（農林水産 / 農林業）
     "nougyo",      # 農業（のうぎょう）
@@ -60,6 +63,16 @@ MARCHE_KEYWORDS = [
     "kankou",      # 観光
     "chiisan",     # 地産地消
     "chisanch",    # 地産地消
+    "michinoeki",  # 道の駅
+    "michieki",    # 道の駅（短縮）
+    "tokusan",     # 特産
+    "meisan",      # 名産
+    "furusato",    # ふるさと納税
+    "nozei",       # 納税
+    "bussan",      # 物産
+    "kanko-bussan",
+    "shun",        # 旬
+    "gourmet",     # グルメ
 ]
 
 # バイナリとみなす URL 拡張子（事前スキップ対象）
@@ -142,6 +155,10 @@ def update_meta(url: str, content: bytes, out_dir: str = ".") -> None:
 def load_targets(
     csv_path: str,
     target_domain: str = "",
+    shard_id: int = 0,
+    num_shards: int = 1,
+    row_start: int | None = None,
+    row_end: int | None = None,
 ) -> list[tuple[str, str]]:
     """自治体リスト CSV を読み込み (city_slug, city_url) のリストを返す。
 
@@ -152,11 +169,14 @@ def load_targets(
     Args:
         csv_path: CSV ファイルパス
         target_domain: FQDN でフィルタリング（空文字 = 全件）
+        shard_id: シャード番号（0 始まり）。num_shards>1 時にレンジ分割する
+        num_shards: 総シャード数（⌈√N⌉ 並列）。1 なら分割しない
 
     Returns:
         (city_slug, city_url) のリスト
     """
     targets: list[tuple[str, str]] = []
+    all_rows: list[tuple[str, str]] = []
     with open(csv_path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -171,7 +191,21 @@ def load_targets(
                 row_fqdn = urlparse(city_url).hostname or ""
                 if row_fqdn != target_domain:
                     continue
-            targets.append((city_slug, city_url))
+            all_rows.append((city_slug, city_url))
+
+    # レンジ分割（⌈√N⌉ シャード並列用）。同一 CSV を全シャードが読み、自分の
+    # レンジだけを処理する。row_start/row_end が明示された場合はそれを優先し
+    # （shard_targets.py の start/end 出力と一致）、無ければ shard_id/num_shards
+    # から ceil 分割で算出する。
+    if row_start is not None and row_end is not None:
+        targets = all_rows[row_start:row_end]
+    elif num_shards > 1:
+        per = -(-len(all_rows) // num_shards)  # ceil
+        start = shard_id * per
+        end = min(start + per, len(all_rows))
+        targets = all_rows[start:end]
+    else:
+        targets = all_rows
     return targets
 
 
@@ -183,6 +217,10 @@ def run_city_spider(
     targets: list[tuple[str, str]],
     out_dir: str = ".",
     max_age_days: float = 7.0,
+    depth_limit: int = 3,
+    page_budget: int = 40,
+    download_delay: float = 1.0,
+    robots_obey: bool = True,
 ) -> tuple[int, int]:
     """Scrapy CitySpider を実行して HTML を保存する。
 
@@ -190,6 +228,10 @@ def run_city_spider(
         targets: (city_slug, city_url) のリスト
         out_dir: HTML 保存先ディレクトリ
         max_age_days: TTL（この日数より古い場合のみ再クロール）
+        depth_limit: 再帰探索の深さ上限（トップ=0）
+        page_budget: 自治体（ドメイン）あたりのページ数バジェット
+        download_delay: リクエスト間遅延（秒・行儀）
+        robots_obey: robots.txt を尊重するか（無人運転の既定 True）
 
     Returns:
         (saved, skipped) のタプル
@@ -206,19 +248,21 @@ def run_city_spider(
         name = "city"
         custom_settings = {
             "CONCURRENT_REQUESTS": 4,
-            "DOWNLOAD_DELAY": 1.0,
+            "DOWNLOAD_DELAY": download_delay,
             "AUTOTHROTTLE_ENABLED": True,
             "AUTOTHROTTLE_START_DELAY": 1,
             "AUTOTHROTTLE_MAX_DELAY": 10,
             "AUTOTHROTTLE_TARGET_CONCURRENCY": 2.0,
-            "ROBOTSTXT_OBEY": False,
+            # robots.txt 尊重（無人運転の行儀: 既定 ON）。
+            "ROBOTSTXT_OBEY": robots_obey,
             "DOWNLOADER_MIDDLEWARES": {
                 "scrapy.downloadermiddlewares.offsite.OffsiteMiddleware": None,
             },
             "USER_AGENT": USER_AGENT,
             "LOG_LEVEL": "WARNING",
             "DOWNLOAD_TIMEOUT": 30,
-            "DEPTH_LIMIT": 1,  # トップ + 1階層
+            # 再帰探索の深さ上限（トップ=0。depth_limit=3 で 3 階層まで辿る）。
+            "DEPTH_LIMIT": depth_limit,
         }
 
         def __init__(
@@ -226,14 +270,27 @@ def run_city_spider(
             city_targets: list[tuple[str, str]],
             out_directory: str,
             max_age: float = 7.0,
+            page_budget: int = 40,
             **kwargs,
         ):
             self.city_targets = city_targets
             self.out_directory = out_directory
             self.max_age = max_age
+            # 自治体（ドメイン）あたりのページ数バジェット（無人運転の暴走防止）。
+            self.page_budget = page_budget
+            self._domain_pages: dict[str, int] = {}
             self.saved = 0
             self.skipped = 0
             super().__init__(**kwargs)
+
+        def _budget_exceeded(self, url: str) -> bool:
+            """対象ドメインのページ数がバジェットを超えたら True。"""
+            dom = urlparse(url).netloc
+            return self._domain_pages.get(dom, 0) >= self.page_budget
+
+        def _count_page(self, url: str) -> None:
+            dom = urlparse(url).netloc
+            self._domain_pages[dom] = self._domain_pages.get(dom, 0) + 1
 
         def start_requests(self):
             # Scrapy 2.11 以前の互換性のため start_requests も実装する
@@ -266,28 +323,41 @@ def run_city_spider(
                 )
 
         def parse_city(self, response: "Response", city_slug: str):
-            """自治体トップページを保存し、同一ドメイン農業キーワードリンクをキューに追加する。"""
+            """自治体トップページを保存し、関連リンクを再帰探索キューに追加する。"""
             self._save_page(response)
+            yield from self._follow_links(response)
 
-            # 同一ドメインのリンクを抽出してキーワードフィルタリング
-            base_domain = urlparse(response.url).netloc
+        def parse_page(self, response: "Response"):
+            """子ページを保存し、さらに深く再帰探索する（depth_limit まで）。"""
+            self._save_page(response)
+            yield from self._follow_links(response)
+
+        def _follow_links(self, response: "Response"):
+            """同一ドメイン・関連語フィルタ・バジェット内のリンクを Request 化する。
+
+            Scrapy の DEPTH_LIMIT が深さ上限を、page_budget が自治体あたりの
+            ページ数上限を担保する（無人運転の二重バウンド）。
+            """
             from urllib.parse import urljoin, urlparse as up
+            base_domain = urlparse(response.url).netloc
+
+            # ページ数バジェット超過ドメインはこれ以上辿らない
+            if self._budget_exceeded(response.url):
+                return
+
             for link in response.css("a::attr(href)").getall():
                 abs_url = urljoin(response.url, link)
                 parsed = up(abs_url)
-                # フラグメント・クエリ除去
                 clean = parsed._replace(fragment="", query="").geturl()
 
-                # 同一ドメイン以外はスキップ
+                # 同一ドメイン以外（ドメイン許可リスト = シードドメインのみ）
                 if parsed.netloc != base_domain:
                     continue
-                # バイナリ URL はスキップ
                 if is_binary_url(clean):
                     continue
-                # キーワードに一致しない URL はスキップ
+                # 関連語フィルタ（特産・農産・道の駅・旬・イベント・ふるさと納税）
                 if not is_marche_url(clean):
                     continue
-                # 新鮮な URL はスキップ
                 meta_path = get_meta_path(clean, self.out_directory)
                 if is_fresh(meta_path, self.max_age):
                     self.skipped += 1
@@ -299,13 +369,12 @@ def run_city_spider(
                     errback=self.errback,
                 )
 
-        def parse_page(self, response: "Response"):
-            """子ページを保存する。"""
-            self._save_page(response)
-
         def _save_page(self, response: "Response") -> None:
             """HTML をアーカイブパスに保存し meta.json を更新する。"""
             url = response.url
+            # ページ数バジェット超過なら保存もスキップ（暴走防止）
+            if self._budget_exceeded(url):
+                return
             parsed = urlparse(url)
             rel = archive_path(parsed.netloc, parsed.path or "/")
             dest = os.path.join(self.out_directory, rel)
@@ -313,6 +382,7 @@ def run_city_spider(
             with open(dest, "w", encoding="utf-8") as f:
                 f.write(response.text)
             update_meta(url, response.body, self.out_directory)
+            self._count_page(url)
             self.saved += 1
             if self.saved % 10 == 0:
                 print(f"  [INFO] saved {self.saved} pages", file=sys.stderr)
@@ -344,6 +414,7 @@ def run_city_spider(
         city_targets=targets,
         out_directory=out_dir,
         max_age=max_age_days,
+        page_budget=page_budget,
     )
     process.start()
 
@@ -384,6 +455,34 @@ def main() -> None:
         default=".",
         help="HTML 保存先ディレクトリ（デフォルト: カレントディレクトリ）",
     )
+    ap.add_argument("--shard-id", type=int, default=0, help="シャード番号（0 始まり）")
+    ap.add_argument(
+        "--num-shards", type=int, default=1, help="総シャード数（⌈√N⌉ 並列。1 で無分割）"
+    )
+    ap.add_argument(
+        "--row-start", type=int, default=None,
+        help="CSV 行レンジ開始（shard_targets.py の start 出力。指定時 num-shards より優先）",
+    )
+    ap.add_argument(
+        "--row-end", type=int, default=None, help="CSV 行レンジ終了（exclusive）",
+    )
+    ap.add_argument(
+        "--depth-limit", type=int, default=3, help="再帰探索の深さ上限（トップ=0、デフォルト: 3）"
+    )
+    ap.add_argument(
+        "--page-budget",
+        type=int,
+        default=40,
+        help="自治体（ドメイン）あたりのページ数バジェット（暴走防止、デフォルト: 40）",
+    )
+    ap.add_argument(
+        "--download-delay", type=float, default=1.0, help="リクエスト間遅延（秒・行儀）"
+    )
+    ap.add_argument(
+        "--no-robots",
+        action="store_true",
+        help="robots.txt を無視する（既定は尊重。無人運転では指定しないこと）",
+    )
     ap.add_argument(
         "--dry-run",
         action="store_true",
@@ -396,7 +495,14 @@ def main() -> None:
         print(f"[ERROR] --target-csv が見つかりません: {args.target_csv}", file=sys.stderr)
         sys.exit(1)
 
-    targets = load_targets(args.target_csv, target_domain=args.target_domain)
+    targets = load_targets(
+        args.target_csv,
+        target_domain=args.target_domain,
+        shard_id=args.shard_id,
+        num_shards=args.num_shards,
+        row_start=args.row_start,
+        row_end=args.row_end,
+    )
 
     if not targets:
         print(
@@ -422,6 +528,10 @@ def main() -> None:
         targets,
         out_dir=args.out_dir,
         max_age_days=args.max_age_days,
+        depth_limit=args.depth_limit,
+        page_budget=args.page_budget,
+        download_delay=args.download_delay,
+        robots_obey=not args.no_robots,
     )
 
     print(f"\n[crawl_cities] DONE: {saved} saved, {skipped} skipped")
