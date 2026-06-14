@@ -1,0 +1,1590 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+                                                                                                                      
+
+        <meta name="keywords" content="">
+<meta name="description" content="">    <meta property="og:title" content="ホーム|鳥羽市ホームページ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.city.toba.mie.jp/index.html">
+  <meta property="og:image" content="http://www.city.toba.mie.jp/material/images/group/1/main_02.jpg" />
+    <meta name="viewport" content="width=750, user-scalable=yes">      <meta name="nsls:timestamp" content="Sun, 31 May 2026 15:00:00 GMT">            <title>ホーム／鳥羽市ホームページ</title>    <link rel="canonical" href="https://www.city.toba.mie.jp/index.html">        
+                            <link rel="icon" href="//www.city.toba.mie.jp/favicon.ico">
+        <link rel="apple-touch-icon" href="//www.city.toba.mie.jp/theme/base/img_common/smartphone.png">
+                                                  <link href="//www.city.toba.mie.jp/theme/base/css/top.css" rel="stylesheet" type="text/css" class="sp-style">              
+
+                      
+            
+                                                        <script src="//www.city.toba.mie.jp/theme/base/js/jquery.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/jquery_cookie.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/jquery-ui.min.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/common_lib.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/jquery.easing.1.3.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/jquery.bxslider.js"></script>
+                              <script src="//www.city.toba.mie.jp/theme/base/js/jquery_dropmenu.js"></script>
+                                                          <script src="//www.city.toba.mie.jp/theme/base/js/common.js"></script>
+<script src="//www.city.toba.mie.jp/theme/base/js/ofi.min.js"></script>
+<script src="//www.city.toba.mie.jp/theme/base/js/jquery.smartslider.js"></script>
+<script src="//www.city.toba.mie.jp/theme/base/js/mutual_switching/mutual_switching.js"></script>
+ 
+<script src="//www.city.toba.mie.jp/theme/base/js/search_twitter_api_define.js"></script>
+                                              <script src='//www.google.com/jsapi'></script>
+                                          <script src="//www.city.toba.mie.jp/theme/base/js/top.js"></script>
+                          
+
+              
+                  
+  <!--[if lt IE 9]>
+  <script src="//www.city.toba.mie.jp/theme/base/js/html5shiv-printshiv.min.js"></script>
+  <script src="//www.city.toba.mie.jp/theme/base/js/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <script>
+    var cms_api_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9jb2RlIjoiMjExMjgzIiwic2VydmljZV9uYW1lIjoiU01BUlQgQ01TIn0.bV7dGlos3FllyxeqpR4KW6-ybC3r-AdkiSG05uuYrBM";
+    var cms_api_domain="api3rd.smart-lgov.jp";
+    var cms_api_site="";
+    var cms_app_version="";
+    var cms_app_id="";
+    var site_domain = "https://www.city.toba.mie.jp";
+    var theme_name = "base";
+    var cms_recruit_no = "1";
+    var cms_recruit_history_no = "2";
+    var cms_recruit_search_item = '[{"recruit_no":1,"group_no":1,"search_item":{"question_contents_xml":{"title":"カテゴリ","message":{},"type":"3","required":"true","prefix":{},"suffix":{},"listBox":{"item":[{"value":"グルメ"},{"value":"風景"},{"value":"旅"},{"value":"海"},{"value":"文化"},{"value":"おすすめスポット"},{"value":"アート"},{"value":"鳥羽市"}]}},"question_id":[2],"key":["entry_category"]}}]';
+    var is_smartphone = false;  </script>
+
+  
+  
+
+
+</head>
+<body>
+
+      
+        <p id="smartphone" class="jqs-go-to-sp" style="display: none;">
+  <a href="https://www.city.toba.mie.jp/index.html" class="jqs-go-to-sp">
+    <span class="wrap">
+      <span class="txt">スマートフォン版を表示</span>
+      <span class="ico"></span>
+    </span>
+  </a>
+</p>    
+       
+
+
+
+
+ 
+
+
+ 
+
+
+
+ 
+    
+        
+
+
+  
+
+  <div id="wrapper">
+    <div id="wrapper-in">
+      <div id="wrapper-in2">
+
+            
+      <script>
+$(function() {
+  $('.headerNaviDynBlock').each(function() {
+    var block = $(this);
+    var list = block.find('.headerNaviDynList');
+    block.css('display', 'none');
+
+    var url = block.attr('url');
+    if (!url) {
+      url = block.attr('data-url');
+      if (!url) {
+        return;
+      }
+    }
+
+    $.getJSON(url, function(json) {
+      var templateOrig = block.find('.headerNaviPageTemplate');
+      if (templateOrig.length == 0) {
+        return;
+      }
+      var template = templateOrig.clone().removeClass('headerNaviPageTemplate').addClass('pageEntity').css('display', '');
+      block.find('.pageEntity').remove();
+      var count = 0;
+      for (var j=0; j<json.length; j++) {
+        var item = json[j];
+        if (item.is_category_index && item.child_pages_count == 0) {
+          continue;
+        }
+        var entity = template.clone();
+        entity.find('.pageLink').attr('href', item.url).text(item.page_name);
+        entity.find('.pageDescription').text(item.description);
+        list.append(entity);
+        count++;
+      }
+      if (count > 0) {
+        block.css('display', '');
+      }
+      templateOrig.remove();
+    });
+  });
+});
+</script>
+
+
+                <div id="header-print">
+          <header id="header" class="view-pc">
+                          
+<p class="to-container"><a href="#container">本文へ</a></p>
+
+<div class="header-subnav-area">
+  <div class="box clearfix">
+
+    <div class="unit2">
+      <ul class="list">
+        <li><a lang="en" href="https://www.city.toba.mie.jp/foreignlanguage.html">Foreign Language</a></li>
+      </ul>
+    </div>
+
+    <dl class="header-size">
+      <dt class="title"><span>文字サイズ</span></dt>
+      <dd class="item">
+        <button class="scsize normal">
+          <img src="//www.city.toba.mie.jp/theme/base/img_common/headersize_normal_on.png" alt="標準（初期状態）" class="normal-on">
+          <img src="//www.city.toba.mie.jp/theme/base/img_common/headersize_normal_off.png" alt="標準に戻す" class="normal-off hide">
+        </button>
+      </dd>
+      <dd class="item2">
+        <button class="scsize up">
+          <img src="//www.city.toba.mie.jp/theme/base/img_common/headersize_big_off.png" alt="拡大する" class="big-off">
+          <img src="//www.city.toba.mie.jp/theme/base/img_common/headersize_big_on.png" alt="拡大（最大状態）" class="big-on hide">
+        </button>
+      </dd>
+    </dl>
+
+    <dl class="header-color">
+      <dt class="title"><span>背景色変更</span></dt>
+      <dd class="item"><a href="#" class="sccolor" data-bgcolor="color_black"><img src="//www.city.toba.mie.jp/theme/base/img_common/headercolor_black.png" alt="背景色を黒色にする"></a></dd>
+      <dd class="item2"><a href="#" class="sccolor" data-bgcolor="color_blue"><img src="//www.city.toba.mie.jp/theme/base/img_common/headercolor_blue.png" alt="背景色を青色にする"></a></dd>
+      <dd class="item3"><a href="#" class="sccolor" data-bgcolor="color_normal"><img src="//www.city.toba.mie.jp/theme/base/img_common/headercolor_normal.png" alt="背景色を元に戻す"></a></dd>
+    </dl>
+
+    <div class="modal-open btn-menu-pc">
+      <a href="#">
+        <img src="//www.city.toba.mie.jp/theme/base/img_common/menu.png" alt="メニュー">
+      </a>
+    </div>
+    
+
+  </div>
+</div>
+            
+                          
+    <div class="drawer-menu">
+      <div class="btn-wrapper">
+        <a href="#" class="btn-menu-pc close-top">
+          <img src="//www.city.toba.mie.jp/theme/base/img_common/close.png" alt="閉じる">
+        </a>
+      </div>
+      <div class="drawer-menu-in">
+        <div class="drawer-menu-left">
+    
+          <div class="drawer-menu-in2">
+            <div class="menu-list-area">
+              <div class="category-list">
+                <ul class="list clearfix">
+                  <li class="nav1 active">
+                    <a id="jqs-category-1" href="https://www.city.toba.mie.jp/kurashi/index.html">くらし・手続き</a>
+                                        <div id="jqs-category-details-1" class="dropemenu active">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/kurashi/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                  <li>
+                    <a id="jqs-category-2" href="https://www.city.toba.mie.jp/iryo_kenko_fukushi/index.html">医療・健康・福祉</a>
+                                        <div id="jqs-category-details-2" class="dropemenu">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/iryo_kenko_fukushi/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                  <li>
+                    <a id="jqs-category-3" href="https://www.city.toba.mie.jp/kosodate_kyoiku/index.html">子育て・教育</a>
+                                        <div id="jqs-category-details-3" class="dropemenu">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/kosodate_kyoiku/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                  <li>
+                    <a id="jqs-category-4" href="https://www.city.toba.mie.jp/kanko_bunka_sports/index.html">観光・文化・<br>スポーツ
+                    </a>
+                                        <div id="jqs-category-details-4" class="dropemenu">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/kanko_bunka_sports/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                  <li>
+                    <a id="jqs-category-5" href="https://www.city.toba.mie.jp/shigoto_sangyo/index.html">しごと・産業</a>
+                                        <div id="jqs-category-details-5" class="dropemenu">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/shigoto_sangyo/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                  <li>
+                    <a id="jqs-category-6" href="https://www.city.toba.mie.jp/gyosei_joho/index.html">行政情報</a>
+                                        <div id="jqs-category-details-6" class="dropemenu">
+                      <div class="headerNaviDynBlock" data-url="//www.city.toba.mie.jp/gyosei_joho/index.tree.json">
+                        <div class="dropemenu">
+                          <ul class="list2 headerNaviDynList">
+                            <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                                      </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="header-link-wrap">
+            <ul class="header-link">
+              <li class="soshiki"><a href="https://www.city.toba.mie.jp/soshiki/index.html">組織から探す</a></li>
+              <li class="access"><a href="https://www.city.toba.mie.jp/access.html">アクセス・庁舎案内</a></li>
+              <li class="question"><a href="https://www.city.toba.mie.jp/shitsumon/index.html">よくある質問</a></li>
+              <li class="otoiawase"><a href="https://www.city.toba.mie.jp/info.html">お問い合わせ</a></li>
+            </ul>
+            <div class="search-box">
+              <div class="search-title">キーワード検索</div>
+              <div class="search-text">
+                                                  
+
+
+
+
+                          
+                
+                  
+                  
+                                      <div class="gcse-searchbox-only" data-resultsurl="//www.city.toba.mie.jp/result.html" data-enableAutoComplete="true"></div>
+  
+                                      </div>
+            </div>
+            <div class="close-btn-wrap">
+              <a href="#" class="btn-menu-pc close-bottom">
+                <img src="//www.city.toba.mie.jp/theme/base/img_common/modal_close.png" alt="メニューを閉じる">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                      </header>
+
+          <header id="sp-header" class="view-sp">
+                          
+<div class="box clearfix">
+    <h1><img src="//www.city.toba.mie.jp/theme/base/img_common/sp_header_logo.png" alt="鳥羽市 誰もがキラめく鳥羽 海の恵みがつなぐ鳥羽"></h1>
+  
+
+  
+  <nav id="sp-header-nav" class="clearfix">
+    <div class="menu-btn-area clearfix">
+    <p class="menu-btn-menu"><a href="#"><img src="//www.city.toba.mie.jp/theme/base/img_common/menu_btn_menu.png" alt="メニュー"></a></p>
+    <p class="modal-menu-close  top-modal-menu-close"><a href="#"><img src="//www.city.toba.mie.jp/theme/base/img_common/menu_btn_close.png" alt="閉じる"></a></p>  
+  </div>
+  </nav>
+</div>
+
+<div class="modal-menu-bg"></div>
+  <div class="modal-menu">
+    <div class="in">
+      <div class="search-wrap">
+        <div class="search-contents">
+          <p class="search-title">キーワード検索</p>
+          <div class="search-box">
+                                      
+
+
+
+
+                          
+                
+                  
+                  
+                                      <div class="gcse-searchbox-only" data-resultsurl="//www.city.toba.mie.jp/result.html" data-enableAutoComplete="true"></div>
+  
+                              </div>
+        </div>
+      </div>
+
+                    <div class="box">
+        <a href="https://www.city.toba.mie.jp/index.html">ホーム</a>
+      </div>
+      <div class="box">
+                <p class="title">くらし・手続き</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/kurashi/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+  
+      <div class="box">
+                <p class="title">医療・健康・福祉</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/iryo_kenko_fukushi/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+  
+      <div class="box">
+                <p class="title">子育て・教育</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/kosodate_kyoiku/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+  
+      <div class="box">
+                <p class="title">観光・文化・スポーツ</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/kanko_bunka_sports/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+  
+      <div class="box">
+                <p class="title">しごと・産業</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/shigoto_sangyo/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+  
+      <div class="box">
+                <p class="title">行政情報</p>
+        <div class="nav-category-list-box dropmenu headerNaviDynBlock"
+         data-url="//www.city.toba.mie.jp/gyosei_joho/index.tree.json">
+           <ul class="list headerNaviDynList">
+              <li class="headerNaviPageTemplate"><a class="pageLink"></a></li>
+           </ul>
+         </div>
+               </div>
+            
+      <div class="support-block">
+        <ul class="header-link">
+          <li class="soshiki"><a href="https://www.city.toba.mie.jp/soshiki/index.html">組織から探す</a></li>
+          <li class="access"><a href="https://www.city.toba.mie.jp/access.html">アクセス・庁舎案内</a></li>
+          <li class="question"><a href="https://www.city.toba.mie.jp/shitsumon/index.html">よくある質問</a></li>
+          <li class="otoiawase"><a href="https://www.city.toba.mie.jp/info.html">お問い合わせ</a></li>
+        </ul>
+        <ul class="support-list">
+          <li class="header-size">
+            <dl class="header-size-in">
+              <dt class="header-size-title"><span>文字サイズ</span></dt>
+              <dd class="header-size-item">
+                <button class="scsize normal">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headersize_normal_on.png" alt="標準（初期状態）" class="normal-on">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headersize_normal_off.png" alt="標準に戻す" class="normal-off hide">
+                </button>
+              </dd>
+              <dd class="header-size-item2">
+                <button class="scsize up">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headersize_big_off.png" alt="拡大する" class="big-off">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headersize_big_on.png" alt="拡大（最大状態）" class="big-on hide">
+                </button>
+              </dd>
+            </dl>
+          </li>
+          <li class="header-color">
+            <dl class="header-color-in">
+              <dt class="header-color-title"><span>背景色変更</span></dt>
+              <dd class="header-color-item">
+                <a href="#" class="sccolor" data-bgcolor="color_black">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headercolor_black.png" alt="背景色を黒色にする">
+                </a>
+              </dd>
+              <dd class="header-color-item2">
+                <a href="#" class="sccolor" data-bgcolor="color_blue">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headercolor_blue.png" alt="背景色を青色にする">
+                </a>
+              </dd>
+              <dd class="header-color-item3">
+                <a href="#" class="sccolor" data-bgcolor="color_normal">
+                  <img src="//www.city.toba.mie.jp/theme/base/img_common/sp_headercolor_normal.png" alt="背景色を白色にする">
+                </a>
+              </dd>
+            </dl>
+          </li>
+          <li class="under-list"><a lang="en" href="https://www.city.toba.mie.jp/foreignlanguage.html">Foreign Language</a></li>
+          <li class="under-list"> 
+            <p class="modal-menu-pc modal-under-button">
+              <a href="?" class="jqs-go-to-pc"><span>PCサイトを表示</span></a>
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <p class="modal-menu-close">
+        <span>メニューを閉じる</span>
+      </p>
+    </div>
+  </div>
+
+                      </header>
+        </div>
+
+        <section id="container" tabindex="-1">
+          <div id="container-in" class="clearfix">
+            <article id="main" role="main">
+                              
+  <div class="main-slider-wrap">
+    
+      <div class="emergency-contents-wrap">
+                    
+                    <div class="twitter-wrap emergency-wrap red-contents kinkyu-twitter" style="display: none;">
+            <div class="emergency-head">
+              <h2 class="emergency-title">緊急情報 <br class="view-pc" />(Twitter)</h2>
+            </div>
+            <div class="emergency-body twitter-body">
+              <ul class="emergency-list twitter-list"><li class="twitter-item">
+                  <span class="date twitter-date"></span>
+                  <span class="text twitter-title"></span>
+                </li>
+              </ul></div>
+          </div>
+        </div>
+          <div class="main-slider view-pc">
+      <div class="top-slider-wrap ofi-wrapper">
+        
+          <ul id="links-slider">              <li id="h_idx_iw_flex_1_0">
+                <img alt="" src="//www.city.toba.mie.jp/material/images/group/1/main_02.jpg">              </li>                      </ul>
+        <div class="slide-controls" id="slider1">
+          <div class="slide-prev arrow"></div>
+          <div class="control-unit">
+            <div class="slide-pager"></div>
+            <div class="slide-control-btn"></div>
+          </div>
+          <div class="slide-next arrow"></div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="sp-main-slider view-sp">
+          <div class="sp-top-slider-wrap ofi-wrapper">
+            <ul id="sp-links-slider">                <li id="h_idx_iw_flex_10_0">
+                  <img width="750" alt="" src="//www.city.toba.mie.jp/material/images/group/1/main_02.jpg">                </li>                          </ul><div class="slide-controls" id="slider5">
+              <div class="slide-prev arrow"></div>
+              <div class="control-unit">
+                <div class="slide-pager"></div>
+                <div class="slide-control-btn"></div>
+              </div>
+              <div class="slide-next arrow"></div>
+            </div>
+          </div>
+        </div>
+          
+      <div class="side-contents-wrap">
+          <div class="side-contents">
+            <h1><img src="//www.city.toba.mie.jp/theme/base/img_top/main_logo.png" alt="鳥羽市" class="view-pc" /></h1>
+            <div class="side-text view-pc">
+              誰もがキラめく鳥羽<br />
+              海の恵みがつなぐ鳥羽
+            </div>
+            <div class="side-bnr-image">
+              <a href="http://www.toba.gr.jp/" target="_blank"><img src="//www.city.toba.mie.jp/theme/base/img_top/top_bnr1.png" alt="鳥羽市観光情報 伊勢志摩国立公園 鳥羽市観光協会" /></a>
+              <a href="https://tobaru-life.jp/" target="_blank"><img src="//www.city.toba.mie.jp/theme/base/img_top/top_bnr2.png" alt="とばる あなたは何しに、とばる？" /></a>
+            </div>
+          </div>
+        </div>
+        </div>
+  
+    <div class="top-bnr-wrap">
+      <div class="top-bnr">
+        <ul class="top-bnr-list ofi-wrapper">            <li id="h_idx_iw_flex_2_0">
+              <a href="https://www.city.toba.mie.jp/kurashi/zeikin/5134.html"><img alt="ふるさと納税" src="//www.city.toba.mie.jp/material/images/group/1/bnr_01.png"></a>            </li>                      <li id="h_idx_iw_flex_2_1">
+              <a target="_blank" href="https://www.city.toba.mie.jp/isan/index.html"><img alt="鳥羽市文化財サイト" src="//www.city.toba.mie.jp/material/images/group/1/bnr_03.png"></a>            </li>                      <li id="h_idx_iw_flex_2_2">
+              <a target="_blank" href="https://www.city.toba.mie.jp/suisan/index.html"><img alt="鳥羽市水産研究所" src="//www.city.toba.mie.jp/material/images/group/1/bnr_04.png"></a>            </li>                      <li id="h_idx_iw_flex_2_3">
+              <a href="https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/index.html"><img alt="公共交通" src="//www.city.toba.mie.jp/material/images/group/1/bnr_02.png"></a>            </li>                      <li id="h_idx_iw_flex_2_4">
+              <a href="https://www.city.toba.mie.jp/soshiki/jinji/6802.html"><img alt="" src="//www.city.toba.mie.jp/material/images/group/9/recruit-2.jpg"></a>            </li>                      <li id="h_idx_iw_flex_2_5">
+              <a href="https://toba-archive.jp/index.php"><img alt="" src="//www.city.toba.mie.jp/material/images/group/1/dgtl_kanko.jpg"></a>            </li>                      <li id="h_idx_iw_flex_2_6">
+              <a href="https://plus.sugumail.com/usr/toba/doc"><img height="160" alt="防災無線 履歴一覧ページはこちら" src="//www.city.toba.mie.jp/material/images/group/1/tobamail_backnumber_logo3.jpg"></a>            </li>                      <li id="h_idx_iw_flex_2_7">
+              <a href="https://r.goope.jp/tobaminatofes/"><img alt="鳥羽みなとまつり" src="//www.city.toba.mie.jp/material/images/group/1/minatomatsuri.jpg"></a>            </li>                      <li id="h_idx_iw_flex_2_8">
+              <a href="https://www.city.toba.mie.jp/section/TOBA_WH/index.html" target="_blank"><img height="160" alt="" src="//www.city.toba.mie.jp/material/images/group/1/370_370.jpg"></a>            </li>                  </ul></div>
+    </div>  
+  
+  
+    <div class="pickup-wrap">
+      <h2><span>ピックアップ</span></h2>
+      <div class="pick-up-slider">
+        <ul id="pick-up-links-slider" class="ofi-wrapper">                                      
+ 
+                          
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/soshiki/shobo_yobo/gyomu/anzen_anshin/shobo_kyukyu/kasai_yobo/8510.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="3344" src="//www.city.toba.mie.jp/material/images/group/77/rinyanasi.png"></div>
+           <div class="item-txt">
+              <p>林野火災注意報・警報について</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                          
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/kurashi/zeikin/8224.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="" src="//www.city.toba.mie.jp/material/images/group/1/syukuhakuzeinitsuite.jpg"></div>
+           <div class="item-txt">
+              <p>宿泊税について</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                          
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/soshiki/kanko_kikaku/gyomu/kanko_joho/RBD/7708.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="海のレッドデータブック～鳥羽市の絶滅のおそれのある野生生物～" src="//www.city.toba.mie.jp/material/images/group/1/rdb_pickup_page-0001.jpg"></div>
+           <div class="item-txt">
+              <p>海のレッドデータブック～鳥羽市の絶滅のおそれのある野生生物～</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                          
+  
+       
+         
+   <li class="item">
+     
+                     
+                                   
+       <a href="https://toba2040.com/" target=_blank>
+              <div class="item-in">
+           <div class="item-img"><img alt="鳥羽市地域共生社会プロモーションサイト" src="//www.city.toba.mie.jp/material/images/group/1/TOBA_bnr_230x220.jpg"></div>
+           <div class="item-txt">
+              <p>鳥羽市地域共生社会プロモーションサイト</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                          
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/kurashi/iju_teiju/3744.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="移住定住情報#とばくらしの画像" src="//www.city.toba.mie.jp/material/images/group/1/pickup02.png"></div>
+           <div class="item-txt">
+              <p>移住定住情報#とばくらし</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                      </ul><div class="slide-controls" id="slider2">
+          <div class="slide-prev arrow"></div>
+          <div class="control-unit">
+            <div class="slide-pager"></div>
+            <div class="slide-control-btn"></div>
+          </div>
+          <div class="slide-next arrow"></div>
+        </div>
+      </div>
+    </div>  
+  <div class="blue-contents">
+    
+      <div class="oshirase-wrap">
+          <h2><span>市からのお知らせ</span></h2>
+          <div class="tab-contents">
+            <div id="top-tab">
+              <div class="tab-nav">
+                <ul class="list"><li class="tab-info new">
+                    <a href="#tab-info">新着情報</a>
+                  </li>
+                  <li class="tab-info oshirase">
+                    <a href="#tab-oshirase">お知らせ</a>
+                  </li>
+                  <li class="tab-info event">
+                    <a href="#tab-event">イベント</a>
+                  </li>
+                </ul></div>
+              <div class="in">
+                <div id="tab-info" class="box hide">
+                  <span class="visually-hidden">新着情報</span>
+                  <div class="box-in">
+                    <div class="timeline pageListDynBlock" data-url="//www.city.toba.mie.jp/index.update.json" data-limit="10" data-date-span="90" data-date-format="%Y年%m月%d日" data-current-page-no="1" data-show-tags="1" data-tags-position="1">
+                      <ul id="tab-info-in" class="pageListExists pageListBlock"><li class="list1 pageEntity">
+                          <!-- <span class="pageThumbnail"></span> -->
+                          <div class="content">
+                            <span class="date pageDate">
+                              <!-- <span class="pageDate"></span> -->
+                            </span>
+                            <span class="txt">
+                              <a class="pageLink"></a>
+                            </span>
+                          </div>
+                        </li>
+                      </ul><div class="timeline-blank pageListNotExists" style="display: none;">
+                      <p>現在、新着情報はございません。</p>
+                    </div>
+                    <div class="top-contents-button">
+                      <div class="list-button">
+                        <a href="https://www.city.toba.mie.jp/newslist.html">新着一覧を見る</a>
+                      </div>
+                      <div class="rss-button">
+                        <a href="//www.city.toba.mie.jp/cgi-bin/feed.php?siteNew=1">RSS</a>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-oshirase" class="box hide">
+                  <span class="visually-hidden">お知らせ</span>
+                  <div class="box-in">
+                    <div class="timeline pageListDynBlock" data-url="//www.city.toba.mie.jp/index.update.json" data-limit="10" data-date-span="90" data-date-format="%Y年%m月%d日" data-current-page-no="1" data-tag-filter-targets="1">
+                      <ul id="tab-oshirase-in" class="pageListExists pageListBlock"><li class="list1 pageEntity">
+                          <div class="content">
+                            <span class="date">
+                              <span class="pageDate"></span>
+                            </span>
+                            <span class="txt">
+                              <a class="pageLink"></a>
+                            </span>
+                          </div>
+                        </li>
+                      </ul><div class="timeline-blank pageListNotExists" style="display: none;">
+                        <p>現在、お知らせはございません。</p>
+                      </div>
+                      <div class="top-contents-button">
+                        <div class="list-button">
+                          <a href="https://www.city.toba.mie.jp/osiraselist.html">お知らせ一覧を見る</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-event" class="box hide">
+                  <span class="visually-hidden">イベント</span>
+                  <div class="box-in">
+                    <div class="timeline pageListDynBlock" data-url="//www.city.toba.mie.jp/index.update.json" data-limit="10" data-date-span="90" data-date-format="%Y年%m月%d日" data-current-page-no="1" data-tag-filter-targets="2">
+                      <ul id="tab-event-in" class="pageListExists pageListBlock"><li class="list1 pageEntity">
+                          <div class="content">
+                            <span class="date">
+                              <span class="pageDate"></span>
+                            </span>
+                            <span class="txt">
+                              <a class="pageLink"></a>
+                            </span>
+                          </div>
+                        </li>
+                      </ul><div class="timeline-blank pageListNotExists" style="display: none;">
+                        <p>現在、イベントはございません。</p>
+                      </div>
+                      <div class="top-contents-button">
+                        <div class="list-button">
+                          <a href="https://www.city.toba.mie.jp/eventlist.html">イベント一覧を見る</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="point-contents-wrap">
+      <h2><span>お役立ちコンテンツ</span></h2>
+      <div class="point-list-wrap">
+        <ul class="point-list">
+          <li class="first-item tetuduki">
+            <a href="https://www.city.toba.mie.jp/oyakudachi/5333.html">
+              <div class="point-item-in">
+                <div class="point-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/contents01.png"></div>
+                <div class="point-item-txt"><p>手続きナビ</p></div>
+              </div>
+            </a>
+          </li>
+          <li class="first-item gomi">
+            <a href="https://www.city.toba.mie.jp/oyakudachi/gomi_search/index.html">
+              <div class="point-item-in">
+                <div class="point-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/contents02.png"></div>
+                <div class="point-item-txt"><p>ごみ検索</p></div>
+              </div>
+            </a>
+          </li>
+          <li class="first-item denshi">
+            <a href="https://www.city.toba.mie.jp/oyakudachi/denshigyosei/index.html">
+              <div class="point-item-in">
+                <div class="point-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/contents03.png"></div>
+                <div class="point-item-txt"><p>電子行政<br>サービス</p></div>
+              </div>
+            </a>
+          </li>
+          <li class="first-item shisetsu">
+            <a href="https://www.city.toba.mie.jp/oyakudachi/5334.html">
+              <div class="point-item-in">
+                <div class="point-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/contents04.png"></div>
+                <div class="point-item-txt"><p>施設マップ</p></div>
+              </div>
+            </a>
+          </li>
+          
+                          <li id="h_idx_iw_flex_4_0">
+                <a class="icon" href="https://www.city.toba.mie.jp/shigoto_sangyo/nyusatsu_keiyaku/nyusatsu/4165.html">入札発注情報</a>              </li>                          <li id="h_idx_iw_flex_4_1">
+                <a class="icon" href="https://www.city.toba.mie.jp/kurashi/anzen_anshin/shobo_kyukyu/yakan_kyujitsu_iryo/3846.html">休日・夜間・救急</a>              </li>                          <li id="h_idx_iw_flex_4_2">
+                <a class="icon" href="https://www.city.toba.mie.jp/kurashi/anzen_anshin/bosai/index.html">防災情報</a>              </li>                          <li id="h_idx_iw_flex_4_3">
+                <a class="icon" href="https://www.city.toba.mie.jp/kurashi/anzen_anshin/shobo_kyukyu/index.html">消防</a>              </li>                      
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="light-blue-contents">
+    <div class="life-contents-wrap">
+      <h2><span>ライフシーンから探す</span></h2>
+      <div class="life-list-wrap">
+        <ul class="life-list">
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/5162.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life01.png"></div>
+                <div class="life-item-txt"><p>妊娠・出産</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/kosodate/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life02.png"></div>
+                <div class="life-item-txt"><p>子育て</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/education/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life03.png"></div>
+                <div class="life-item-txt"><p>教育</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/kekkon_rikon/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life04.png"></div>
+                <div class="life-item-txt"><p>結婚・離婚</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/hikkoshi/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life05.png"></div>
+                <div class="life-item-txt"><p>引越し・<br class="view-sp">住まい</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/syusyoku_taisyoku/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life06.png"></div>
+                <div class="life-item-txt"><p>就職・退職</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/korei_kaigo/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life07.png"></div>
+                <div class="life-item-txt"><p>高齢・介護</p></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.city.toba.mie.jp/life_scene/okuyami/index.html">
+              <div class="life-item-in">
+                <div class="life-item-img"><img alt="" src="//www.city.toba.mie.jp/theme/base/img_top/life08.png"></div>
+                <div class="life-item-txt"><p>おくやみ</p></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <div class="under-contents-wrap">
+          <div class="question-wrap">
+            
+              <div class="question-wrap-color">
+                  <p class="under-title">よくある質問</p>
+                  <ul class="question-list">                      <li id="h_idx_iw_flex_5_0">
+                        <a class="icon" href="https://www.city.toba.mie.jp/kurashi/pet_animal/4199.html">道路で動物の死骸を見つけたとき</a>                      </li>                                          <li id="h_idx_iw_flex_5_1">
+                        <a class="icon" href="https://www.city.toba.mie.jp/soshiki/machidukuri/faq/mokutaishin_QA/1501.html">昭和56年6月以降(新耐震基準)の木造住宅の耐震診断は受けることができますか？</a>                      </li>                                          <li id="h_idx_iw_flex_5_2">
+                        <a class="icon" href="https://www.city.toba.mie.jp/soshiki/machidukuri/faq/keikan_QA/1280.html">景観の届出が必要となる行為</a>                      </li>                                      </ul></div>            
+          </div>
+          <div class="event-calender-wrap">
+            <p class="under-title"><a href="//www.city.toba.mie.jp/calendar.html">イベントカレンダー</a></p>
+            <div class="top-event-calendar-area">
+                      
+
+
+
+
+<script src="//www.city.toba.mie.jp/material/calendar_common.js?20190101"></script>
+<script src="//www.city.toba.mie.jp/material/calendar.js?20190101"></script>
+
+  <div id="miniCalendarTable1" class="notranslate">
+  <div class="mini-calendar">
+    <table class="calendar-area miniCalGridTable table">
+      <caption class="ctrl">
+        <div class="adjust">
+          <a href="javascript:void(0)" class="miniCalGoPrevMonth back nav">
+            <img
+              src="//www.city.toba.mie.jp/theme/base/img_common/calender_prev.png"
+              title="前の月へ"
+              alt="前の月へ"
+            />          </a>
+          <span class="date">
+            <span class="miniCalendarYearAD"></span>年
+            <span class="miniCalendarMonth"></span>月
+          </span>
+          <a href="javascript:void(0)" class="miniCalGoNextMonth next nav">
+            <img
+              src="//www.city.toba.mie.jp/theme/base/img_common/calender_next.png"
+              title="次の月へ"
+              alt="次の月へ"
+            />          </a>
+        </div>
+      </caption>
+      <tbody>
+        <tr class="week-row">
+          <th class="sun"><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_01.png" alt="日曜日"></th>
+          <th><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_02.png" alt="月曜日"></th>
+          <th><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_03.png" alt="火曜日"></th>
+          <th><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_04.png" alt="水曜日"></th>
+          <th><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_05.png" alt="木曜日"></th>
+          <th><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_06.png" alt="金曜日"></th>
+          <th class="sat"><img src="//www.city.toba.mie.jp/theme/base/img_top/calendar_07.png" alt="土曜日"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<form id="miniCalendarStateBlock1" style="display:none;">
+<input type="hidden" name="date" value="" />
+</form>
+
+<script>
+$(function() {
+  var calendar = new SmartCMSCalendar(
+      "//www.city.toba.mie.jp/calendar.html",
+      "//www.city.toba.mie.jp/cgi-bin/get_event_calendar.php?categoryNo=1",
+      1,
+      0,
+      1
+  );
+  calendar.initMiniCalendar(
+    "//www.city.toba.mie.jp/calendar.json"
+  );
+});
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="yellow-contents">
+    <div class="toba-about-wrap">
+      <h2><span>鳥羽市について</span></h2>
+      <div class="about-top-contents">
+        <div class="toba-city-link">
+          <ul class="toba-abou-list ofi-wrapper">
+            
+                              
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/shichonoheya/index.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="鳥羽市長" src="//www.city.toba.mie.jp/material/images/group/1/kotakeshichou_130.jpg"></div>
+           <div class="item-txt">
+        <p>市長のページ</p>
+      </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/shigikai/index.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="鳥羽市議会の画像" src="//www.city.toba.mie.jp/material/images/group/1/about02.png"></div>
+           <div class="item-txt">
+        <p>鳥羽市議会</p>
+      </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                        </ul>
+        </div>
+        <div class="koho-wrap">
+          <h3 class="koho-title"><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/3/index.html">広報とば</a></h3>
+          <div class="koho-image-wrap">
+            <div class="in ofi-wrapper">
+              
+                                  <div><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/3/index.html"><img height="235" alt="広報とば6月1日号表紙" src="//www.city.toba.mie.jp/material/images/group/88/20260601.jpg"></a></div>
+                              
+            </div>
+            <div class="toba-list-wrap">
+              <ul class="toba-list">
+                <li><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4736.html">とばメール</a></li>
+                <li><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4629.html">鳥羽市SNS一覧</a></li>
+                <li><a href="https://www.city.toba.mie.jp/gyosei_joho/shigikai/3/3/4643.html">マチイロ</a></li>
+              </ul>
+              <div class="sub-text">
+                <p>広報とばをスマホでお届け</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="about-link-wrap">
+          <ul class="about-link-list">              <li id="h_idx_iw_flex_9_0">
+                <a class="icon" href="https://www.city.toba.mie.jp/gyosei_joho/gaiyo/index.html">鳥羽市の情報</a>              </li>                          <li id="h_idx_iw_flex_9_1">
+                <a class="icon" href="https://www.city.toba.mie.jp/soshiki/gyosei/gyomu/gyouseikikou/index.html">組織案内</a>              </li>                          <li id="h_idx_iw_flex_9_2">
+                <a class="icon" href="https://www.city.toba.mie.jp/gyosei_joho/koho/public_comment/5268.html">パブリックコメント</a>              </li>                          <li id="h_idx_iw_flex_9_3">
+                <a class="icon2" href="https://en3-jg.d1-law.com/toba/d1w_reiki/reiki.html">例規集</a>              </li>                      </ul></div>
+      
+      
+        <div class="about-under-wrap">
+          <div class="people-wrap">
+                          <div class="people-wrap-color">
+                <h3>鳥羽市の人口・世帯数</h3>
+              <ul class="people-list"><li class="total">
+                  <p class="people-title">総人口</p>
+                  <span class="people-item">
+                                          <span>15,857</span>
+                                      </span>
+                  <span>人</span>
+                </li>                <li class="total">
+                  <p class="people-title">世帯数</p>
+                  <span class="people-item">
+                                          <span>8,124</span>
+                                      </span>
+                  <span>世帯</span>
+                </li>                <li class="total">
+                  <p class="people-title">男性</p>
+                  <span class="people-item">
+                                          <span>7,469</span>
+                                      </span>
+                  <span>人</span>
+                </li>                <li class="total">
+                  <p class="people-title">女性</p>
+                  <span class="people-item">
+                                          <span>8,388</span>
+                                      </span>
+                  <span>人</span>
+                </li>              </ul><div class="jinko-detail">
+                <a href="https://www.city.toba.mie.jp/gyosei_joho/gaiyo/2/1/index.html">統計情報を見る</a>
+              </div>
+              <div class="date">
+                <span>
+                                      <span>令和8年5月末日現在</span>
+                                  </span>
+              </div>              </div>
+                      </div>
+          <div class="about-under-slider">
+                          <h3>まちの話題</h3>
+              <ul id="right-links-slider">                                                        
+ 
+                                      
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4711.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="まちの話題1" src="//www.city.toba.mie.jp/material/images/group/88/202606machinowadai01.jpg"></div>
+           <div class="item-txt">
+              <p>栄えある受賞おめでとうございます</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                                      
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4711.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="まちの話題2" src="//www.city.toba.mie.jp/material/images/group/88/202606machinowadai02.jpg"></div>
+           <div class="item-txt">
+              <p>空中からの情報収集に関する協定を締結</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                                      
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4711.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="まちの話題3" src="//www.city.toba.mie.jp/material/images/group/88/202606machinowadai03.jpg"></div>
+           <div class="item-txt">
+              <p>GWは「駅ボラ」で鳥羽のおもてなし</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                                      
+  
+       
+         
+   <li class="item">
+     
+                                     
+                   
+       <a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/4711.html">
+              <div class="item-in">
+           <div class="item-img"><img alt="まちの話題4" src="//www.city.toba.mie.jp/material/images/group/88/202606machinowadai04.jpg"></div>
+           <div class="item-txt">
+              <p>生命（いのち）の駅伝ランナーがひだまりを訪れました</p>
+            </div>
+         </div>
+            </a>
+        </li>
+   
+ 
+                                  </ul><div class="slide-controls" id="slider3">
+                <div class="control-unit">
+                  <div class="slide-prev arrow"></div>
+                  <div class="slide-pager"></div>
+                  <div class="slide-control-btn"></div>
+                  <div class="slide-next arrow"></div>
+                </div>
+              </div>
+                      </div>
+        </div>
+      
+    </div>
+  </div>
+  
+    <div class="link-wrap">
+      <h2><span>関連リンク</span></h2>
+      <div class="link-slider-wrap">
+        <ul id="link-slider" class="ofi-wrapper">          <li id="h_idx_iw_flex_7_0">
+            <a href="http://www.koitoba.com/" target="_blank"><img alt="恋する鳥羽" src="//www.city.toba.mie.jp/material/images/group/1/link_01.png"></a>          </li>                  <li id="h_idx_iw_flex_7_1">
+            <a href="https://www.facebook.com/koitoba/" target="_blank"><img alt="恋する鳥羽 Facebook" src="//www.city.toba.mie.jp/material/images/group/1/link_03.png"></a>          </li>                  <li id="h_idx_iw_flex_7_2">
+            <a href="https://www.city.toba.mie.jp/kanko_bunka_sports/kanko_joho/3325.html"><img width="180" alt="鳥羽たびガイド" src="//www.city.toba.mie.jp/material/images/group/1/tobatabi-top.jpg"></a>          </li>                  <li id="h_idx_iw_flex_7_3">
+            <a href="http://toba.gr.jp/en/" target="_blank"><img alt="DiveintoTOBAバナー" src="//www.city.toba.mie.jp/material/images/group/1/diveintoba.png"></a>          </li>                  <li id="h_idx_iw_flex_7_4">
+            <a href="https://www.iseshima-kanko.jp/" target="_blank"><img alt="伊勢志摩コンベンションバナー" src="//www.city.toba.mie.jp/material/images/group/1/kankonavi.png"></a>          </li>                  <li id="h_idx_iw_flex_7_5">
+            <a href="https://akiyabank-toba.com/" target="_blank"><img alt="空き家バンク" src="//www.city.toba.mie.jp/material/images/group/1/link_02.png"></a>          </li>                  <li id="h_idx_iw_flex_7_6">
+            <a href="https://peraichi.com/landing_pages/view/tobasikaihatukousya" target="_blank"><img alt="一般財団法人 鳥羽市開発公社" src="//www.city.toba.mie.jp/material/images/group/1/link_04.png"></a>          </li>                  <li id="h_idx_iw_flex_7_7">
+            <a href="https://www.yamada-eco.jp/"><img height="180" alt="" src="//www.city.toba.mie.jp/material/images/group/1/ecosenter_banner.jpg"></a>          </li>                  <li id="h_idx_iw_flex_7_8">
+            <a href="https://www.city.toba.mie.jp/soshiki/hisyokoho/gyomu/koho/7679.html"><img alt="その他リンク集" src="//www.city.toba.mie.jp/material/images/group/1/rinkusyu2.jpg"></a>          </li>                </ul><div class="slide-controls" id="slider4">
+          <div class="slide-prev arrow"></div>
+          <div class="control-unit">
+            <div class="slide-pager"></div>
+            <div class="slide-control-btn"></div>
+          </div>
+          <div class="slide-next arrow"></div>
+        </div>
+      </div>
+    </div>  
+  <div class="pink-wrap">
+    <div class="toba-photo-wrap">
+      <h2><span>#koitoba</span></h2>
+            <div class="photo-list-wrapper">
+        <section id="instagram">
+          <div class="item-container insta-list-in obj-fit-img">
+                      </div>
+                    <script src="//www.city.toba.mie.jp/theme/base/js/recruit_search/search_recruit_photo_gallery_api_define.js"></script>
+          <script src="//www.city.toba.mie.jp/theme/base/js/recruit_search/search_recruit_photo_gallery_api_top_list.js"></script>
+        </section>
+      </div>
+      <div class="detail-button">
+        <ul class="detail-button-list">
+          <li><a href="//www.city.toba.mie.jp/cgi-bin/recruit.php/1/list">もっと見る</a></li>
+          <li><a href="https://www.city.toba.mie.jp/toko_koitoba.html">投稿方法について</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+        <section class="js-kb-click banner-section"><div class="adv-wrap">
+        <h2><span>広告</span></h2>
+        <div class="banner-section-in">
+          <ul class="list adv-list ofi-wrapper">                                                                                                                                                                                                    <li id="h_idx_kb_flex_1_7">
+                <a href="https://www.kaden-max.com/"><img alt="リサイクルショップ出張買取" src="//www.city.toba.mie.jp/material/images/group/9/koukoku2.gif"></a></li>                          <li id="h_idx_kb_flex_1_8">
+                <a href="https://www.key-unlock.jp/"><img alt="アンロック" src="//www.city.toba.mie.jp/material/images/group/9/koukoku1.gif"></a></li>                                                    <li id="h_idx_kb_flex_1_10">
+                <a href="https://www.city.toba.mie.jp/soshiki/hisyokoho/gyomu/kokoku_jigyo/3038.html"><img alt="広告募集中" src="//www.city.toba.mie.jp/material/images/group/1/adv06.png"></a></li>                      </ul><p class="adv-text"><a href="https://www.city.toba.mie.jp/shigoto_sangyo/kokoku_jigyo/4213.html">広告募集は随時募集しています</a></p>
+        </div>
+      </div>
+    </section>
+                          </article>
+            </div>
+        </section>
+
+                <div id="footer-print">
+                      <footer id="footer">
+  <div class="in">
+    <div class="box">
+      <p id="pagetop-pc"><a href="#wrapper" class="scroll">ページの先頭へ</a></p>
+      <div class="footer-toba-image">
+        <img src="//www.city.toba.mie.jp/theme/base/img_common/footer_logo.png" alt="鳥羽市 Toba city">
+      </div>
+      <div class="address-block">
+        <address>
+          <span>鳥羽市役所</span>
+          <span>〒517-0011 三重県鳥羽市鳥羽三丁目1番1号</span>
+        </address>
+      </div>
+      <ul class="footer-guide-link">
+        <li><a href="https://www.city.toba.mie.jp/info.html">お問い合わせ</a></li>
+        <li><a href="https://www.city.toba.mie.jp/access.html">交通アクセス</a></li>
+        <li><a href="https://www.city.toba.mie.jp/soshiki/gyosei/gyomu/gyouseikikou/2101.html">各課電話番号</a></li>
+        <li><a href="https://www.city.toba.mie.jp/sitemap.html">サイトマップ</a></li>
+      </ul>
+      <ul class="footer-link">
+        <li><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/5029.html">サイトの利用ガイド</a></li>
+        <li><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/5028.html">著作権・セキュリティ・免責事項</a></li>
+        <li><a href="https://www.city.toba.mie.jp/gyosei_joho/koho/2/5027.html">個人情報利用規定</a></li>
+      </ul>
+      <p class="copyright" lang="en">Copyright (c) 2022 Toba city. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>                  </div>
+
+
+
+            
+      <!-- //#wrapper-in2  -->
+      </div>
+    <!-- //#wrapper-in  -->
+    </div>
+  <!-- //#wrapper  -->
+  </div>
+
+  <script>
+  function cmsDynDateFormat(date, format) {
+    var jpWeek = ['日', '月', '火', '水', '木', '金', '土'];
+    return format.replace('%Y', date.getFullYear()).replace('%m', ('0' + (date.getMonth() + 1)).slice(-2)).replace('%d', ('0' + date.getDate()).slice(-2)).replace('%a', jpWeek[date.getDay()])
+        .replace('%H', ('0' + date.getHours()).slice(-2)).replace('%M', ('0' + date.getMinutes()).slice(-2)).replace('%S', ('0' + date.getSeconds()).slice(-2));
+  }
+  function cmsDynExecuteGetPageList() {
+    var outerBlocks = $('.pageListDynBlock');
+    outerBlocks.each(function() {
+      var block = $(this);
+      block.find('.pageListExists').css('display', 'none');
+      block.find('.pageListNotExists').css('display', 'none');
+
+      var url = block.attr('data-url');
+
+      var cond = {};
+
+      cond.limit = parseInt(block.attr('data-limit'));
+      cond.showIndex = parseInt(block.attr('data-show-index'));
+      cond.showMobile = parseInt(block.attr('data-show-mobile'));
+      dateBegin = block.attr('data-date-begin');
+      dateSpan = block.attr('data-date-span');
+
+      cond.curPageNo = block.attr('data-current-page-no');
+      cond.dirClass = block.attr('data-dir-class');
+      cond.pageClass = block.attr('data-page-class');
+
+      cond.timeBegin = 0;
+      if (dateBegin) {
+        cond.timeBegin = new Date(dateBegin);
+      } else if (dateSpan) {
+        cond.timeBegin = Date.now() - dateSpan * 86400000;
+      }
+      var recentSpan = block.attr('data-recent-span');
+      cond.recentBegin = 0;
+      if (recentSpan) {
+        cond.recentBegin = Date.now() - recentSpan * 86400000;
+      }
+      cond.dateFormat = block.attr('data-date-format');
+      if (!cond.dateFormat) {
+        cond.dateFormat = '%Y/%m/%d %H:%M:%S';
+      }
+      cond.joinGrue = block.attr('data-join-grue');
+      if (!cond.joinGrue) {
+        cond.joinGrue = ' , ';
+      }
+      cond.eventDateFormat = block.attr('data-event-date-format');
+      if (!cond.eventDateFormat) {
+        cond.eventDateFormat = cond.dateFormat;
+      }
+      cond.eventType = block.attr('data-event-type');
+      cond.eventField = block.attr('data-event-field');
+      cond.eventArea = block.attr('data-event-area');
+      eventDateSpan = block.attr('data-event-date-span');
+      cond.eventTimeEnd = 0;
+      if (eventDateSpan) {
+        cond.eventTimeEnd = Date.now() + eventDateSpan * 86400000;
+      }
+
+      // タグ
+      cond.tagDisplay = block.attr('data-show-tags');
+      cond.tagPosition = block.attr('data-tags-position');
+      cond.tagFilterTargets = block.attr('data-tag-filter-targets');
+
+      $.getJSON(url, function(json) {
+        cmsDynApplyPageListJson(block, json, cond);
+      }).fail(function(jqxhr, textStatus, error) {
+        block.css('display', 'none');
+      });
+    });
+  }
+  function cmsDynApplyPageListJson(block, json, cond) {
+    var now = Date.now();
+    var list = block.find('.pageListBlock');
+    var template = list.find('.pageEntity:first').clone();
+    list.find('.pageEntity').remove();
+
+    var count = 0;
+
+    for (var i = 0; i < json.length; i++) {
+      var item = json[i];
+      var itemDate = new Date(item.publish_datetime);
+
+      if (!cond.showIndex && item.is_category_index) {
+        continue;
+      }
+      if (!cond.showMobile && item.is_keitai_page) {
+        continue;
+      }
+      if (cond.timeBegin && itemDate.getTime() < cond.timeBegin) {
+        continue;
+      }
+
+      // タグによる絞込み
+      if ('tag' in item && item.tag && cond.tagFilterTargets != null) {
+        var filteringNos = (!isNaN(cond.tagFilterTargets)) ? [cond.tagFilterTargets] : cond.tagFilterTargets.split(/,|\s/);
+        var isTarget = false;
+        item.tag.forEach(function(tagItem, idx) {
+          if (filteringNos.indexOf(tagItem.tag_no + "") >= 0) {
+            isTarget = true;
+          }
+        });
+        if (!isTarget) {
+          continue;
+        }
+      }
+
+      var entity = template.clone();
+      if ('event' in item && item['event']) {
+        var pageEvent = item['event'];
+        if (cond.eventType && cond.eventType != pageEvent.event_type_name) {
+          continue;
+        }
+        if (cond.eventField && $.inArray(cond.eventField, pageEvent.event_fields) < 0) {
+          continue;
+        }
+        if (cond.eventArea && $.inArray(cond.eventArea, pageEvent.event_area) < 0) {
+          continue;
+        }
+
+        var eventDateString = '';
+        if (cond.eventTimeEnd) {
+          if (pageEvent.event_date_type_id == 0) {
+            var startDatetime = pageEvent.event_start_datetime ? new Date(pageEvent.event_start_datetime) : false;
+            var endDatetime = pageEvent.event_end_datetime ? new Date(pageEvent.event_end_datetime) : false;
+            if (startDatetime && endDatetime) {
+              if (startDatetime.getTime() > cond.eventTimeEnd || endDatetime.getTime() <= now) {
+                continue;
+              }
+              eventDateString = cmsDynDateFormat(startDatetime, cond.eventDateFormat) + '～' + cmsDynDateFormat(endDatetime, cond.eventDateFormat);
+            } else if (startDatetime) {
+              if (startDatetime.getTime() > cond.eventTimeEnd) {
+                continue;
+              }
+            } else {
+              if (endDatetime.getTime() <= now) {
+                continue;
+              }
+              eventDateString = '～' + cmsDynDateFormat(endDatetime, cond.eventDateFormat);
+            }
+          } else if (pageEvent.event_date_type_id == 1) {
+            var filteredDates = $.grep(pageEvent.event_dates, function(value, index) {
+              var eventTime1 = new Date(value[0]+'T00:00:00+09:00').getTime();
+              var eventTime2 = new Date(value[1]+'T23:59:59+09:00').getTime();
+              return (eventTime1 <= cond.eventTimeEnd && eventTime2 >= now);
+            });
+            if (filteredDates.length == 0) {
+              continue;
+            }
+          }
+        }
+        if (pageEvent.event_place) {
+          entity.find('.pageEventPlaceExists').css('display', '');
+          entity.find('.pageEventPlace').text(pageEvent.event_place);
+        } else {
+          entity.find('.pageEventPlaceExists').css('display', 'none');
+          entity.find('.pageEventPlace').text('');
+        }
+        if (pageEvent.event_date_supplement) {
+          entity.find('.pageEventDateExists').css('display', '');
+          entity.find('.pageEventDate').text(pageEvent.event_date_supplement);
+        } else if (eventDateString.length > 0) {
+          entity.find('.pageEventDateExists').css('display', '');
+          entity.find('.pageEventDate').text(eventDateString);
+        } else {
+          entity.find('.pageEventDateExists').css('display', 'none');
+          entity.find('.pageEventDate').text('');
+        }
+
+        if (pageEvent.event_type_name) {
+          entity.find('.pageEventTypeExists').css('display', '');
+          entity.find('.pageEventType').text(pageEvent.event_type_name);
+        } else {
+          entity.find('.pageEventTypeExists').css('display', 'none');
+          entity.find('.pageEventType').text('');
+        }
+        if (pageEvent.event_fields && pageEvent.event_fields.length > 0) {
+          entity.find('.pageEventFieldsExists').css('display', '');
+          entity.find('.pageEventFields').text(pageEvent.event_fields.join(cond.joinGrue));
+        } else {
+          entity.find('.pageEventFieldsExists').css('display', 'none');
+          entity.find('.pageEventFields').text('');
+        }
+        if (pageEvent.event_area && pageEvent.event_area.length > 0) {
+          entity.find('.pageEventAreaExists').css('display', '');
+          entity.find('.pageEventArea').text(pageEvent.event_area.join(cond.joinGrue));
+        } else {
+          entity.find('.pageEventAreaExists').css('display', 'none');
+          entity.find('.pageEventArea').text('');
+        }
+        entity.find('.pageEventExists').css('display', '');
+      } else {
+        entity.find('.pageEventExists').css('display', 'none');
+      }
+
+      entity.find('.pageDate').each(function() {
+        var dateString = cmsDynDateFormat(itemDate, cond.dateFormat);
+        $(this).text(dateString);
+      });
+      var pageLink = entity.find('a.pageLink');
+      if (cond.curPageNo == item.page_no) {
+        pageLink.removeAttr('href').removeAttr('page_no').css('display', 'none');
+        pageLink.parent().append('<span class="pageNoLink">' + item.page_name + '</span>');
+      } else {
+        pageLink.attr('page_no', item.page_no).attr('href', item.url).text(item.page_name);
+        pageLink.find('.pageNoLink').remove();
+      }
+
+      entity.find('.pageDescription').text(item.description);
+
+      if ('thumbnail_image' in item && item.thumbnail_image) {
+        entity.find('.pageThumbnail').append($('<img>', {src: item.thumbnail_image, alt: ""}));
+      } else {
+        entity.find('.pageThumbnail').remove();
+      }
+
+      if (cond.recentBegin && itemDate.getTime() >= cond.recentBegin) {
+        entity.find('.pageRecent').css('display', '');
+      } else {
+        entity.find('.pageRecent').css('display', 'none');
+      }
+
+      // タグ付与
+      if ('tag' in item && item.tag) {
+        if (item.tag.length > 0) {
+          var DEFINE_CLASS_NAME_WHEN_TAG_TYPE_IMAGE = 'tag-type-image';
+          var DEFINE_CLASS_NAME_WHEN_TAG_TYPE_TEXT = 'tag-type-text';
+          var DEFINE_CLASS_NAME_WHEN_TAG_POSITION_BEFORE = 'tag-pos-before';
+          var DEFINE_CLASS_NAME_WHEN_TAG_POSITION_AFTER = 'tag-pos-after';
+          var DEFINE_CLASS_NAME_TAG_BLOCK = 'tags';
+          var DEFINE_CLASS_NAME_TAG = 'tag';
+          var DEFINE_CLASS_NAME_TAG_INNER = 'tag-bg';
+
+          // タグの表示位置を判定
+          var tagPositionClassName = (cond.tagPosition == 1) ? DEFINE_CLASS_NAME_WHEN_TAG_POSITION_BEFORE : DEFINE_CLASS_NAME_WHEN_TAG_POSITION_AFTER;
+
+          // タグ出力の外枠を生成
+          var tagListWrapperHtml = $('<span>', {
+            class: [DEFINE_CLASS_NAME_TAG_BLOCK, tagPositionClassName].join(' ')
+          });
+
+          item.tag.forEach(function(tagItem, idx) {
+            // タグの中身を設定
+            var tagBody;
+            if (tagItem.image_file_name != null && tagItem.image_file_name != "") {
+              // 画像
+              tagBody = $('<span>', {
+                class: DEFINE_CLASS_NAME_TAG + tagItem.tag_no,
+              }).append($('<img>', {
+                class: [DEFINE_CLASS_NAME_TAG_INNER, DEFINE_CLASS_NAME_WHEN_TAG_TYPE_IMAGE].join(' '),
+                src: tagItem.image_url,
+                alt: tagItem.tag_name
+              }));
+            } else {
+              // テキスト
+              tagBody = $('<span>', {
+                class: DEFINE_CLASS_NAME_TAG + tagItem.tag_no,
+              }).append($('<span>', {
+                class: [DEFINE_CLASS_NAME_TAG_INNER, DEFINE_CLASS_NAME_WHEN_TAG_TYPE_TEXT].join(' '),
+                text: tagItem.tag_name
+              }));
+            }
+            tagListWrapperHtml.append(tagBody);
+          });
+
+          // 出力
+          if (cond.tagDisplay == 1) {
+            if (tagPositionClassName === DEFINE_CLASS_NAME_WHEN_TAG_POSITION_BEFORE) {
+              entity.find('.pageDate').after(tagListWrapperHtml);
+            } else {
+              entity.find('a.pageLink').after(tagListWrapperHtml);
+            }
+          }
+        }
+      }
+
+      var removeClasses = [];
+      var appendClasses = [];
+      if (item.is_category_index) {
+        appendClasses = cond.dirClass ? cond.dirClass.split(' ') : [];
+        removeClasses = cond.pageClass ? cond.pageClass.split(' ') : [];
+      } else {
+        removeClasses = cond.dirClass ? cond.dirClass.split(' ') : [];
+        appendClasses = cond.pageClass ? cond.pageClass.split(' ') : [];
+      }
+      $.each(removeClasses, function(idx, val){
+        entity.removeClass(val);
+      });
+      $.each(appendClasses, function(idx, val){
+        entity.addClass(val);
+      });
+
+      entity.css('display', '');
+      list.append(entity);
+      count++;
+      if (cond.limit && count >= cond.limit) {
+        break;
+      }
+    }
+    if (count) {
+      block.css('display', '');
+      block.find('.pageListExists').css('display', '');
+      block.find('.pageListNotExists').css('display', 'none');
+    } else {
+      block.css('display', '');
+      block.find('.pageListExists').css('display', 'none');
+      block.find('.pageListNotExists').css('display', '');
+    }
+  };
+</script>
+
+<script>
+$(function() {
+  cmsDynExecuteGetPageList();
+});
+</script>
+
+
+                <script src="//www.city.toba.mie.jp/theme/base/js/external.js"></script>
+      
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=817113952" async></script></body>
+</html>
