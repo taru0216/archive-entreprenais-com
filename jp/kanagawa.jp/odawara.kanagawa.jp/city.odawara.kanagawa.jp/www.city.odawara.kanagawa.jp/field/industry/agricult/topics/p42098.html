@@ -894,7 +894,7 @@ data: data
 </div>
 				<!--/sns-->
 				<!--更新日/-->
-				<div id="lastUpdate"><p>最終更新日：2026年07月17日</p></div>				<!--/更新日-->
+				<div id="lastUpdate"><p>最終更新日：2026年07月24日</p></div>				<!--/更新日-->
 				<!--印刷/-->
 				<div id="pagePrintBtn"><a href="#" onclick="window.print();return false;"><span>印刷する</span></a></div>
 				<!--/印刷-->
@@ -919,6 +919,79 @@ data: data
   特定外来生物に指定されているクビアカツヤカミキリが、６月16日（火）に市内栄町で発見され、７月10日（金）には曽我別所のウメ園地においても発見されました。その後、曽我別所では複数の成虫及びフラスの発見報告が相次いでおり、７月17日（金）現在、15匹の成虫が確認されています。<br>
 そこで、市内の特産であるウメを守るための対策として、次のとおり「緊急対策説明会」を開催の上、「緊急一斉防除対策」を実施します。
 </div></div>
+<div id="unit-743766" class="hsNarrow"><div class="bTtlBg color09">
+  <h3>「緊急一斉防除対策」日時の延期について</h3>
+</div></div>
+<div id="unit-743715" class="hsNarrow bgColor"><div class="bTxt">
+  ７月25日（土）・26日（日）に予定していた「緊急一斉防除対策」を天候の影響により、７月29日（水）から８月２日（日）までに変更いたします。
+</div></div>
+<div id="unit-743718" class="hsNarrow"><div id="bAnchor743718" class="bAnchor color13" data-easing=""  data-speed="">
+	<ul>
+								<li class="color08 color13 color743718">
+			<a href="#unit-743086">緊急一斉防除対策</a>
+		</li>
+					</ul>
+</div>
+ 
+<script>
+ /*<![CDATA[*/
+ (function($) {
+   
+   var code = "743718";
+   
+   $(window).on("load", function() {
+    j$("#bAnchor" + code).find("a").each(function() {
+     var img = j$(this).find("img:eq(0)");
+     if (img.length) {
+      img.data("leaveimg", img.attr("src"));
+      var hv = img.data("hoverimg");
+      if (hv != "") {
+       j$(this).on("mouseenter", function() {
+        var hv = img.data("hoverimg");
+        img.attr("src", hv);
+       }).on("mouseleave", function() {
+        img.attr("src", img.data("leaveimg"));
+       });
+      }
+     }
+    });
+    j$("#bAnchor" + code).find(".anc_link").hover(
+     function() {
+      var hover_img = j$(this).attr("data-hoverimg");
+      if (hover_img != "") {
+       j$(this).css({
+        "background-image": "url(" + hover_img + ")"
+       });
+      }
+     },
+     function() {
+      var org_img = j$(this).attr("data-orgimg");
+      if (org_img != "") {
+       j$(this).css({
+        "background-image": "url(" + org_img + ")"
+       });
+      }
+     }
+    );
+    j$("#bAnchor" + code).find(".anchorbg").each(function() {
+     $(this).data("leaveimg", $(this).parent().css("background-image"));
+     var hv = $(this).data("hoverimg");
+     if (hv != "") {
+      j$(this).on("mouseenter", function() {
+       $(this).parent().css("background-image", "url(" + hv + ")");
+      }).on("mouseleave", function() {
+       $(this).parent().css("background-image", $(this).data("leaveimg"));
+      });
+     }
+    });
+   });
+  })(jQuery);
+  /*]]>*/
+</script> 
+
+</div>
+<div  class="hsNormal"><div class="bLine color13"><hr /></div></div>
+
 <div id="unit-743075" class="hsNarrow"><div class="bSubTtl">
   <h2 class="color11">緊急対策説明会</h2>
 </div></div>
@@ -973,7 +1046,7 @@ data: data
 </div></div>
 
 <div id="unit-743094" class="hsNarrow"><div class="bTxt">
-  令和８年７月25日（土）・26日（日）<br>
+  令和８年７月29日（水）から８月２日（日）まで<br>
 ※実施日及び実施時間は、各ウメ園地により異なります。
 </div></div>
 <div id="unit-743090"><div class="bTtl4">
@@ -1120,11 +1193,11 @@ data: data
 		<h2 class="color11">よく閲覧されるページ</h2>
 	</div>
 		<ul>
-				<li><a href="/field/industry/agricult/topics/p41310.html">降雪・凍害を受けた柑橘類(レモン等中晩柑)の栽培管理について【6月18日追記】</a></li>
+				<li><a href="/field/industry/agricult/topics/p42098.html">クビアカツヤカミキリに関する「緊急対策説明会」及び「緊急一斉防除対策」について</a></li>
 				<li><a href="/field/industry/agricult/topics/p21247.html">新規就農者に対する支援事業について</a></li>
+				<li><a href="/field/industry/agricult/topics/p41310.html">降雪・凍害を受けた柑橘類(レモン等中晩柑)の栽培管理について【6月18日追記】</a></li>
 				<li><a href="/field/industry/agricult/topics/p39372.html">「梅干し」を使ったレシピ集ができました!</a></li>
 				<li><a href="/field/industry/agricult/topics/p27560.html">令和8年度小田原梅干品評会を開催します!　</a></li>
-				<li><a href="/field/industry/agricult/topics/p40104.html">小田原梅干しの作り方</a></li>
 			</ul>
 	</div>
 </div></div>
