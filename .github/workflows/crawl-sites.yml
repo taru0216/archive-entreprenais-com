@@ -1,0 +1,99 @@
+name: Crawl Sites
+
+# .data/site-targets/*.json に登録された各ターゲットを scripts/crawl_site.py で
+# クロールし、docs/<domain>/ 配下に sitemap.xml + content.json + index.html を
+# 書き出して commit する（GitHub Pages（Settings: Deploy from branch=main,
+# folder=/docs）で自動公開）。
+#
+# crawl_archive.py（Retty専用）と違い、対象サイトはターゲット設定ファイルで決まる
+# ため、このワークフロー自体は対象が増えても変更不要（.data/site-targets/*.json を
+# 追加するだけでよい）。
+#
+# 既存Rettyジョブ（crawl-archive.yml、02:00 JST）とランナーが被らないよう
+# 03:00 JST（18:00 UTC）に自動実行。
+# public リポジトリのため GitHub hosted runner を使用する。
+
+on:
+  schedule:
+    - cron: "0 18 * * *"  # 毎日 UTC 18:00 = 03:00 JST
+  workflow_dispatch:
+    inputs:
+      max_count:
+        description: "ターゲットあたりの最大クロールページ数"
+        required: false
+        default: "200"
+      sleep:
+        description: "リクエスト間 sleep 秒（robots/負荷配慮）"
+        required: false
+        default: "1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crawl-sites
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate target matrix
+        id: gen
+        run: |
+          MATRIX=$(ls .data/site-targets/*.json 2>/dev/null | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "matrix=${MATRIX}" >> "$GITHUB_OUTPUT"
+          echo "[discover] targets: ${MATRIX}"
+
+  crawl:
+    needs: discover
+    if: needs.discover.outputs.matrix != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        target: ${{ fromJson(needs.discover.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Python version
+        run: python3 --version
+
+      - name: Crawl target
+        id: crawl
+        run: |
+          python3 scripts/crawl_site.py \
+            --target "${{ matrix.target }}" \
+            --sleep "${{ github.event.inputs.sleep || '1' }}" \
+            --max-count "${{ github.event.inputs.max_count || '200' }}"
+
+      - name: Commit & push
+        run: |
+          NAME=$(python3 -c "import json,sys; print(json.load(open('${{ matrix.target }}'))['name'])")
+          OUT_DIR=$(python3 -c "import json,sys; print(json.load(open('${{ matrix.target }}'))['out_dir'])")
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${OUT_DIR}" ".data/site-targets-state/${NAME}.json"
+          if git diff --cached --quiet; then
+            echo "No changes to commit for ${NAME}."
+            exit 0
+          fi
+          COUNT=$(find "${OUT_DIR}" -name "content.json" 2>/dev/null | wc -l | tr -d ' ')
+          git commit -m "chore(crawl-sites): ${NAME} ミラーを更新 (${COUNT} pages)"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Crawl Sites 結果: ${{ matrix.target }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 項目 | 値 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_saved | ${{ steps.crawl.outputs.pages_saved }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_failed | ${{ steps.crawl.outputs.pages_failed }} |" >> $GITHUB_STEP_SUMMARY
