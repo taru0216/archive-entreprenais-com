@@ -6,8 +6,23 @@
 対象は `--target` で渡すJSON設定ファイル（`.data/site-targets/*.json`）で指定する。
 将来別サイトを追加する場合は設定ファイルを1つ追加するだけでよい（コード変更不要）。
 
+target設定は単一サイトマップ（`sitemap_url`, 文字列）と複数サイトマップ（`sitemap_urls`,
+配列）のどちらかを指定する。WordPress等、コンテンツ種別ごとにサイトマップが分割されて
+いるサイト（例: miyarail.co.jp の `wp-sitemap-posts-page-1.xml`/`-post-1.xml`/`-delay-1.xml`
+など）は `sitemap_urls` で必要な分だけ列挙する。複数指定時は各サイトマップの<loc>を
+出現順で結合・重複排除してから通常通り1つの out_dir にクロールする（サイトマップ
+インデックス自体を自動展開する機能ではない — 対象の子サイトマップURLを明示的に列挙する
+方式。ネストの深さやサイトごとの命名規則に依存せず動作をシンプルに保つため）。
+
+結合後のURL一覧は `--max-count` で先頭から打ち切られる（暴走防止）ため、`sitemap_urls`
+の列挙順は重要度の高い（件数の少ない）ものを先に、件数の多いもの（例: 通常のブログ
+投稿一覧）を最後に置くこと。そうしないと打ち切りで重要なコンテンツ種別が丸ごと
+欠落しうる（miyarail.jsonでの実例: `-delay-1`/`-situation-1`は各1件のみだが実質必須の
+情報のため先頭、`-post-1`（数百件規模）は最後に配置）。
+
 処理内容:
-  1. target設定の sitemap_url から対象ページURL一覧を取得（標準 <loc> パース）。
+  1. target設定の sitemap_url（または sitemap_urls 各々）から対象ページURL一覧を取得
+     し、結合・重複排除する（標準 <loc> パース）。
   2. 各URLを取得し、HTML→タイトル/本文をタグ除去して抽出する
      （<script>/<style>/<nav>/<header>/<footer> は除外）。
   3. out_dir 配下に以下を書き出す:
@@ -69,6 +84,27 @@ def parse_sitemap_locs(xml_text: str) -> list[str]:
     seen: dict[str, None] = {}
     for m in _LOC_RE.finditer(xml_text):
         seen.setdefault(m.group(1), None)
+    return list(seen)
+
+
+def resolve_sitemap_urls(target: dict) -> list[str]:
+    """target設定から対象サイトマップURLのリストを返す。
+
+    複数形 `sitemap_urls`（配列）を優先し、無ければ単数形 `sitemap_url`（文字列、
+    既存targetとの後方互換）を1件のリストとして扱う。"""
+    urls = target.get("sitemap_urls")
+    if urls:
+        return list(urls)
+    single = target.get("sitemap_url")
+    return [single] if single else []
+
+
+def merge_sitemap_locs(xml_texts: list[str]) -> list[str]:
+    """複数サイトマップXML文字列それぞれの<loc>を、出現順維持・重複排除で1つに結合する。"""
+    seen: dict[str, None] = {}
+    for xml_text in xml_texts:
+        for loc in parse_sitemap_locs(xml_text):
+            seen.setdefault(loc, None)
     return list(seen)
 
 
@@ -202,7 +238,7 @@ def crawl_target(
 ) -> dict:
     name = target["name"]
     domain = target["domain"]
-    sitemap_url = target["sitemap_url"]
+    sitemap_urls = resolve_sitemap_urls(target)
     out_dir = target["out_dir"]
     site_rel = site_rel_from_out_dir(out_dir)
 
@@ -213,12 +249,12 @@ def crawl_target(
     except Exception as e:  # noqa: BLE001
         print(f"  [WARN] robots.txt取得失敗（許可扱いで続行）: {e}", file=sys.stderr)
 
-    print(f"[crawl_site] target={name} sitemap={sitemap_url}")
-    sitemap_xml = http_get(sitemap_url)
-    if not sitemap_xml:
-        raise RuntimeError(f"サイトマップの取得に失敗しました: {sitemap_url}")
+    print(f"[crawl_site] target={name} sitemaps={sitemap_urls}")
+    sitemap_xmls = [xml for xml in (http_get(u) for u in sitemap_urls) if xml]
+    if not sitemap_xmls:
+        raise RuntimeError(f"サイトマップの取得に全て失敗しました: {sitemap_urls}")
 
-    urls = parse_sitemap_locs(sitemap_xml)
+    urls = merge_sitemap_locs(sitemap_xmls)
     urls = [u for u in urls if same_domain(u, domain) and not _NON_HTML_EXT_RE.search(u)]
     urls = urls[:max_count]
     print(f"[crawl_site] {len(urls)} 件のURLを対象とする")
@@ -281,9 +317,15 @@ def main(argv: list[str] | None = None) -> int:
 
     with open(args.target, encoding="utf-8") as f:
         target = json.load(f)
-    missing = [k for k in ("name", "domain", "sitemap_url", "out_dir") if k not in target]
+    missing = [k for k in ("name", "domain", "out_dir") if k not in target]
     if missing:
         print(f"[ERROR] target設定に必須キーがありません {missing}: {args.target}", file=sys.stderr)
+        return 1
+    if not resolve_sitemap_urls(target):
+        print(
+            f"[ERROR] target設定に sitemap_url または sitemap_urls が必要です: {args.target}",
+            file=sys.stderr,
+        )
         return 1
 
     stats = crawl_target(

@@ -7,7 +7,9 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 from crawl_site import (  # noqa: E402
     extract_title_and_text,
+    merge_sitemap_locs,
     parse_sitemap_locs,
+    resolve_sitemap_urls,
     same_domain,
     site_rel_from_out_dir,
     url_to_relpath,
@@ -32,6 +34,63 @@ class TestParseSitemapLocs(unittest.TestCase):
 
     def test_empty_sitemap(self):
         self.assertEqual(parse_sitemap_locs("<urlset></urlset>"), [])
+
+
+class TestResolveSitemapUrls(unittest.TestCase):
+    def test_legacy_single_string(self):
+        self.assertEqual(
+            resolve_sitemap_urls({"sitemap_url": "https://example.com/sitemap.xml"}),
+            ["https://example.com/sitemap.xml"],
+        )
+
+    def test_plural_array(self):
+        target = {
+            "sitemap_urls": [
+                "https://example.com/wp-sitemap-posts-page-1.xml",
+                "https://example.com/wp-sitemap-posts-post-1.xml",
+            ]
+        }
+        self.assertEqual(resolve_sitemap_urls(target), list(target["sitemap_urls"]))
+
+    def test_plural_takes_precedence_over_singular(self):
+        target = {
+            "sitemap_url": "https://example.com/legacy.xml",
+            "sitemap_urls": ["https://example.com/a.xml", "https://example.com/b.xml"],
+        }
+        self.assertEqual(
+            resolve_sitemap_urls(target),
+            ["https://example.com/a.xml", "https://example.com/b.xml"],
+        )
+
+    def test_neither_key_returns_empty(self):
+        self.assertEqual(resolve_sitemap_urls({}), [])
+
+
+class TestMergeSitemapLocs(unittest.TestCase):
+    def test_merges_in_order_dedup_across_sources(self):
+        xml_a = (
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            "<url><loc>https://example.com/page-1</loc></url>"
+            "<url><loc>https://example.com/shared</loc></url>"
+            "</urlset>"
+        )
+        xml_b = (
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            "<url><loc>https://example.com/shared</loc></url>"
+            "<url><loc>https://example.com/post-1</loc></url>"
+            "</urlset>"
+        )
+        self.assertEqual(
+            merge_sitemap_locs([xml_a, xml_b]),
+            [
+                "https://example.com/page-1",
+                "https://example.com/shared",
+                "https://example.com/post-1",
+            ],
+        )
+
+    def test_empty_list(self):
+        self.assertEqual(merge_sitemap_locs([]), [])
 
 
 class TestSameDomainAndExtFilter(unittest.TestCase):
