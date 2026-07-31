@@ -31,7 +31,12 @@ target設定は単一サイトマップ（`sitemap_url`, 文字列）と複数�
                             本文を含まないため、ページ数が増えてもファイルサイズは
                             小さく保たれる。
        <urlパス>/content.json - {"url","title","text","updated_at"}（本文はここ）。
-       <urlパス>/index.html   - 生HTMLミラー（透明性・デバッグ用）。
+       <urlパス>/index.html   - 生HTMLミラー（透明性・デバッグ用）。`<meta name="robots"
+                            content="noindex,nofollow">` を挿入して書き出す — このミラーは
+                            RAG用の機械可読ソースであり検索エンジンの索引対象ではないため
+                            （GitHub Pagesのプロジェクトサイトはドメインルートの robots.txt
+                            しか解釈できずリポジトリ単位の robots.txt は無視されるため、
+                            ページ単位の<meta>挿入のみが実際に有効な除外手段）。
   4. `.data/site-targets-state/<name>.json` にページ毎の本文sha256を記録し、
      前回クロールと比較して変化があった時だけ updated_at を更新する（サイト側の
      sitemapにlastmodが無いことが多いため、実際に内容が変わった最終日を自前で推定する）。
@@ -188,6 +193,30 @@ def extract_title_and_text(html_text: str) -> tuple[str, str]:
     return parser.title, parser.body
 
 
+_NOINDEX_META = '<meta name="robots" content="noindex,nofollow">'
+_HEAD_OPEN_RE = re.compile(r"<head[^>]*>", re.I)
+_ROBOTS_META_RE = re.compile(r'<meta\s[^>]*name=["\']robots["\']', re.I)
+
+
+def inject_noindex_meta(html_text: str) -> str:
+    """ミラーとして書き出す生HTMLに noindex,nofollow メタタグを挿入する。
+
+    GitHub Pagesのプロジェクトサイト（<user>.github.io/<repo>/...）は robots.txt を
+    サイト単位（ドメインルート）でしか解釈できず、リポジトリ配下に置いても無視される
+    ため、robots.txtによる除外は機能しない。ページ単位の<meta>挿入のみが実際に有効。
+
+    このミラーは検索エンジンの索引対象ではなく、RAG用の機械可読ソース（content.json /
+    サイト内検索の対象）として存在するため、対象サイトの意図に関わらず一律で
+    noindexを付与する（既にrobotsメタが存在する場合は二重挿入しない）。"""
+    if _ROBOTS_META_RE.search(html_text):
+        return html_text
+    m = _HEAD_OPEN_RE.search(html_text)
+    if m:
+        return html_text[: m.end()] + _NOINDEX_META + html_text[m.end() :]
+    # <head>が無い（壊れた/簡易なHTML）場合のフォールバック: 独自の<head>を先頭に追加する。
+    return f"<head>{_NOINDEX_META}</head>" + html_text
+
+
 def sha256_hex(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
@@ -286,7 +315,7 @@ def crawl_target(
         page_dir = out_dir if relpath == "." else os.path.join(out_dir, relpath)
         os.makedirs(page_dir, exist_ok=True)
         with open(os.path.join(page_dir, "index.html"), "w", encoding="utf-8") as f:
-            f.write(html_text)
+            f.write(inject_noindex_meta(html_text))
         content = {"url": url, "title": title, "text": text, "updated_at": updated_at}
         with open(os.path.join(page_dir, "content.json"), "w", encoding="utf-8") as f:
             json.dump(content, f, ensure_ascii=False, indent=2)

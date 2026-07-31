@@ -7,6 +7,7 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 from crawl_site import (  # noqa: E402
     extract_title_and_text,
+    inject_noindex_meta,
     merge_sitemap_locs,
     parse_sitemap_locs,
     resolve_sitemap_urls,
@@ -91,6 +92,36 @@ class TestMergeSitemapLocs(unittest.TestCase):
 
     def test_empty_list(self):
         self.assertEqual(merge_sitemap_locs([]), [])
+
+
+class TestInjectNoindexMeta(unittest.TestCase):
+    def test_inserts_right_after_head_open(self):
+        html = "<html><head><title>t</title></head><body>x</body></html>"
+        result = inject_noindex_meta(html)
+        self.assertIn(
+            '<head><meta name="robots" content="noindex,nofollow"><title>t</title></head>',
+            result,
+        )
+
+    def test_head_with_attributes(self):
+        html = '<html><head lang="ja"><title>t</title></head></html>'
+        result = inject_noindex_meta(html)
+        self.assertTrue(result.startswith('<html><head lang="ja"><meta name="robots"'))
+
+    def test_does_not_double_insert_when_robots_meta_present(self):
+        html = '<html><head><meta name="robots" content="index,follow"></head></html>'
+        self.assertEqual(inject_noindex_meta(html), html)
+
+    def test_fallback_when_no_head_tag(self):
+        html = "<div>no head here</div>"
+        result = inject_noindex_meta(html)
+        self.assertTrue(result.startswith('<head><meta name="robots" content="noindex,nofollow"></head>'))
+        self.assertIn("<div>no head here</div>", result)
+
+    def test_case_insensitive_head_tag(self):
+        html = "<HTML><HEAD><title>t</title></HEAD></HTML>"
+        result = inject_noindex_meta(html)
+        self.assertIn('<HEAD><meta name="robots" content="noindex,nofollow">', result)
 
 
 class TestSameDomainAndExtFilter(unittest.TestCase):
