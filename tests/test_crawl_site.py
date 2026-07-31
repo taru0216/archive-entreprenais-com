@@ -7,7 +7,10 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 from crawl_site import (  # noqa: E402
     extract_title_and_text,
+    inject_noindex_meta,
+    merge_sitemap_locs,
     parse_sitemap_locs,
+    resolve_sitemap_urls,
     same_domain,
     site_rel_from_out_dir,
     url_to_relpath,
@@ -32,6 +35,93 @@ class TestParseSitemapLocs(unittest.TestCase):
 
     def test_empty_sitemap(self):
         self.assertEqual(parse_sitemap_locs("<urlset></urlset>"), [])
+
+
+class TestResolveSitemapUrls(unittest.TestCase):
+    def test_legacy_single_string(self):
+        self.assertEqual(
+            resolve_sitemap_urls({"sitemap_url": "https://example.com/sitemap.xml"}),
+            ["https://example.com/sitemap.xml"],
+        )
+
+    def test_plural_array(self):
+        target = {
+            "sitemap_urls": [
+                "https://example.com/wp-sitemap-posts-page-1.xml",
+                "https://example.com/wp-sitemap-posts-post-1.xml",
+            ]
+        }
+        self.assertEqual(resolve_sitemap_urls(target), list(target["sitemap_urls"]))
+
+    def test_plural_takes_precedence_over_singular(self):
+        target = {
+            "sitemap_url": "https://example.com/legacy.xml",
+            "sitemap_urls": ["https://example.com/a.xml", "https://example.com/b.xml"],
+        }
+        self.assertEqual(
+            resolve_sitemap_urls(target),
+            ["https://example.com/a.xml", "https://example.com/b.xml"],
+        )
+
+    def test_neither_key_returns_empty(self):
+        self.assertEqual(resolve_sitemap_urls({}), [])
+
+
+class TestMergeSitemapLocs(unittest.TestCase):
+    def test_merges_in_order_dedup_across_sources(self):
+        xml_a = (
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            "<url><loc>https://example.com/page-1</loc></url>"
+            "<url><loc>https://example.com/shared</loc></url>"
+            "</urlset>"
+        )
+        xml_b = (
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            "<url><loc>https://example.com/shared</loc></url>"
+            "<url><loc>https://example.com/post-1</loc></url>"
+            "</urlset>"
+        )
+        self.assertEqual(
+            merge_sitemap_locs([xml_a, xml_b]),
+            [
+                "https://example.com/page-1",
+                "https://example.com/shared",
+                "https://example.com/post-1",
+            ],
+        )
+
+    def test_empty_list(self):
+        self.assertEqual(merge_sitemap_locs([]), [])
+
+
+class TestInjectNoindexMeta(unittest.TestCase):
+    def test_inserts_right_after_head_open(self):
+        html = "<html><head><title>t</title></head><body>x</body></html>"
+        result = inject_noindex_meta(html)
+        self.assertIn(
+            '<head><meta name="robots" content="noindex,nofollow"><title>t</title></head>',
+            result,
+        )
+
+    def test_head_with_attributes(self):
+        html = '<html><head lang="ja"><title>t</title></head></html>'
+        result = inject_noindex_meta(html)
+        self.assertTrue(result.startswith('<html><head lang="ja"><meta name="robots"'))
+
+    def test_does_not_double_insert_when_robots_meta_present(self):
+        html = '<html><head><meta name="robots" content="index,follow"></head></html>'
+        self.assertEqual(inject_noindex_meta(html), html)
+
+    def test_fallback_when_no_head_tag(self):
+        html = "<div>no head here</div>"
+        result = inject_noindex_meta(html)
+        self.assertTrue(result.startswith('<head><meta name="robots" content="noindex,nofollow"></head>'))
+        self.assertIn("<div>no head here</div>", result)
+
+    def test_case_insensitive_head_tag(self):
+        html = "<HTML><HEAD><title>t</title></HEAD></HTML>"
+        result = inject_noindex_meta(html)
+        self.assertIn('<HEAD><meta name="robots" content="noindex,nofollow">', result)
 
 
 class TestSameDomainAndExtFilter(unittest.TestCase):

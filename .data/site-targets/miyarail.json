@@ -1,6 +1,11 @@
 {
   "name": "miyarail",
   "domain": "www.miyarail.co.jp",
-  "sitemap_url": "https://www.miyarail.co.jp/wp-sitemap-posts-page-1.xml",
+  "sitemap_urls": [
+    "https://www.miyarail.co.jp/wp-sitemap-posts-delay-1.xml",
+    "https://www.miyarail.co.jp/wp-sitemap-posts-situation-1.xml",
+    "https://www.miyarail.co.jp/wp-sitemap-posts-page-1.xml",
+    "https://www.miyarail.co.jp/wp-sitemap-posts-post-1.xml"
+  ],
   "out_dir": "docs/miyarail.co.jp"
 }
