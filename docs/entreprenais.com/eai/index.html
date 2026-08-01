@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0f12" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>C-Suite Agent Fleet | 樽石デジタル技術研究所合同会社 (TDRI)</title>
+  <meta name="description" content="EntreprenAIs C-Suite Agent Fleet — 経営の意思決定を 8 体の AI エージェントで分担する経営 AI スタック。Daily Briefing / End-Of-Day 自動生成・経営会議の自動化・Browser View / 情報隔壁 / Slack 連携で業務サイクルを安定させます。" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://entreprenais.com/eai/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="EntreprenAIs / 樽石デジタル技術研究所合同会社" />
+  <meta property="og:url" content="https://entreprenais.com/eai/" />
+  <meta property="og:title" content="C-Suite Agent Fleet | 樽石デジタル技術研究所合同会社 (TDRI)" />
+  <meta property="og:description" content="EntreprenAIs C-Suite Agent Fleet — 経営の意思決定を 8 体の AI エージェントで分担する経営 AI スタック。Daily Briefing / End-Of-Day 自動生成・経営会議の自動化・Browser View / 情報隔壁 / Slack 連携で業務サイクルを安定させます。" />
+  <meta property="og:image" content="https://entreprenais.com/eai/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="C-Suite Agent Fleet | 樽石デジタル技術研究所合同会社 (TDRI)" />
+  <meta name="twitter:description" content="EntreprenAIs C-Suite Agent Fleet — 経営の意思決定を 8 体の AI エージェントで分担する経営 AI スタック。Daily Briefing / End-Of-Day 自動生成・経営会議の自動化・Browser View / 情報隔壁 / Slack 連携で業務サイクルを安定させます。" />
+  <meta name="twitter:image" content="https://entreprenais.com/eai/og.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- SRI 非適用 (#70): Google Fonts は動的 URL のためハッシュ固定不可。CSP の style-src / font-src allowlist で保護。 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Google Analytics 4 (gtag.js) -->
+  <!-- SRI 非適用 (#70): gtag/js は動的バージョンロード CDN のためハッシュ固定不可。CSP の script-src allowlist で保護。 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND9RLH0NT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ND9RLH0NT3');
+  </script>
+
+  <!-- JSON-LD: WebPage + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://entreprenais.com/eai/#webpage",
+        "url": "https://entreprenais.com/eai/",
+        "name": "C-Suite Agent Fleet | 樽石デジタル技術研究所合同会社 (TDRI)",
+        "description": "EntreprenAIs C-Suite Agent Fleet — 経営の意思決定を 8 体の AI エージェントで分担する経営 AI スタック。Daily Briefing / End-Of-Day 自動生成・経営会議の自動化・Browser View / 情報隔壁 / Slack 連携で業務サイクルを安定させます。",
+        "isPartOf": { "@id": "https://entreprenais.com/#website" },
+        "inLanguage": "ja-JP"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://entreprenais.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "C-Suite Agent Fleet",
+            "item": "https://entreprenais.com/eai/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="fleet-page">
+
+  <!-- Fixed nav -->
+  <nav class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="/">
+        <span class="nav__mark" aria-hidden="true">
+          <span class="nav__mark-bar"></span>
+          <span class="nav__mark-dot"></span>
+        </span>
+        <span class="nav__name">TDRI</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="/#mission">Mission</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#works">Roadmap</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <main class="fleet">
+    <section class="fleet__hero">
+      <div class="fleet__hero-inner">
+        <p class="fleet__eyebrow">C-Suite Agent Fleet</p>
+        <h1 class="fleet__hero-title">
+          経営の意思決定を、<br />
+          <span class="accent">8 体の AI エージェント</span>で分担する。
+        </h1>
+        <p class="fleet__hero-lead">
+          EntreprenAIs C-Suite Agent Fleet は、CTO・COO・CISO・CLO・CFO・CPO・CHRO・Auditor の専門領域を 8 体の AI エージェントに分担し、IoA 基盤上で自律協調させる経営 AI スタックです。Fleet Commander（人間）は方針と価値観の決定に集中し、執行はエージェントに委譲できます。
+        </p>
+        <div class="fleet__hero-cta">
+          <a class="btn btn--ghost" href="/">&larr; Home に戻る</a>
+          <a class="btn btn--primary" href="/#contact">お問い合わせ &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fleet grid -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">01 / Fleet</p>
+        <h2 class="section__title">8 体のエージェント、8 つの専門領域。</h2>
+
+        <div class="fleet__grid">
+          <!-- CTO -->
+          <article class="fleet__card" data-role="cto">
+            <div class="fleet__avatar fleet__avatar--cto" aria-hidden="true">CT</div>
+            <p class="fleet__name">eai-cto</p>
+            <p class="fleet__role">Chief Technology Officer</p>
+            <p class="fleet__bio">技術基盤と自動化で、経営の実行速度を支えるエージェント。</p>
+            <ul class="fleet__duties">
+              <li>技術戦略・アーキテクチャ設計</li>
+              <li>CI/CD・実装ガバナンス</li>
+              <li>スキル開発・自動化スクリプト</li>
+            </ul>
+          </article>
+
+          <!-- COO -->
+          <article class="fleet__card" data-role="coo">
+            <div class="fleet__avatar fleet__avatar--coo" aria-hidden="true">CO</div>
+            <p class="fleet__name">eai-coo</p>
+            <p class="fleet__role">Chief Operating Officer</p>
+            <p class="fleet__bio">Fleet のチームリーダー。タスクを分解し、各エージェントに配分する。</p>
+            <ul class="fleet__duties">
+              <li>FC 指示の受領・タスク分解</li>
+              <li>エージェント間の調整・進捗管理</li>
+              <li>成果物の統合・レビュー</li>
+            </ul>
+          </article>
+
+          <!-- CISO -->
+          <article class="fleet__card" data-role="ciso">
+            <div class="fleet__avatar fleet__avatar--ciso" aria-hidden="true">CI</div>
+            <p class="fleet__name">eai-ciso</p>
+            <p class="fleet__role">Chief Information Security Officer</p>
+            <p class="fleet__bio">セキュリティリスクを統括し、安全な自律実行を支援するエージェント。</p>
+            <ul class="fleet__duties">
+              <li>Issue・PR のセキュリティレビュー</li>
+              <li>機密情報・認証情報の保護</li>
+              <li>情報隔壁・脆弱性対応の方針策定</li>
+            </ul>
+          </article>
+
+          <!-- CLO -->
+          <article class="fleet__card" data-role="clo">
+            <div class="fleet__avatar fleet__avatar--clo" aria-hidden="true">CL</div>
+            <p class="fleet__name">eai-clo</p>
+            <p class="fleet__role">Chief Legal Officer</p>
+            <p class="fleet__bio">法務・コンプライアンスの観点から経営判断を支える情報提供エージェント。</p>
+            <ul class="fleet__duties">
+              <li>契約・定款・法人設立書類の整理</li>
+              <li>プライバシー・コンプライアンス論点の提示</li>
+              <li>法的情報提供（士業独占行為は回避）</li>
+            </ul>
+          </article>
+
+          <!-- CFO -->
+          <article class="fleet__card" data-role="cfo">
+            <div class="fleet__avatar fleet__avatar--cfo" aria-hidden="true">CF</div>
+            <p class="fleet__name">eai-cfo</p>
+            <p class="fleet__role">Chief Financial Officer</p>
+            <p class="fleet__bio">財務・会計データを収集・分析し、経営判断を数字で支える情報整理エージェント。</p>
+            <ul class="fleet__duties">
+              <li>決算書・財務書類の管理・分析</li>
+              <li>収支予測・見積りの作成</li>
+              <li>税制・控除情報の収集・整理（士業独占行為は回避）</li>
+            </ul>
+          </article>
+
+          <!-- CPO -->
+          <article class="fleet__card" data-role="cpo">
+            <div class="fleet__avatar fleet__avatar--cpo" aria-hidden="true">CP</div>
+            <p class="fleet__name">eai-cpo</p>
+            <p class="fleet__role">Chief Product Officer</p>
+            <p class="fleet__bio">サービス・プロダクト戦略を描き、ロードマップに落とすエージェント。</p>
+            <ul class="fleet__duties">
+              <li>サービスカタログの管理・更新</li>
+              <li>提案書・見積書テンプレート整備</li>
+              <li>プロダクト戦略・UX 観点の提案</li>
+            </ul>
+          </article>
+
+          <!-- CHRO -->
+          <article class="fleet__card" data-role="chro">
+            <div class="fleet__avatar fleet__avatar--chro" aria-hidden="true">CH</div>
+            <p class="fleet__name">eai-chro</p>
+            <p class="fleet__role">Chief Human Resources Officer</p>
+            <p class="fleet__bio">エージェント自身を「人材」と見立て、Fleet 全体のパフォーマンスを高めるエージェント。</p>
+            <ul class="fleet__duties">
+              <li>エージェント定義の改善・最適化</li>
+              <li>連携フロー・レポートラインの設計</li>
+              <li>新規エージェントの必要性評価</li>
+            </ul>
+          </article>
+
+          <!-- Auditor -->
+          <article class="fleet__card" data-role="auditor">
+            <div class="fleet__avatar fleet__avatar--auditor" aria-hidden="true">AU</div>
+            <p class="fleet__name">eai-auditor</p>
+            <p class="fleet__role">Auditor (監査役)</p>
+            <p class="fleet__bio">C-Suite から独立し、Fleet Commander に直接報告する独立監査エージェント。</p>
+            <ul class="fleet__duties">
+              <li>ガバナンス・プロセスの監査</li>
+              <li>ドキュメント整合性・ラベル運用の検証</li>
+              <li>是正勧告の提出</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE — Hero 直下に LP の代表スクショ 1 枚を配置 -->
+    <section class="fleet__section fleet__section--showcase" id="showcase">
+      <div class="fleet__inner">
+        <p class="section__num">02 / Showcase</p>
+        <h2 class="section__title">FC が C-Suite Agent と話す日常</h2>
+        <div class="showcase__grid">
+          <figure class="showcase__device preview__device">
+            <div class="preview__phone phone-mock">
+              <span class="preview__notch phone-mock__notch" aria-hidden="true"></span>
+              <img
+                class="preview__img phone-mock__img"
+                src="/img/chat-preview-iphone.png"
+                alt="EntreprenAIs chat-app — FC が C-Suite Agent と対話する画面"
+                loading="lazy"
+                width="380"
+                height="800"
+              />
+            </div>
+          </figure>
+          <div class="showcase__caption">
+            <p class="showcase__body">
+              自然言語で問いかければ、エージェントが自律的にタスクを起動し、進捗カードでリアルタイムに状態を返します。これが EntreprenAIs の A2A チャット UX。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES — Browser View / File Browser -->
+    <section class="fleet__section fleet__section--features">
+      <div class="fleet__inner">
+        <p class="section__num">03 / Features</p>
+        <h2 class="section__title">FC と AI が協調する、3 つの実体験。</h2>
+        <p class="features__lead">
+          C-Suite Agent Fleet は概念ではなく、毎日動く UI です。「自律 × 人間の責任」「AI への情報非対称」の境界がアプリレベルで担保されています。
+        </p>
+
+        <div class="features">
+          <!-- Browser View -->
+          <article class="feature">
+            <figure class="feature__device">
+              <div class="feature__phone phone-mock">
+                <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+                <img
+                  class="feature__img phone-mock__img"
+                  src="/img/chat-browser-view.png"
+                  alt="EntreprenAIs chat-app の Browser View — AI エージェントが起動したブラウザを FC と画面共有している様子"
+                  loading="lazy"
+                  width="380"
+                  height="800"
+                />
+              </div>
+            </figure>
+            <figcaption class="feature__caption">
+              <p class="feature__eyebrow">Browser View</p>
+              <h3 class="feature__title">AI と人で握る、画面の共有</h3>
+              <p class="feature__body">
+                AI エージェントが自らブラウザを起動し、FC と画面を共有しながらリサーチや調査を進めます。認証・決済など重要オペレーションは AI ではなく FC が代行する設計で、自律と責任の境界を UI レベルで可視化しています。
+              </p>
+            </figcaption>
+          </article>
+
+          <!-- File Browser -->
+          <article class="feature feature--reverse">
+            <figure class="feature__device">
+              <div class="feature__phone phone-mock">
+                <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+                <img
+                  class="feature__img phone-mock__img"
+                  src="/img/chat-file-browser.png"
+                  alt="EntreprenAIs chat-app の File Browser — core / docs / encrypted / engagements / finance のディレクトリツリー"
+                  loading="lazy"
+                  width="380"
+                  height="800"
+                />
+              </div>
+            </figure>
+            <figcaption class="feature__caption">
+              <p class="feature__eyebrow">File Browser</p>
+              <h3 class="feature__title">経営の記憶が積み上がる</h3>
+              <p class="feature__body">
+                AI エージェントは作業記録を常に取得し、監査証跡として、また AI 自身が後から参照する「経営知」として蓄積します。経営に参加するほど AI の感度が向上する設計です。一方、機微情報は <code class="feature__highlight">encrypted/</code> に暗号化保存され、AI からは復号できず FC のみが中身を確認できます。AI には<strong>要約のみ</strong>が共有される情報非対称をアーキテクチャで担保しています。
+              </p>
+            </figcaption>
+          </article>
+
+          <!-- Photo Upload -->
+          <article class="feature">
+            <figure class="feature__device">
+              <div class="feature__phone phone-mock">
+                <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+                <img
+                  class="feature__img phone-mock__img"
+                  src="/img/chat-photo-upload.png"
+                  alt="EntreprenAIs chat-app — 写真をアップロードして経営 AI がその場で分析・ディスカッションを開始する画面"
+                  loading="lazy"
+                  width="380"
+                  height="800"
+                />
+              </div>
+            </figure>
+            <figcaption class="feature__caption">
+              <p class="feature__eyebrow">Photo Upload</p>
+              <h3 class="feature__title">写真を送るだけ。スマホで完結する経営 AI 相談</h3>
+              <p class="feature__body">
+                契約書・現場写真・グラフ・提案資料など、手元の写真をそのまま送るだけで、C-Suite エージェントがその場で分析・ディスカッションを開始します。会議室も PC も不要 — スマートフォン一台で経営 AI チームにアクセスでき、移動中や現場でも即座に意思決定を支援します。
+              </p>
+            </figcaption>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Chat Room — C-Suite エージェントのチームルーム -->
+    <section class="fleet__section fleet__section--chatroom" id="chatroom">
+      <div class="fleet__inner">
+        <p class="section__num">03.5 / Chat Room</p>
+        <h2 class="section__title">C-Suite 8 体が集う、チームルーム。</h2>
+
+        <div class="features">
+          <article class="feature">
+            <figure class="feature__device">
+              <div class="feature__phone phone-mock">
+                <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+                <img
+                  class="feature__img phone-mock__img"
+                  src="/img/chat-chatroom-modal.png"
+                  alt="EntreprenAIs chat-app — このルームについてモーダル。eai-auditor / eai-cfo / eai-chro / eai-ciso / eai-clo / eai-coo / eai-cpo / eai-cto の 8 体エージェントと A2A 招待フォームが表示されている"
+                  loading="lazy"
+                  width="380"
+                  height="800"
+                />
+              </div>
+            </figure>
+            <figcaption class="feature__caption">
+              <p class="feature__eyebrow">Chat Room</p>
+              <h3 class="feature__title">チームの全員が、1 つのルームにいる。</h3>
+              <p class="feature__body">
+                「このルームについて」を開くと、在室中の C-Suite エージェント 8 体が一覧表示されます。<strong>eai-auditor・eai-cfo・eai-chro・eai-ciso・eai-clo・eai-coo・eai-cpo・eai-cto</strong> — それぞれのバージョンと役割が一目でわかります。
+              </p>
+              <ul class="feature__list">
+                <li>
+                  <strong>C-Suite 可視化</strong>
+                  <span>在室中のエージェントとそのバージョンを常時確認。誰がルームにいるかが一目瞭然。</span>
+                </li>
+                <li>
+                  <strong>A2A エージェント招待</strong>
+                  <span>外部の A2A 対応エージェントを URL で招待し、ルームに参加させることができます。パートナー AI との越境協調が実現します。</span>
+                </li>
+                <li>
+                  <strong>ルーム別エージェント管理</strong>
+                  <span>プロジェクト・顧客・テーマごとに専用ルームを作成し、参加エージェントを柔軟に管理できます。</span>
+                </li>
+              </ul>
+            </figcaption>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Cycle Automation -->
+    <section class="fleet__section fleet__section--cycle">
+      <div class="fleet__inner">
+        <p class="section__num">04 / Business Cycle</p>
+        <h2 class="section__title">業務サイクルを大幅に自動化</h2>
+        <p class="cycle__lead">
+          毎朝・毎夕の自動ブリーフィングから、年間・四半期・月次の経営会議まで。チャットのプロンプトサジェストに従うだけで、日々の業務サイクルがリズムよく回り続けます。あなたの秘書として、FC が意思決定に集中できる環境をつくります。
+        </p>
+
+        <div class="cycle__grid">
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F305;</div>
+            <h3 class="cycle__title">Daily Briefing — 朝の自動ブリーフィング</h3>
+            <p class="cycle__body">
+              毎朝、AI が前日の活動・未完了タスク・今日の予定を自動集計して<strong>ブリーフィングを生成</strong>します。チャットに届くプロンプトサジェストに従うだけで、何から始めるべきかが即座にわかります。
+            </p>
+          </article>
+
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F31C;</div>
+            <h3 class="cycle__title">End-Of-Day — 夕方の自動日次ログ</h3>
+            <p class="cycle__body">
+              終業時刻に AI が一日の活動を自動集計し、<strong>日次ログ・翌日タスクを生成</strong>します。「今日も終わり」と送るだけで、記録・引き継ぎ・振り返りをまとめてサポートします。
+            </p>
+          </article>
+        </div>
+
+        <!-- Meeting automation sub-section -->
+        <div class="cycle__meeting">
+          <h3 class="cycle__meeting-title">会議運営の革新</h3>
+          <p class="cycle__meeting-sub">年間計画から月次の定例まで、経営のリズムをエージェントが自動で刻む</p>
+
+          <div class="cycle__meeting-grid">
+            <article class="cycle__meeting-card">
+              <div class="cycle__meeting-num" aria-hidden="true">01</div>
+              <h4 class="cycle__meeting-card-title">事前準備の自動収集</h4>
+              <p class="cycle__meeting-card-body">会議前に Issue・KPI・前回議事録を自動集計し、アジェンダドラフトを生成。準備の抜け漏れを大幅に軽減します。</p>
+            </article>
+
+            <article class="cycle__meeting-card">
+              <div class="cycle__meeting-num" aria-hidden="true">02</div>
+              <h4 class="cycle__meeting-card-title">プロンプトサジェストによる議題進行</h4>
+              <p class="cycle__meeting-card-body">会議中、チャットのサジェストに従うだけで議題が滞りなく進行。ファシリテーターの負担を大幅に削減します。</p>
+            </article>
+
+            <article class="cycle__meeting-card">
+              <div class="cycle__meeting-num" aria-hidden="true">03</div>
+              <h4 class="cycle__meeting-card-title">トランスクリプト解析 → Action Items 自動 Issue 化</h4>
+              <p class="cycle__meeting-card-body">会議後、トランスクリプトを AI が解析し、決定事項・Action Items を自動的に Issue として起票。次のアクションが即座に動き出します。</p>
+            </article>
+
+            <article class="cycle__meeting-card">
+              <div class="cycle__meeting-num" aria-hidden="true">04</div>
+              <h4 class="cycle__meeting-card-title">次回会議までの進捗追跡</h4>
+              <p class="cycle__meeting-card-body">起票された Issue の進捗を自動追跡し、次回会議のブリーフィングに自動反映。経営サイクルが途切れず回り続けます。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Bridges -->
+    <section class="fleet__section fleet__section--trust">
+      <div class="fleet__inner">
+        <p class="section__num">05 / Trust &amp; Bridges</p>
+        <h2 class="section__title">情報の壁を守りながら、関係者とつながる。</h2>
+        <p class="trust__lead">
+          AI エージェントは社内情報を厳密に分類し、外部チャネルへ機密が滲み出ないように設計されています。情報隔壁がアーキテクチャレベルで担保されているから、外部サービスと安全につながれます。
+        </p>
+
+        <div class="trust__barrier">
+          <div class="trust__barrier-icon" aria-hidden="true">&#x1F6E1;</div>
+          <div class="trust__barrier-content">
+            <h3 class="trust__barrier-title">情報隔壁 — NDA を守る AI</h3>
+            <p class="trust__barrier-body">
+              すべての社内情報は <strong>CL0 / CL1 / CL2 / CL3</strong> の機密度ラベルで分類されます。エージェントは外部チャネルへ <strong>CL1 以上を出さない / 必要に応じて抽象化する</strong> ルールをアーキテクチャレベルで遵守します。特定顧客・第三者情報の混在を防ぐ <strong>情報隔壁</strong> をソフトウェア境界として持っています。
+            </p>
+            <ul class="trust__barrier-list">
+              <li><strong>CL0</strong>: 公開情報 — 外部チャネルへ自由に流通可</li>
+              <li><strong>CL1</strong>: 社内限定 — 要約・抽象化のみ外部共有可</li>
+              <li><strong>CL2</strong>: 機密 — 外部流通禁止・暗号化保存</li>
+              <li><strong>CL3</strong>: 最機密 — エージェント参照不可</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="fleet__section fleet__section--integrations" id="integrations">
+      <div class="fleet__inner">
+        <p class="section__num">05.5 / Integrations</p>
+        <h2 class="section__title">アプリ連携</h2>
+        <p class="integrations__lead">
+          情報隔壁を守りながら、使い慣れたツールと安全につなぐ。C-Suite Agent Fleet は既存の業務ツールと統合し、AI の力を日常の場所に届けます。
+        </p>
+
+        <div class="integrations__list">
+
+          <!-- Slack 連携 -->
+          <article class="integration-card" id="integration-slack">
+            <div class="integration-card__header">
+              <div class="integration-card__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                  <rect x="5" y="5" width="6" height="6" rx="2" fill="#E01E5A"/>
+                  <rect x="5" y="13" width="6" height="10" rx="2" fill="#E01E5A"/>
+                  <rect x="13" y="5" width="10" height="6" rx="2" fill="#36C5F0"/>
+                  <rect x="13" y="13" width="6" height="6" rx="2" fill="#2EB67D"/>
+                  <rect x="21" y="13" width="2" height="6" rx="1" fill="#2EB67D"/>
+                  <rect x="13" y="21" width="6" height="2" rx="1" fill="#ECB22E"/>
+                  <rect x="21" y="21" width="2" height="2" rx="1" fill="#ECB22E"/>
+                </svg>
+              </div>
+              <div class="integration-card__meta">
+                <h3 class="integration-card__name">Slack</h3>
+                <span class="integration-card__status">
+                  <span class="integration-card__status-dot" aria-hidden="true"></span>
+                  稼働中
+                </span>
+              </div>
+            </div>
+
+            <p class="integration-card__tagline">あなたの Slack を、AI がアシスト。</p>
+
+            <div class="integration-card__body">
+              <figure class="integration-card__device feature__device">
+                <div class="feature__phone phone-mock">
+                  <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+                  <img
+                    class="feature__img phone-mock__img"
+                    src="../img/slack-screenshot.png"
+                    alt="EntreprenAIs — Slack メンションに AI が回答下書きを提案している様子"
+                    loading="lazy"
+                    width="720"
+                    height="1560"
+                  />
+                </div>
+              </figure>
+
+              <div class="integration-card__desc">
+                <p>
+                  Slack 上のメンション・質問・通知など、あらゆる対応を AI が支援します。
+                </p>
+                <ul class="integration-card__features">
+                  <li>返答の下書き提案</li>
+                  <li>情報隔壁チェック済みの安全な発信</li>
+                  <li>会議サマリー・Action Items の通知</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Coming soon プレースホルダー -->
+          <div class="integrations__coming-soon">
+            <p class="integrations__coming-soon-text">LINE・Teams など、順次対応予定</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CISO — Chief Information Security Officer -->
+    <section class="fleet__section fleet__section--ciso" id="ciso">
+      <div class="fleet__inner">
+        <p class="section__num">06 / CISO</p>
+        <h2 class="section__title">隔離された専任エージェントが、組織を独立して監視する。</h2>
+        <p class="ciso__lead">
+          EntreprenAIs の CISO は、組織内の情報フローを監視し、セキュリティポリシーを自律的に執行する経営AIエージェントです。送受信メッセージのリアルタイム審査・情報隔壁の維持・プロンプトインジェクションの検出を担います。
+        </p>
+
+        <div class="ciso__grid">
+          <!-- リアルタイム防御 -->
+          <article class="ciso__card">
+            <h3 class="ciso__title">リアルタイム防御</h3>
+            <p class="ciso__body">
+              チャットや外部チャネルへのすべての送受信メッセージをリアルタイムで審査します。
+            </p>
+            <ul class="ciso__list">
+              <li><strong>情報隔壁</strong>: 機密情報（CL1以上）が外部チャネルに漏洩しないよう、発信前に自動チェック・ブロック</li>
+              <li><strong>プロンプトインジェクション検出</strong>: 外部からの不正指示を受信時に検出し、エージェントへの混入を防止</li>
+            </ul>
+          </article>
+
+          <!-- セキュリティスキャン -->
+          <article class="ciso__card">
+            <h3 class="ciso__title">セキュリティスキャン</h3>
+            <p class="ciso__body">
+              CISO の指揮のもと、脆弱性スキャン・CSIRT 情報収集を実行します。ローカル LLM への分離を開発中。
+            </p>
+            <p class="ciso__contact">
+              詳細はお問い合わせください。
+            </p>
+          </article>
+        </div>
+
+        <div class="ciso__threat-table">
+          <h3 class="ciso__subtitle">対応する脅威</h3>
+          <table class="ciso__table">
+            <thead>
+              <tr>
+                <th>脅威</th>
+                <th>対策</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>情報漏洩</td>
+                <td>発信前の情報隔壁チェック（全チャネル共通）</td>
+              </tr>
+              <tr>
+                <td>プロンプトインジェクション</td>
+                <td>受信メッセージの即時審査・ブロック</td>
+              </tr>
+              <tr>
+                <td>脆弱性・CVE</td>
+                <td>脆弱性スキャン・CSIRT 情報収集（ローカル LLM への分離を開発中）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Corporate Governance -->
+    <section class="fleet__section fleet__section--governance">
+      <div class="fleet__inner">
+        <p class="section__num">07 / Governance</p>
+        <h2 class="section__title">コーポレートガバナンスの革新</h2>
+        <p class="governance__lead">
+          監査・セキュリティ・ガバナンスを、エージェントがリアルタイムで守る。内部統制・コンプライアンスのサイクルをエージェントが支援し、経営の透明性と信頼性を高めます。
+        </p>
+
+        <div class="governance__grid">
+          <article class="governance__card">
+            <div class="governance__icon" aria-hidden="true">&#x1F4CB;</div>
+            <h3 class="governance__title">月次監査報告の自動生成</h3>
+            <p class="governance__body">
+              エージェントが毎月自動で<strong>監査レポートを作成・Issue 化</strong>します。手作業の集計・記録が不要になり、監査サイクルが止まらず回り続けます。
+            </p>
+          </article>
+
+          <article class="governance__card">
+            <div class="governance__icon" aria-hidden="true">&#x1F50D;</div>
+            <h3 class="governance__title">リアルタイム監査</h3>
+            <p class="governance__body">
+              <strong>常時モニタリング</strong>により、ガバナンス違反・プロセス逸脱を即時検知・通知します。問題を月次レビューまで待たずに、発生した瞬間に把握できます。
+            </p>
+          </article>
+
+          <article class="governance__card">
+            <div class="governance__icon" aria-hidden="true">&#x1F512;</div>
+            <h3 class="governance__title">情報セキュリティマネジメント</h3>
+            <p class="governance__body">
+              CL 分類・情報隔壁・暗号化をフレームワークが<strong>自動管理</strong>します。機密情報の取り扱いミスをアーキテクチャレベルで防止し、ISMS 運用の効率を向上します。
+            </p>
+          </article>
+
+          <article class="governance__card">
+            <div class="governance__icon" aria-hidden="true">&#x2696;&#xFE0F;</div>
+            <h3 class="governance__title">コーポレートガバナンス強化</h3>
+            <p class="governance__body">
+              内部統制・コンプライアンスサイクルをエージェントが継続的に支援します。<strong>Issue-Driven Governance</strong> により、すべての意思決定に証跡が残ります。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLO Legal & Compliance -->
+    <section class="fleet__section fleet__section--compliance">
+      <div class="fleet__inner">
+        <p class="section__num">08 / Legal &amp; Compliance</p>
+        <h2 class="section__title">法務・コンプライアンスの強化</h2>
+        <p class="compliance__lead">
+          <strong>CLO エージェントは法的判断を一切行いません。</strong>法令・規制・判例情報の収集・整理・提供に特化しています。最終判断は必ずご利用者またはご利用の弁護士・専門家が行います。
+        </p>
+
+        <div class="compliance__grid">
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4DC;</div>
+            <h3 class="compliance__title">法令・規制情報の提供</h3>
+            <p class="compliance__body">
+              事業に関連する法令・規制・判例情報を<strong>収集・整理して提供</strong>します。判断はしません。経営判断に必要な情報を把握・整理し、専門家との対話をスムーズにします。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4F0;</div>
+            <h3 class="compliance__title">リアルタイム法的情報提供</h3>
+            <p class="compliance__body">
+              法改正・規制動向・判例を<strong>継続的にモニタリング</strong>し、関連情報をお届けします。見落としや対応遅延を防ぎ、専門家への相談タイミングの把握を支援します。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x2705;</div>
+            <h3 class="compliance__title">コンプライアンス情報の整理</h3>
+            <p class="compliance__body">
+              遵守すべき規制の一覧・チェックリストを<strong>自動整理</strong>します。意思決定・文書に関連する規制情報を収集・整理し、コンプライアンス状況の把握を支援します。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F91D;</div>
+            <h3 class="compliance__title">専門家への情報連携</h3>
+            <p class="compliance__body">
+              ご利用の弁護士・顧問弁護士への<strong>情報パッケージを整理</strong>します。関連法令・規制・背景情報をまとめて提供し、専門家との相談をスムーズにサポートします。
+            </p>
+          </article>
+        </div>
+
+        <p class="compliance__notice">
+          本機能は<strong>弁護士法第72条を踏まえた設計</strong>のもと、情報収集・整理・提供に特化しています。法的判断・アドバイスは行いません。最終判断はご利用者またはご利用の弁護士が行います。AI は士業の独占業務を行いません。
+        </p>
+      </div>
+    </section>
+
+    <!-- CFO Accounting Intelligence -->
+    <section class="fleet__section fleet__section--accounting">
+      <div class="fleet__inner">
+        <p class="section__num">09 / Accounting Intelligence</p>
+        <h2 class="section__title">管理会計を、CFO エージェントが担う。</h2>
+        <p class="compliance__lead">
+          管理会計（予算策定・原価計算・KPI 管理など）は法的規制のない領域です。CFO エージェントが積極的に担い、経営判断に直結する数値を自動で整備します。税務・会計監査は各専門家と連携します。
+        </p>
+
+        <div class="compliance__grid">
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4CA;</div>
+            <h3 class="compliance__title">予算策定・予実管理の自動化</h3>
+            <p class="compliance__body">
+              予算計画の策定から実績との比較・差異分析まで、CFO エージェントが<strong>自動で管理</strong>します。予実ギャップをリアルタイムに把握し、資源配分の意思決定を大幅にサポートします。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4C8;</div>
+            <h3 class="compliance__title">原価計算・限界利益分析</h3>
+            <p class="compliance__body">
+              製品・サービスごとの原価構造を可視化し、<strong>限界利益・貢献利益</strong>を算出します。どの事業・商品が利益に貢献しているかを数字で示し、価格戦略・コスト改善の判断を支援します。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x23F0;</div>
+            <h3 class="compliance__title">KPI モニタリング・経営ダッシュボード</h3>
+            <p class="compliance__body">
+              売上・利益率・キャッシュフローなど主要経営指標を<strong>リアルタイムで追跡</strong>し、経営ダッシュボードを自動更新します。閾値超過時には即座に通知し、迅速な状況把握をサポートします。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4B0;</div>
+            <h3 class="compliance__title">資金繰り管理・キャッシュフロー予測</h3>
+            <p class="compliance__body">
+              入出金の予実を継続的に管理し、<strong>キャッシュフロー予測</strong>を自動生成します。手元資金の状況を常時可視化することで、資金ショートリスクの早期把握と対策立案を支援します。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F4DD;</div>
+            <h3 class="compliance__title">月次経営報告書の自動生成</h3>
+            <p class="compliance__body">
+              月次・四半期の経営報告書を CFO エージェントが<strong>自動で作成</strong>します。部門別・プロジェクト別の収益管理レポートも生成し、経営会議の準備にかかる時間を大幅に削減します。
+            </p>
+          </article>
+
+          <article class="compliance__card">
+            <div class="compliance__icon" aria-hidden="true">&#x1F9EE;</div>
+            <h3 class="compliance__title">投資判断のための数値シミュレーション</h3>
+            <p class="compliance__body">
+              新規事業・設備投資・採用計画などのシナリオを数値化し、<strong>複数案を比較</strong>します。ROI・回収期間・リスク感度を算出することで、FC の意思決定を定量的な根拠で支援します。
+            </p>
+          </article>
+        </div>
+
+        <p class="compliance__notice">
+          税務相談・税務申告はご利用の顧問税理士が担当します（税理士法第52条）。財務諸表監査はご利用の公認会計士が担当します（公認会計士法）。CFO エージェントはこれら士業の独占業務を行いません。
+        </p>
+      </div>
+    </section>
+
+    <!-- Build — すぐ作って、長く運用する -->
+    <section class="fleet__section fleet__section--build">
+      <div class="fleet__inner">
+        <p class="section__num">10 / Build</p>
+        <h2 class="section__title">すぐに作って、長く運用する。</h2>
+        <p class="build__lead">
+          アプリ・ホームページ・AI エージェントの作成がすぐに行えます。<br />
+          使い捨てのプロトタイプから本格運用まで、高品質なデジタルコンテンツを誰でも簡単に開発・運用できます。
+        </p>
+
+        <ul class="build__highlights">
+          <li>
+            <strong>すぐに作る</strong>
+            <span>自然言語の依頼で AI がスキャフォールド、サブドメインで即時公開。</span>
+          </li>
+          <li>
+            <strong>エージェントを作る</strong>
+            <span>自然言語の指示だけで A2A 対応 AI エージェントを生成し、サブドメインで即時公開。</span>
+          </li>
+          <li>
+            <strong>育てて使う</strong>
+            <span>使い捨てから本格運用まで、同じ基盤の上で品質を磨き続けられる。</span>
+          </li>
+          <li>
+            <strong>運用も任せる</strong>
+            <span>デプロイ・監視・バックアップを C-Suite Agent が自律的に回す。</span>
+          </li>
+        </ul>
+
+        <p class="build__cta">
+          <a class="btn btn--primary" href="/eai/showcase/">事例を見る &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Coordination -->
+    <section class="fleet__section fleet__section--dark">
+      <div class="fleet__inner">
+        <p class="section__num">11 / Coordination</p>
+        <h2 class="section__title">FC は方針を、Fleet は執行を。</h2>
+        <p class="fleet__lead">
+          Fleet Commander（人間）は方針と価値観の決定に集中し、執行はエージェントに委譲します。具体的なタスクは COO が受け取って分解し、専門エージェントに配分。結果は進捗カードや通知で FC に戻ります。
+        </p>
+
+        <div class="fleet__flow" aria-hidden="false">
+          <div class="fleet__flow-row">
+            <div class="fleet__flow-node fleet__flow-node--fc">
+              <span class="fleet__flow-label">Fleet Commander</span>
+              <span class="fleet__flow-sub">人間 — 方針・価値観</span>
+            </div>
+            <span class="fleet__flow-arrow" aria-hidden="true">&rarr;</span>
+            <div class="fleet__flow-node fleet__flow-node--coo">
+              <span class="fleet__flow-label">COO</span>
+              <span class="fleet__flow-sub">タスク分解・配分</span>
+            </div>
+            <span class="fleet__flow-arrow" aria-hidden="true">&rarr;</span>
+            <div class="fleet__flow-node fleet__flow-node--specialists">
+              <span class="fleet__flow-label">CTO / CISO / CLO / CFO / CPO / CHRO</span>
+              <span class="fleet__flow-sub">専門領域で執行</span>
+            </div>
+          </div>
+          <div class="fleet__flow-row fleet__flow-row--return">
+            <span class="fleet__flow-arrow fleet__flow-arrow--back" aria-hidden="true">&larr;</span>
+            <div class="fleet__flow-node fleet__flow-node--report">
+              <span class="fleet__flow-label">進捗カード / 通知</span>
+              <span class="fleet__flow-sub">結果を FC に報告</span>
+            </div>
+          </div>
+          <p class="fleet__flow-note">
+            Auditor は本フローから独立し、Fleet Commander に直接報告します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">12 / Foundation</p>
+        <h2 class="section__title">背景の仕組み</h2>
+        <div class="fleet__found-grid">
+          <article class="fleet__found">
+            <h3 class="fleet__found-title">A2A プロトコル</h3>
+            <p class="fleet__found-body">
+              エージェント同士が依頼・委譲・交渉を自律的に行うための通信標準。
+              Fleet 内の協調はもちろん、IoA 上で他組織のエージェントとも越境して協調できる構造を目指しています。
+            </p>
+          </article>
+          <article class="fleet__found">
+            <h3 class="fleet__found-title">Zero Emission Vision</h3>
+            <p class="fleet__found-body">
+              太陽光とバッテリーの余剰電力時間帯にローカル LLM 推論を集中させ、
+              エージェントの稼働を化石燃料から切り離していく Carbon-Aware なスケジューリングを採用します。
+            </p>
+          </article>
+        </div>
+        <p class="fleet__found-link">
+          詳細は <a href="/#mission">Mission</a> / <a href="/#approach">Approach</a> をご覧ください。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__mark" aria-hidden="true">
+          <span class="footer__mark-bar"></span>
+          <span class="footer__mark-dot"></span>
+        </span>
+        <div>
+          <p class="footer__name">樽石デジタル技術研究所合同会社</p>
+          <p class="footer__name-en">Taruishi Digital Research Institute, LLC</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <p class="footer__copy">
+          &copy; <span id="year">2026</span> Taruishi Digital Research Institute, LLC &middot;
+          This site is part of EntreprenAIs IoA platform
+        </p>
+        <p class="footer__legal">
+          <a href="/privacy/" class="footer__link">Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>
