@@ -1,31 +1,31 @@
 {
   "https://entreprenais.com/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "b8549500ffa394f74c54bea4ebae15739d95ef079a6bf1cfeb90d13082299a21",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   },
   "https://entreprenais.com/eai/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "7f022a55e275da6c0c9d25ee6f5c3a6cb8a96a922c86ed14307e88120e6cbb13",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   },
   "https://entreprenais.com/eai/showcase/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "d66f03fb0b1b16c8bb93354b3154da0777ce349a479ce301dbab563f76b33950",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   },
   "https://entreprenais.com/privacy/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "53d2e993a4337c3912819692ae05ebf8778b8d314d18a2b211f4a1c9d80ee2c2",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   },
   "https://entreprenais.com/sites/shimadacrepe/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "c19559d3e0aaf6da460fe72cd14210369ad996d1e484f90cf8d8b8551c7dcc41",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   },
   "https://entreprenais.com/vertical/": {
-    "last_crawled": "2026-08-02T18:49:22.413643+00:00",
+    "last_crawled": "2026-08-03T19:15:02.373270+00:00",
     "sha256": "440afd39af772496d39834cbcadab21d0b6c492f2f8837dfb7ea72291e63a97d",
     "updated_at": "2026-08-01T03:51:14.199656+00:00"
   }
