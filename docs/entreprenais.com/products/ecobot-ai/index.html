@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e9f7ea" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>エコボットAI | 樽石デジタル技術研究所合同会社 (TDRI)</title>
+  <meta name="description" content="グリーンAIクラウド上で動くAIチャットスタッフ「エコボットAI」。Web検索・回答生成、チャット履歴管理、ノーコードカスタマイズ、多言語対応、音声入出力、オフィスデータ活用に対応し、実質再エネ100%・0.5ms超高速応答で24時間稼働できます。" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://entreprenais.com/products/ecobot-ai/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="EntreprenAIs / 樽石デジタル技術研究所合同会社" />
+  <meta property="og:url" content="https://entreprenais.com/products/ecobot-ai/" />
+  <meta property="og:title" content="エコボットAI | 樽石デジタル技術研究所合同会社 (TDRI)" />
+  <meta property="og:description" content="グリーンAIクラウド上で動くAIチャットスタッフ「エコボットAI」。Web検索・回答生成、チャット履歴管理、ノーコードカスタマイズ、多言語対応、音声入出力、オフィスデータ活用に対応し、実質再エネ100%・0.5ms超高速応答で24時間稼働できます。" />
+  <meta property="og:image" content="https://entreprenais.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="エコボットAI | 樽石デジタル技術研究所合同会社 (TDRI)" />
+  <meta name="twitter:description" content="グリーンAIクラウド上で動くAIチャットスタッフ「エコボットAI」。実質再エネ100%・0.5ms超高速応答で24時間稼働できます。" />
+  <meta name="twitter:image" content="https://entreprenais.com/og.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- SRI 非適用 (#70): Google Fonts は動的 URL のためハッシュ固定不可。CSP の style-src / font-src allowlist で保護。 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Google Analytics 4 (gtag.js) -->
+  <!-- SRI 非適用 (#70): gtag/js は動的バージョンロード CDN のためハッシュ固定不可。CSP の script-src allowlist で保護。 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ND9RLH0NT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ND9RLH0NT3');
+  </script>
+
+  <!-- JSON-LD: WebPage + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://entreprenais.com/products/ecobot-ai/#webpage",
+        "url": "https://entreprenais.com/products/ecobot-ai/",
+        "name": "エコボットAI | 樽石デジタル技術研究所合同会社 (TDRI)",
+        "description": "グリーンAIクラウド上で動くAIチャットスタッフ「エコボットAI」。実質再エネ100%・0.5ms超高速応答で24時間稼働できます。",
+        "isPartOf": { "@id": "https://entreprenais.com/#website" },
+        "inLanguage": "ja-JP"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://entreprenais.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "エコボットAI",
+            "item": "https://entreprenais.com/products/ecobot-ai/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="fleet-page ecobot-page">
+
+  <!-- Fixed nav -->
+  <nav class="nav is-scrolled" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="/">
+        <span class="nav__mark" aria-hidden="true">
+          <span class="nav__mark-bar"></span>
+          <span class="nav__mark-dot"></span>
+        </span>
+        <span class="nav__name">TDRI</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="/#mission">Mission</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#works">Roadmap</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="fleet">
+    <!-- Hero -->
+    <section class="fleet__hero ecobot__hero">
+      <div class="ecobot__hero-decor" aria-hidden="true"></div>
+      <div class="fleet__hero-inner staff__hero-grid">
+        <div class="staff__hero-copy">
+          <p class="fleet__eyebrow ecobot__eyebrow">Green AI Cloud Product</p>
+          <p class="ecobot__product-name">
+            <span class="ecobot__product-name-leaf" aria-hidden="true">&#x1F343;</span>
+            <span class="accent">エコボット</span>AI
+          </p>
+          <h1 class="fleet__hero-title">
+            24時間動いても、<br />
+            <span class="accent">エコ</span>なAIチャットスタッフ。
+          </h1>
+          <p class="fleet__hero-lead">
+            Web検索×回答生成で、24時間365日休まず対応。電力消費を抑えたグリーンAIクラウドで動きます。
+          </p>
+
+          <ul class="staff__hero-badges" aria-label="エコボットAIの強み">
+            <li class="staff__hero-badge">
+              <span class="staff__hero-badge-icon" aria-hidden="true">&#x26A1;</span>
+              <strong>0.5ms</strong>超高速応答
+            </li>
+            <li class="staff__hero-badge">
+              <span class="staff__hero-badge-icon" aria-hidden="true">&#x1F50B;</span>
+              <strong>超省電力</strong>な脊髄反射応答
+            </li>
+            <li class="staff__hero-badge">
+              <span class="staff__hero-badge-icon" aria-hidden="true">&#x2600;&#xFE0F;</span>
+              実質再エネ<strong>100%</strong>
+            </li>
+          </ul>
+
+          <div class="fleet__hero-cta">
+            <a class="btn btn--ghost" href="/">&larr; Home に戻る</a>
+            <a class="btn btn--primary" href="/#contact">お問い合わせ &rarr;</a>
+          </div>
+        </div>
+
+        <div class="staff__hero-visual">
+          <div class="staff__hero-metric">
+            <span class="staff__hero-metric-value">0.5</span>
+            <span class="staff__hero-metric-unit">ms</span>
+            <span class="staff__hero-metric-note">超高速応答<br />で低消費電力</span>
+          </div>
+
+          <div class="feature__phone phone-mock">
+            <span class="feature__notch phone-mock__notch" aria-hidden="true"></span>
+            <div class="line-mock">
+              <div class="line-mock__header">&#x1F343; エコボットAI（イメージ）</div>
+              <div class="line-mock__body" id="ecobot-hero-msgs">
+                <div class="line-mock__bubble line-mock__bubble--user">深夜なんだけど、営業時間を教えて</div>
+                <div class="line-mock__bubble line-mock__bubble--bot">24時間365日、いつでもご案内できます。ほかにご質問はありますか？&#x1F31F;</div>
+                <div class="line-mock__bubble line-mock__bubble--user">電力とか環境負荷は大丈夫？</div>
+                <div class="line-mock__bubble line-mock__bubble--bot">実質再エネ100%のグリーンAIクラウドで稼働しているので安心です&#x2600;&#xFE0F;</div>
+              </div>
+            </div>
+          </div>
+
+          <figure class="staff__hero-photo">
+            <img src="/img/ecobot-solar-panel.jpg" alt="太陽光パネル" loading="lazy" width="800" height="600" />
+            <figcaption class="staff__hero-photo-caption">&#x2600;&#xFE0F; 太陽光発電</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 00 / Pain Points -->
+    <section class="fleet__section fleet__section--dark">
+      <div class="fleet__inner">
+        <p class="section__num">00 / お困りごと</p>
+        <h2 class="section__title">こんなお悩み、ありませんか。</h2>
+        <p class="cycle__lead">
+          サイト運営やお問い合わせ対応の現場では、こうした声をよく耳にします。
+        </p>
+
+        <div class="pain__grid">
+          <article class="pain__card">
+            <div class="pain__icon" aria-hidden="true">&#x1F4E5;</div>
+            <p class="pain__body">問い合わせが殺到して対応が追いつかない。</p>
+          </article>
+
+          <article class="pain__card">
+            <div class="pain__icon" aria-hidden="true">&#x1F3AF;</div>
+            <p class="pain__body">提案精度が低く、最適な商品・コンテンツを提供できていない。</p>
+          </article>
+
+          <article class="pain__card">
+            <div class="pain__icon" aria-hidden="true">&#x1F5C3;&#xFE0F;</div>
+            <p class="pain__body">コンテンツが多すぎて、ユーザーに最適な情報を案内できていない。</p>
+          </article>
+
+          <article class="pain__card">
+            <div class="pain__icon" aria-hidden="true">&#x1F527;</div>
+            <p class="pain__body">既存チャットボットのFAQやシナリオの運用が大変すぎる。</p>
+          </article>
+
+          <article class="pain__card pain__card--energy">
+            <div class="pain__icon" aria-hidden="true">&#x26A1;</div>
+            <p class="pain__body">
+              AIチャットボットを24時間稼働させたいが、<strong>大量の電力を消費するイメージ</strong>があり、コスト面・環境面で導入を躊躇している。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 / Problem to Solution -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">01 / Solution</p>
+        <h2 class="section__title" style="color: var(--ink);">その困りごと、エコボットAIが応えます。</h2>
+        <p class="cycle__lead" style="color: var(--ink);">
+          お困りごとひとつひとつに、対応する強みがあります。
+        </p>
+
+        <div class="solve__grid">
+          <article class="solve__row">
+            <p class="solve__problem"><span class="solve__label">お困りごと</span>問い合わせが殺到して対応が追いつかない</p>
+            <div class="solve__arrow" aria-hidden="true">&#x2192;</div>
+            <p class="solve__answer"><span class="solve__label solve__label--answer">対応する強み</span>Web検索×回答生成で24時間365日、休まず一次対応</p>
+          </article>
+
+          <article class="solve__row">
+            <p class="solve__problem"><span class="solve__label">お困りごと</span>提案精度が低く最適な商品・コンテンツを提供できていない</p>
+            <div class="solve__arrow" aria-hidden="true">&#x2192;</div>
+            <p class="solve__answer"><span class="solve__label solve__label--answer">対応する強み</span>商品・レビュー・SNSデータ連携とオフィスデータ活用による文脈理解</p>
+          </article>
+
+          <article class="solve__row">
+            <p class="solve__problem"><span class="solve__label">お困りごと</span>コンテンツが多すぎて最適な情報を案内できていない</p>
+            <div class="solve__arrow" aria-hidden="true">&#x2192;</div>
+            <p class="solve__answer"><span class="solve__label solve__label--answer">対応する強み</span>Web検索でリアルタイムに情報を取得し、状況に応じた回答を生成</p>
+          </article>
+
+          <article class="solve__row">
+            <p class="solve__problem"><span class="solve__label">お困りごと</span>既存チャットボットのFAQ・シナリオ運用が大変すぎる</p>
+            <div class="solve__arrow" aria-hidden="true">&#x2192;</div>
+            <p class="solve__answer"><span class="solve__label solve__label--answer">対応する強み</span>回答登録・編集機能とノーコードカスタマイズで運用負荷を軽減</p>
+          </article>
+
+          <article class="solve__row solve__row--energy">
+            <p class="solve__problem"><span class="solve__label">お困りごと</span>電力を大量消費するイメージがあり導入を躊躇している</p>
+            <div class="solve__arrow" aria-hidden="true">&#x2192;</div>
+            <p class="solve__answer"><span class="solve__label solve__label--answer">対応する強み</span>実質再エネ100%のグリーンAIクラウド + 0.5ms超高速応答で低消費電力</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01.5 / Speed Demo -->
+    <!-- #436: FC指摘「エコボットAIのイメージがまったく速さを表現出来てない。トップページの
+         デモをみて」を受け、トップページ（cloud-src/src/pages/index.astro の #demo LIVE
+         DEMOセクション）にある「自社の反射応答 vs 一般的なクラウドLLM推論」の視覚的対比
+         デモを、本ページ（.ecobot-page の明るいグリーン基調イラスト調トーン）専用に
+         再実装する。Why Green セクション（04）には速度訴求を戻さない（#434 の方針を
+         維持）— 電力の文脈では速度を主役にしないという方針と、ページ全体としては速さも
+         視覚的に伝わるべきという今回の指示は別軸のため、本セクションを Why Green とは
+         独立した場所（Concept の前）に新設する。表示する数値は既存サイトで確立済みの
+         実測値（0.5ms 反射応答 / 一般的なクラウドLLM推論は 9.5〜22.9 秒）のみを使用。 -->
+    <section class="fleet__section speed-demo">
+      <div class="fleet__inner">
+        <p class="section__num" style="color: var(--ink);">Speed</p>
+        <h2 class="section__title" style="color: var(--ink);">速さは、会話でしか伝わらない。</h2>
+        <p class="cycle__lead" style="color: var(--ink-soft);">
+          左はエコボットAIの反射応答（CPUキャッシュ経路・LLM推論なし）。右は同じ質問を一般的なクラウドLLM推論に送った場合の実測どおりの待ち時間です。左が会話をすべて終える頃、右はまだ最初の返信を書いている最中です。
+        </p>
+
+        <div class="speed-demo__grid" id="speed-demo-root">
+          <div class="speed-demo__card speed-demo__card--ours">
+            <div class="speed-demo__head">
+              <span class="speed-demo__dot" aria-hidden="true">&#x1F343;</span>
+              <span class="speed-demo__title">エコボットAI</span>
+              <span class="speed-demo__badge">reflex path</span>
+            </div>
+            <div class="speed-demo__body" id="speed-demo-own-body">
+              <div class="speed-demo__idle">画面に入ると自動で再生します</div>
+            </div>
+            <div class="speed-demo__foot">
+              <span class="speed-demo__foot-value" data-own-ms-big>0.5</span>
+              <span class="speed-demo__foot-unit">ms</span>
+              <span class="speed-demo__foot-note">応答処理時間（LLM推論なし・CPUのみ）</span>
+            </div>
+          </div>
+
+          <div class="speed-demo__card speed-demo__card--cloud">
+            <div class="speed-demo__head">
+              <span class="speed-demo__dot" aria-hidden="true">&#x2601;&#xFE0F;</span>
+              <span class="speed-demo__title">一般的なクラウドLLM推論</span>
+              <span class="speed-demo__badge">毎回フル生成</span>
+            </div>
+            <div class="speed-demo__body" id="speed-demo-cloud-body">
+              <div class="speed-demo__idle">実測どおり実時間で待機します</div>
+            </div>
+            <div class="speed-demo__foot">
+              <span class="speed-demo__foot-value" data-cloud-sec-big>9.5</span>
+              <span class="speed-demo__foot-unit">s</span>
+              <span class="speed-demo__foot-note">会話開始からの経過時間（実測 9.5〜22.9 秒/応答）</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="speed-demo__disclaimer">
+          &#x203B; デモは自社実測値を再現したシミュレーションで、右パネルの待ち時間は倍速なしの実時間です。左は固定応答をキャッシュから返す処理、右は毎回フル生成する推論処理で、処理内容が異なります。会話が終わると自動でリプレイします。
+        </p>
+      </div>
+    </section>
+
+    <!-- 02 / Concept -->
+    <section class="fleet__section fleet__section--dark">
+      <div class="fleet__inner">
+        <p class="section__num">02 / Concept</p>
+        <h2 class="section__title">生成AIが、24時間働き続けるスタッフになる。</h2>
+        <p class="cycle__lead">
+          ホームページやアプリに組み込むだけで導入できる生成AIチャットスタッフ、エコボットAI。FAQに頼らず、Web検索でリアルタイムに情報を取得して回答を生成します。
+        </p>
+
+        <ul class="cycle__badges" aria-label="エコボットAIの特長">
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F4E6;</span>
+            組み込むだけで導入完了
+          </li>
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F310;</span>
+            案内内容がいつも最新
+          </li>
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F550;</span>
+            深夜・早朝も<strong>24時間365日</strong>対応
+          </li>
+        </ul>
+
+        <div class="cycle__grid">
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F310;</div>
+            <h3 class="cycle__title">Web検索 &times; 回答生成</h3>
+            <p class="cycle__body">
+              質問を受けると、必要に応じて<strong>Web検索でリアルタイムに情報を取得</strong>し、その場で回答を生成します。あらかじめ登録したFAQだけに頼らないため、キャンペーンや営業時間の変更など、状況の変化にも追随できます。
+            </p>
+          </article>
+
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F4AC;</div>
+            <h3 class="cycle__title">24時間365日、休まず対応</h3>
+            <p class="cycle__body">
+              深夜・早朝・休日を問わず、人手を介さずに一次対応を継続します。よくある質問への即答から、複雑な質問の一次受付まで、営業時間の制約なく応答し続けます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 / Features -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">03 / Features</p>
+        <h2 class="section__title">デジタルスタッフに必要な機能を、ひととおり。</h2>
+        <p class="cycle__lead" style="color: var(--ink);">
+          AIチャットスタッフの導入・運用に必要とされる基本機能を一通り備えています。
+        </p>
+
+        <div class="staff__grid">
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F50D;</div>
+            <h3 class="staff__title">Web検索・回答生成</h3>
+            <p class="staff__body">リアルタイムにWeb検索し、最新情報をもとに回答を生成します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F4C4;</div>
+            <h3 class="staff__title">チャット履歴管理</h3>
+            <p class="staff__body">やり取りされた会話ログを記録・確認でき、対応状況の振り返りに使えます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x270F;&#xFE0F;</div>
+            <h3 class="staff__title">回答登録・編集機能</h3>
+            <p class="staff__body">よくある質問への回答をあらかじめ登録・編集し、応答の精度を継続的に高められます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F3A8;</div>
+            <h3 class="staff__title">ノーコードデザインカスタマイズ</h3>
+            <p class="staff__body">プログラミング不要で、チャットウィジェットの見た目をサイトのデザインに合わせて調整できます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F310;</div>
+            <h3 class="staff__title">多言語対応</h3>
+            <p class="staff__body">英語・中国語・韓国語など、複数の言語での問い合わせ対応に対応します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F4CA;</div>
+            <h3 class="staff__title">アクセス解析連携</h3>
+            <p class="staff__body">チャット利用状況をアクセス解析と連携し、問い合わせ傾向の把握に活用できます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F3A4;</div>
+            <h3 class="staff__title">音声入力・音声読み上げ出力</h3>
+            <p class="staff__body">音声での質問入力と、回答の音声読み上げ出力に対応します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x2699;&#xFE0F;</div>
+            <h3 class="staff__title">AIカスタマイズ（カスタムプロンプト）</h3>
+            <p class="staff__body">応答のトーンや対応方針を、カスタムプロンプトによって業種・ブランドに合わせて調整できます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F5C2;&#xFE0F;</div>
+            <h3 class="staff__title">オフィスデータ活用</h3>
+            <p class="staff__body">PDF・Word・Excel・PowerPointなど、社内に蓄積されたオフィス文書を回答の情報源として活用します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F6D2;</div>
+            <h3 class="staff__title">商品・レビュー・SNSデータ連携</h3>
+            <p class="staff__body">商品データ・レビューデータ・SNSデータと連携し、EC・接客領域での回答精度を高めます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 / Green Differentiation -->
+    <section class="fleet__section fleet__section--dark">
+      <div class="fleet__inner">
+        <p class="section__num">04 / Why Green</p>
+        <h2 class="section__title">24時間稼働させるほど、電力の話から逃げられない。</h2>
+
+        <p class="energy__lead">
+          多くのAIチャットスタッフは、質問のたびにクラウドの大きなAIへ問い合わせるため、稼働時間が長いほど電力消費が積み上がります。エコボットAIは2層構成で、定型的な質問は<strong>LLMを使わずCPUだけの軽量経路</strong>で処理します。
+        </p>
+
+        <ul class="cycle__badges" aria-label="エコボットAIの省電力の仕組み">
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F9E0;</span>
+            大脳AI&times;エージェント脊髄反射技術の<strong>2層構成</strong>
+          </li>
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F500;</span>
+            複雑な判断だけローカルLLMに振り分け
+          </li>
+          <li class="cycle__badge">
+            <span class="cycle__badge-icon" aria-hidden="true">&#x1F343;</span>
+            LLM呼び出しを最小化し<strong>電力消費を抑制</strong>
+          </li>
+        </ul>
+
+        <div class="trust__barrier">
+          <div class="trust__barrier-icon" aria-hidden="true">&#x2600;&#xFE0F;</div>
+          <div class="trust__barrier-content">
+            <h3 class="trust__barrier-title">太陽光と水力で動く、グリーンAIクラウド</h3>
+            <p class="trust__barrier-body">
+              自社グリーンデータセンター内で、太陽光自家発電と再エネ電力契約（アクアエナジー100等）による電力のみでAI推論を完結しています。外部クラウドLLM・他社データセンターを経由しないため、電力起源を自社で説明でき、環境負荷とコストを同時に抑えられます。
+            </p>
+            <ul class="trust__barrier-list">
+              <li><strong>太陽光発電</strong>: 自社拠点で自家発電し、グリーンAIクラウドのコンピュートを稼働</li>
+              <li><strong>大脳AI &times; エージェント脊髄反射技術</strong>: 定型的な質問はCPUキャッシュ経路で0.5ms超高速応答、未知の質問だけローカルLLMをオンデマンド起動</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="compliance__notice">
+          メーター・数値は自社計測値にもとづく傾向値です。「0.5ms」はエージェント脊髄反射技術の実行時間の自社計測値で、すべてのリクエストでの応答を保証するものではありません。計測条件・「実質再エネ100%」の定義は継続整備中です。
+        </p>
+      </div>
+    </section>
+
+    <!-- 05 / Why Chosen -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">05 / 選ばれる理由</p>
+        <h2 class="section__title" style="color: var(--ink);">エコボットAIが選ばれる理由。</h2>
+
+        <div class="staff__grid">
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F310;</div>
+            <h3 class="staff__title">Web検索×回答生成で常に最新</h3>
+            <p class="staff__body">FAQ登録だけに頼らず、リアルタイムWeb検索で状況の変化に追随した回答を生成します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F3A8;</div>
+            <h3 class="staff__title">ノーコードで導入・運用がかんたん</h3>
+            <p class="staff__body">プログラミング不要のデザインカスタマイズと回答登録・編集機能で、運用チームの負荷を抑えます。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F5C2;&#xFE0F;</div>
+            <h3 class="staff__title">既存データ資産をそのまま活用</h3>
+            <p class="staff__body">オフィス文書・商品データ・レビューデータ・SNSデータなど、社内に蓄積された情報を回答の情報源として活用できます。</p>
+          </article>
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x2600;&#xFE0F;</div>
+            <h3 class="staff__title">実質再エネ100%のグリーンAIクラウド</h3>
+            <p class="staff__body">太陽光自家発電と水力由来の再エネ電力プランを組み合わせた自社グリーンデータセンターでAI推論を完結します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x26A1;</div>
+            <h3 class="staff__title">0.5ms超高速応答で低消費電力</h3>
+            <p class="staff__body">大脳AI×エージェント脊髄反射技術の2層構成により、定型的な質問は低消費電力のCPUキャッシュ経路で即答します。</p>
+          </article>
+
+          <article class="staff__card">
+            <div class="staff__icon" aria-hidden="true">&#x1F310;</div>
+            <h3 class="staff__title">多言語・音声対応で幅広いユーザーに対応</h3>
+            <p class="staff__body">多言語対応と音声入力・音声読み上げ出力により、幅広い利用者層に対応できます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 / Use Cases -->
+    <section class="fleet__section fleet__section--features">
+      <div class="fleet__inner">
+        <p class="section__num">06 / Use Cases</p>
+        <h2 class="section__title">活用シーンは、ふたつ。</h2>
+        <p class="features__lead">
+          24時間対応が求められる領域を中心に、幅広い業種でご利用いただけます。
+        </p>
+
+        <div class="staff__usecase-grid" style="margin-top: 3rem;">
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F6D2;</div>
+            <h3 class="cycle__title">EC業界 — 24時間カスタマーサポート</h3>
+            <p class="cycle__body">
+              営業時間外の問い合わせにも即応し、商品の疑問や注文に関する質問に24時間対応します。商品データ・レビューデータとの連携により、接客品質を落とさずに対応範囲を広げられます。
+            </p>
+          </article>
+
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">&#x1F3DB;&#xFE0F;</div>
+            <h3 class="cycle__title">自治体・公共機関 — 市民案内・庁内検索</h3>
+            <p class="cycle__body">
+              窓口業務時間外でも、行政手続きや施設利用に関する市民からの問い合わせに対応します。オフィスデータ活用機能により、庁内文書を情報源とした庁内検索用途にも応用できます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 / Onboarding Flow -->
+    <section class="fleet__section fleet__section--dark">
+      <div class="fleet__inner">
+        <p class="section__num">07 / お問い合わせの流れ</p>
+        <h2 class="section__title">導入までの3ステップ。</h2>
+        <p class="cycle__lead">
+          お問い合わせから導入まで、シンプルな3ステップでご案内します。
+        </p>
+
+        <div class="flow__grid">
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">1&#xFE0F;&#x20E3;</div>
+            <h3 class="cycle__title">お問い合わせ</h3>
+            <p class="cycle__body">
+              フォームからお気軽にご連絡ください。業種・利用規模・必要な機能などをお伺いします。
+            </p>
+          </article>
+
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">2&#xFE0F;&#x20E3;</div>
+            <h3 class="cycle__title">ヒアリング・デモのご案内</h3>
+            <p class="cycle__body">
+              課題や要件を詳しくお伺いした上で、実際に動くデモ環境をご案内します。
+            </p>
+          </article>
+
+          <article class="cycle__card">
+            <div class="cycle__icon" aria-hidden="true">3&#xFE0F;&#x20E3;</div>
+            <h3 class="cycle__title">ご提案・導入</h3>
+            <p class="cycle__body">
+              業種・利用規模に応じた最適な構成・料金プランをご提案し、導入を進めます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 / FAQ -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">08 / FAQ</p>
+        <h2 class="section__title" style="color: var(--ink);">よくあるご質問。</h2>
+
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary class="faq__question">料金はどのくらいかかりますか？</summary>
+            <p class="faq__answer">業種・利用規模・必要な機能の組み合わせによって最適な料金プランが異なるため、個別にお見積もりしています。まずはお問い合わせください。</p>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__question">導入までどのくらいの期間がかかりますか？</summary>
+            <p class="faq__answer">既存のホームページやアプリへの組み込みが中心のため、大規模なシステム改修は前提としていません。具体的な期間は要件により異なるため、ヒアリング時にご案内します。</p>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__question">既存のチャットボットから乗り換えられますか？</summary>
+            <p class="faq__answer">既存のAIチャットスタッフからの乗り換えのご相談も承っています。現行の運用状況をお伺いした上で、移行方法をご提案します。</p>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__question">社内のオフィス文書や既存データと連携できますか？</summary>
+            <p class="faq__answer">PDF・Word・Excel・PowerPointなどのオフィス文書、商品・レビュー・SNSデータとの連携に対応しています。連携可能なデータの詳細はお問い合わせ時にご確認ください。</p>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__question">本当に電力消費を抑えられるのですか？</summary>
+            <p class="faq__answer">実質再エネ100%の自社グリーンデータセンターで稼働し、定型的な質問は0.5ms超高速応答の低消費電力経路で処理します（数値は自社計測値にもとづく傾向値です）。詳細は「Why Green」セクションをご参照ください。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 / Getting Started -->
+    <section class="fleet__section">
+      <div class="fleet__inner">
+        <p class="section__num">09 / Getting Started</p>
+        <h2 class="section__title">導入について。</h2>
+
+        <p class="demo__lead">
+          料金・導入プロセスは、業種や利用規模、必要な機能の組み合わせによって最適な形が異なります。具体的な料金プランは個別にご案内していますので、まずはお問い合わせください。
+        </p>
+        <p class="demo__lead">
+          実際に動くデモ環境も個別にご案内可能です。EC・自治体・その他の業種でのご相談、既存のAIチャットスタッフからの乗り換えのご相談もお気軽にどうぞ。
+        </p>
+
+        <div class="fleet__hero-cta demo__cta">
+          <a class="btn btn--primary" href="/#contact">お問い合わせ &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__mark" aria-hidden="true">
+          <span class="footer__mark-bar"></span>
+          <span class="footer__mark-dot"></span>
+        </span>
+        <div>
+          <p class="footer__name">樽石デジタル技術研究所合同会社</p>
+          <p class="footer__name-en">Taruishi Digital Research Institute, LLC</p>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <p class="footer__copy">
+          &copy; <span id="year">2026</span> Taruishi Digital Research Institute, LLC &middot;
+          This site is part of EntreprenAIs IoA platform
+        </p>
+        <p class="footer__legal">
+          <a href="/privacy/" class="footer__link">Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+
+  <!-- #432: ヒーローチャットモック自動再生アニメーション。
+       トップページ（cloud-src/src/pages/index.astro）の #hero-phone-msgs
+       IntersectionObserver + タイプライター演出パターンを、このページ専用の
+       vanilla JS として再実装する（cloud-src は Astro ビルド成果物であり
+       本ページとはビルド系統が別のため、ビルド済み JS の直接流用は不可）。
+       既存の静的な会話4ターン（line-mock__bubble--user/--bot が交互）を
+       台本として読み取り、初回表示は静的 HTML のまま（no-JS フォールバック）、
+       JS 実行後は同じ内容を時間差タイプライターで再生し直す。 -->
+  <script>
+  (function () {
+    var msgsEl = document.getElementById('ecobot-hero-msgs');
+    if (!msgsEl) return;
+
+    // 台本は既存の静的マークアップから読み取る（HTML の会話内容を単一の
+    // ソースとして維持し、JS 側に会話文を二重管理しない）。
+    var staticBubbles = msgsEl.querySelectorAll('.line-mock__bubble');
+    var script = [];
+    staticBubbles.forEach(function (el) {
+      script.push({
+        role: el.classList.contains('line-mock__bubble--user') ? 'user' : 'bot',
+        text: el.textContent
+      });
+    });
+    if (script.length === 0) return;
+
+    var idleHtml = msgsEl.innerHTML;
+    var timers = [];
+    var intervals = [];
+    var started = false;
+
+    function clearAllTimers() {
+      timers.forEach(function (t) { clearTimeout(t); });
+      intervals.forEach(function (t) { clearInterval(t); });
+      timers = [];
+      intervals = [];
+    }
+
+    function appendBubble(role, text, useTypewriter) {
+      var div = document.createElement('div');
+      div.className = 'line-mock__bubble line-mock__bubble--' + role;
+      msgsEl.appendChild(div);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+
+      if (!useTypewriter) {
+        div.textContent = text;
+        return;
+      }
+
+      var caret = document.createElement('span');
+      caret.className = 'ecobot-hero-caret';
+      div.appendChild(caret);
+
+      var n = 0;
+      var typer = setInterval(function () {
+        n += 2;
+        var done = n >= text.length;
+        div.textContent = text.slice(0, done ? text.length : n);
+        if (!done) div.appendChild(caret);
+        msgsEl.scrollTop = msgsEl.scrollHeight;
+        if (done) {
+          clearInterval(typer);
+          var idx = intervals.indexOf(typer);
+          if (idx >= 0) intervals.splice(idx, 1);
+          var t = setTimeout(function () { playTurn(playTurn.nextIndex); }, 900);
+          timers.push(t);
+        }
+      }, 24);
+      intervals.push(typer);
+    }
+
+    function playTurn(i) {
+      if (i >= script.length) {
+        var replay = setTimeout(function () { runAnimation(); }, 3200);
+        timers.push(replay);
+        return;
+      }
+      var step = script[i];
+      playTurn.nextIndex = i + 1;
+
+      if (step.role === 'user') {
+        appendBubble('user', step.text, false);
+        var t = setTimeout(function () { playTurn(i + 1); }, 500);
+        timers.push(t);
+      } else {
+        var t2 = setTimeout(function () {
+          appendBubble('bot', step.text, true);
+        }, 300);
+        timers.push(t2);
+      }
+    }
+
+    function runAnimation() {
+      clearAllTimers();
+      started = true;
+      msgsEl.innerHTML = '';
+      playTurn(0);
+    }
+
+    function resetAnimation() {
+      clearAllTimers();
+      started = false;
+      msgsEl.innerHTML = idleHtml;
+    }
+
+    var heroSection = document.querySelector('.ecobot__hero');
+    if (heroSection && typeof IntersectionObserver === 'function' &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (!started) runAnimation();
+          } else if (started) {
+            resetAnimation();
+          }
+        });
+      }, { threshold: 0.35 });
+      io.observe(heroSection);
+    }
+    // prefers-reduced-motion: reduce の場合は静的な idle 表示（既存マークアップ）のまま
+  })();
+  </script>
+
+  <!-- #436: 「01.5 / Speed Demo」自社 vs 一般的なクラウドLLM推論の対比デモ。
+       トップページ（cloud-src/src/pages/index.astro）の #demo LIVE DEMOセクション
+       （own側は固定タイプライター演出・cloud側は実測どおりの実時間待機 + カウントアップ）
+       の対比ロジックを、本ページ専用の vanilla JS として再実装する。cloud-src は Astro
+       ビルド成果物でありビルド系統が別のため直接流用はできず、演出パターン・数値のみを
+       踏襲する（数値は既存サイトで確立済みの実測値: own 0.5ms / cloud 9.5〜22.9秒）。
+       上の #ecobot-hero-msgs アニメーション（#432/#433）と同じ IntersectionObserver
+       パターンを使い、画面内に入ったら自動再生、画面外に出たらリセットする。 -->
+  <script>
+  (function () {
+    'use strict';
+
+    var root = document.getElementById('speed-demo-root');
+    if (!root) return;
+
+    // 台本: own側は反射応答、cloud側は一般的なクラウドLLM推論の実測レンジ内の想定待ち時間
+    // （トップページ #demo の SCRIPT と同じ実測レンジ 9.5〜18.7 秒を使用。新規数値の
+    // 捏造はしない）。
+    var SCRIPT = [
+      { q: 'エコボットAIの応答速度は？', own: '反射応答で 0.5ms 台です。CPUキャッシュ経路（LLM推論なし）で固定応答を返しています。', cloud: '一般的なクラウド推論では、モデルサイズやネットワーク経路により数秒〜数十秒程度の応答時間が想定されます。', cloudMs: 9500 },
+      { q: '24時間動かしても電力は大丈夫？', own: '定型的な質問はCPUだけで完結する軽量経路で処理するため、24時間稼働でも電力消費を抑えられます。', cloud: '一般的なクラウドLLM運用では、質問のたびに大規模GPUクラスタへ都度問い合わせるため、稼働時間が長いほど電力消費が積み上がります。', cloudMs: 12900 },
+      { q: '深夜の問い合わせにも即答できますか？', own: 'できます。人手を介さず、深夜・早朝でも同じ反射速度で一次対応します。', cloud: '構成によりますが、都度クラウド推論を経由する場合は時間帯にかかわらず生成待ちが発生します。', cloudMs: 11200 }
+    ];
+
+    var CLOCK = function () { return (typeof performance !== 'undefined') ? performance.now() : Date.now(); };
+
+    var ownBody = document.getElementById('speed-demo-own-body');
+    var cloudBody = document.getElementById('speed-demo-cloud-body');
+    var ownIdleEl = ownBody.querySelector('.speed-demo__idle');
+    var cloudIdleEl = cloudBody.querySelector('.speed-demo__idle');
+    var ownMsBigEl = root.querySelector('[data-own-ms-big]');
+    var cloudSecBigEl = root.querySelector('[data-cloud-sec-big]');
+
+    var timers = [];
+    var intervals = [];
+    var started = false;
+    var ownMsTotal = 0;
+    var cloudTotalIv = null;
+
+    function clearAllTimers() {
+      timers.forEach(function (t) { clearTimeout(t); });
+      intervals.forEach(function (t) { clearInterval(t); });
+      timers = [];
+      intervals = [];
+    }
+
+    function appendUserBubble(body, text) {
+      var div = document.createElement('div');
+      div.className = 'speed-demo__bubble speed-demo__bubble--user';
+      div.textContent = text;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function ownTurn(i) {
+      if (i >= SCRIPT.length) return;
+      var step = SCRIPT[i];
+      appendUserBubble(ownBody, step.q);
+
+      var t1 = setTimeout(function () {
+        ownMsTotal = Math.round((ownMsTotal + 0.5) * 10) / 10;
+        ownMsBigEl.textContent = ownMsTotal.toFixed(1);
+
+        var bubble = document.createElement('div');
+        bubble.className = 'speed-demo__bubble speed-demo__bubble--ai';
+        var caret = document.createElement('span');
+        caret.className = 'speed-demo__caret';
+        bubble.appendChild(caret);
+        ownBody.appendChild(bubble);
+        ownBody.scrollTop = ownBody.scrollHeight;
+
+        var n = 0;
+        var typer = setInterval(function () {
+          n += 2;
+          var done = n >= step.own.length;
+          bubble.textContent = step.own.slice(0, done ? step.own.length : n);
+          if (!done) { bubble.appendChild(caret); }
+          ownBody.scrollTop = ownBody.scrollHeight;
+          if (done) {
+            clearInterval(typer);
+            var idx = intervals.indexOf(typer);
+            if (idx >= 0) intervals.splice(idx, 1);
+            var t2 = setTimeout(function () { ownTurn(i + 1); }, 700);
+            timers.push(t2);
+          }
+        }, 14);
+        intervals.push(typer);
+      }, 130);
+      timers.push(t1);
+    }
+
+    function cloudTurn(i) {
+      if (i >= SCRIPT.length) {
+        var replay = setTimeout(runDemo, 3200);
+        timers.push(replay);
+        return;
+      }
+      var step = SCRIPT[i];
+      appendUserBubble(cloudBody, step.q);
+
+      var waiting = document.createElement('div');
+      waiting.className = 'speed-demo__waiting';
+      waiting.innerHTML = '<span class="speed-demo__spinner"></span><span>generating&hellip; <span data-cur-sec>0.0</span> s</span>';
+      cloudBody.appendChild(waiting);
+      cloudBody.scrollTop = cloudBody.scrollHeight;
+      var curSecEl = waiting.querySelector('[data-cur-sec]');
+
+      var t0 = CLOCK();
+      var iv2 = setInterval(function () {
+        curSecEl.textContent = ((CLOCK() - t0) / 1000).toFixed(1);
+      }, 100);
+      intervals.push(iv2);
+
+      var c1 = setTimeout(function () {
+        clearInterval(iv2);
+        var idx = intervals.indexOf(iv2);
+        if (idx >= 0) intervals.splice(idx, 1);
+        if (waiting.parentNode) waiting.parentNode.removeChild(waiting);
+
+        var bubble = document.createElement('div');
+        bubble.className = 'speed-demo__bubble speed-demo__bubble--ai';
+        bubble.textContent = step.cloud;
+        cloudBody.appendChild(bubble);
+        cloudBody.scrollTop = cloudBody.scrollHeight;
+
+        var c2 = setTimeout(function () { cloudTurn(i + 1); }, 700);
+        timers.push(c2);
+      }, step.cloudMs);
+      timers.push(c1);
+    }
+
+    function runDemo() {
+      clearAllTimers();
+      started = true;
+      ownMsTotal = 0;
+      ownBody.innerHTML = '';
+      cloudBody.innerHTML = '';
+      ownMsBigEl.textContent = '0.5';
+      cloudSecBigEl.textContent = '9.5';
+
+      var t0 = CLOCK();
+      cloudTotalIv = setInterval(function () {
+        cloudSecBigEl.textContent = ((CLOCK() - t0) / 1000).toFixed(1);
+      }, 100);
+      intervals.push(cloudTotalIv);
+
+      ownTurn(0);
+      cloudTurn(0);
+    }
+
+    function resetDemo() {
+      clearAllTimers();
+      started = false;
+      ownBody.innerHTML = '';
+      cloudBody.innerHTML = '';
+      ownBody.appendChild(ownIdleEl);
+      cloudBody.appendChild(cloudIdleEl);
+      ownMsBigEl.textContent = '0.5';
+      cloudSecBigEl.textContent = '9.5';
+    }
+
+    var demoSection = root.closest('.speed-demo');
+    if (demoSection && typeof IntersectionObserver === 'function' &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var demoIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (!started) runDemo();
+          } else if (started) {
+            resetDemo();
+          }
+        });
+      }, { threshold: 0.35 });
+      demoIo.observe(demoSection);
+    }
+    // prefers-reduced-motion: reduce の場合は静的な idle 表示（既存マークアップ）のまま
+  })();
+  </script>
+</body>
+</html>
