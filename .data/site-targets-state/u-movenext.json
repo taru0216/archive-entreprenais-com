@@ -1,41 +1,41 @@
 {
   "https://u-movenext.net/": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "925c16e9838b98f6226c3e6f982c256c067c514e4c1fcce210ee6ce7cee08731",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   },
   "https://u-movenext.net/contact/": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "14e58eed61762e22324c82b06a3761aec15386064ca46df111e5ae41cf507b9b",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   },
   "https://u-movenext.net/faq/": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "ee23bfad74f3921f12e5d66b85594e241bf74226ff81d62075a72534fa1c7cde",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   },
   "https://u-movenext.net/information": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "2dee9183cbaeb30fc03da0bad89fe196545a81a941ebc8bec64e5adad8630059",
     "updated_at": "2026-08-07T18:36:26.579321+00:00"
   },
   "https://u-movenext.net/information/": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "2dee9183cbaeb30fc03da0bad89fe196545a81a941ebc8bec64e5adad8630059",
     "updated_at": "2026-08-07T18:36:26.579321+00:00"
   },
   "https://u-movenext.net/information/1": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "80a381ce415ea66e3e510a3b106764e29dc8faf1528ea52b5ada92264fce658a",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   },
   "https://u-movenext.net/information/3": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "1d10ce0ad9eba0005d185b3407bad3503d0c4fcc68bc3512b68caa163eadadef",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   },
   "https://u-movenext.net/privacy-policy/": {
-    "last_crawled": "2026-08-18T18:18:46.842009+00:00",
+    "last_crawled": "2026-08-19T18:15:49.687323+00:00",
     "sha256": "52d6ade67586e867644a60cddbeb5394a5a4b05928a83a3963bac745221176cb",
     "updated_at": "2026-07-28T15:44:50.293497+00:00"
   }
