@@ -49,9 +49,25 @@
   </ul>
   </li>
   <li>
-  <form action="https://google.com/cse" id="cse-search-box">
-<input name="cx" type="hidden" value="016953370658996678399:cvudauoco4e"><input name="ie" type="hidden" value="UTF-8"><input name="q" placeholder="キーワード検索" size="31" type="text"><input name="sa" type="submit" value="検索">
-</form>
+  <div id="joruri-search-box"></div>
+  <script>
+    $(function(){
+      psid = 'RhjVRqp7Owm3duhXPXdSeDTzHvsgxm3BTjTgPQKkdxA';
+      url = 'https://result.joruri-search.jp/pwm/search/api/indices/?type=box&psid=' + psid;
+      params = new URLSearchParams(location.search);
+      params.delete('type');
+   $.ajax({
+      url: url,
+      data: params.toString(),
+      xhrFields: {
+        withCredentials: true
+      }
+    }).done(function(data){
+      $('#joruri-search-box').html(data);
+    }).fail(function(){
+    });
+  });
+  </script>
   </li>
 </ul>
 </div>
@@ -153,12 +169,6 @@
                  <span class="title_link"><a href="/docs/2026080400019/">第9回しすいリッチハートコンサート申込終了のお知らせ</a></span><span class="attributes">（<span class="publish_date">2026年08月04日</span>　<span class="group">プリミエール酒々井管理班</span>）</span> 
               </li>
               <li>
-                 <span class="title_link"><a href="/docs/2026070700013/">酒々井南部地区の遺跡展「縄文の華・古代の謎」が開催されます！</a></span><span class="attributes">（<span class="publish_date">2026年07月15日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
-              </li>
-              <li>
-                 <span class="title_link"><a href="/docs/2026070200018/">プリミでピアノ♪開催のお知らせ</a></span><span class="attributes">（<span class="publish_date">2026年07月15日</span>　<span class="group">プリミエール酒々井管理班</span>）</span> 
-              </li>
-              <li>
                  <span class="title_link"><a href="/docs/2017122100011/">国史跡本佐倉城跡案内所からのお知らせ</a></span><span class="attributes">（<span class="publish_date">2026年07月06日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
               </li>
               <li>
@@ -179,6 +189,12 @@
               <li>
                  <span class="title_link"><a href="/docs/2025101600056/">国登録有形文化財旧莇家住宅特別見学会 開催のお知らせ</a></span><span class="attributes">（<span class="publish_date">2025年11月11日</span>　<span class="group">文化観光課文化観光振興班</span>）</span> 
               </li>
+              <li>
+                 <span class="title_link"><a href="/docs/2024080100014/">文化観光課</a></span><span class="attributes">（<span class="publish_date">2025年10月01日</span>　<span class="group">文化観光課文化観光振興班</span>）</span> 
+              </li>
+              <li>
+                 <span class="title_link"><a href="/docs/2014021804798/">プリミエール酒々井</a></span><span class="attributes">（<span class="publish_date">2025年05月16日</span>　<span class="group">プリミエール酒々井図書班</span>）</span> 
+              </li>
           </ul>
         </div>
         <div class="more">
@@ -191,9 +207,6 @@
           <ul>
               <li>
                  <span class="title_link"><a href="/docs/2026071500018/">小坂家住宅主屋が国登録有形文化財に登録されました</a></span><span class="attributes">（<span class="publish_date">2026年07月17日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
-              </li>
-              <li>
-                 <span class="title_link"><a href="/docs/2026070700013/">酒々井南部地区の遺跡展「縄文の華・古代の謎」が開催されます！</a></span><span class="attributes">（<span class="publish_date">2026年07月15日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
               </li>
               <li>
                  <span class="title_link"><a href="/docs/2017122100011/">国史跡本佐倉城跡案内所からのお知らせ</a></span><span class="attributes">（<span class="publish_date">2026年07月06日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
@@ -218,6 +231,9 @@
               </li>
               <li>
                  <span class="title_link"><a href="/docs/2018032900036/">環状ブロック群とは</a></span><span class="attributes">（<span class="publish_date">2025年02月28日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
+              </li>
+              <li>
+                 <span class="title_link"><a href="/docs/2023041800017/">『墨古沢遺跡国史跡指定1周年記念シンポジウム記録集』販売のご案内</a></span><span class="attributes">（<span class="publish_date">2024年11月20日</span>　<span class="group">生涯学習課文化財班</span>）</span> 
               </li>
           </ul>
         </div>
@@ -341,5 +357,5 @@
 </footer>
 
 <!-- end #container--></div>
-<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=5&cb=2135295772" async></script></body>
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=5&cb=1703712174" async></script></body>
 </html>

@@ -49,9 +49,25 @@
   </ul>
   </li>
   <li>
-  <form action="https://google.com/cse" id="cse-search-box">
-<input name="cx" type="hidden" value="016953370658996678399:cvudauoco4e"><input name="ie" type="hidden" value="UTF-8"><input name="q" placeholder="キーワード検索" size="31" type="text"><input name="sa" type="submit" value="検索">
-</form>
+  <div id="joruri-search-box"></div>
+  <script>
+    $(function(){
+      psid = 'RhjVRqp7Owm3duhXPXdSeDTzHvsgxm3BTjTgPQKkdxA';
+      url = 'https://result.joruri-search.jp/pwm/search/api/indices/?type=box&psid=' + psid;
+      params = new URLSearchParams(location.search);
+      params.delete('type');
+   $.ajax({
+      url: url,
+      data: params.toString(),
+      xhrFields: {
+        withCredentials: true
+      }
+    }).done(function(data){
+      $('#joruri-search-box').html(data);
+    }).fail(function(){
+    });
+  });
+  </script>
   </li>
 </ul>
 </div>
@@ -297,10 +313,10 @@
         <div class="docs">
           <ul>
               <li>
-                 <span class="title_link"><a href="/docs/2025020300037/">地域計画（地域農業経営基盤強化促進計画）について</a></span><span class="attributes">（<span class="publish_date">2026年07月22日</span>　<span class="group">経済環境課農政振興班</span>）</span> 
+                 <span class="title_link"><a href="/docs/2014090200019/">酒々井町農業委員会長の交際費の公表</a></span><span class="attributes">（<span class="publish_date">2026年08月15日</span>　<span class="group">農業委員会事務局</span>）</span> 
               </li>
               <li>
-                 <span class="title_link"><a href="/docs/2014090200019/">酒々井町農業委員会長の交際費の公表</a></span><span class="attributes">（<span class="publish_date">2026年07月15日</span>　<span class="group">農業委員会事務局</span>）</span> 
+                 <span class="title_link"><a href="/docs/2025020300037/">地域計画（地域農業経営基盤強化促進計画）について</a></span><span class="attributes">（<span class="publish_date">2026年07月22日</span>　<span class="group">経済環境課農政振興班</span>）</span> 
               </li>
               <li>
                  <span class="title_link"><a href="/docs/2025051600045/">地域計画（地域農業経営基盤強化促進計画）の変更手続きを受付します。</a></span><span class="attributes">（<span class="publish_date">2026年06月19日</span>　<span class="group">経済環境課農政振興班</span>）</span> 
@@ -381,5 +397,5 @@
 </footer>
 
 <!-- end #container--></div>
-<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=4&cb=495949584" async></script></body>
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=4&cb=1283727781" async></script></body>
 </html>
