@@ -33,13 +33,13 @@ gtag('config', 'G-SSXFLJW2X1');
 //<!--
 var FI = {};
 FI.jQuery = jQuery.noConflict(true);
-FI.smpcss = "../_template_/_site_/default_project/_res/default_smp.css?c";
+FI.smpcss = "../_template_/_site_/default_project/_res/default_smp.css?e";
 FI.smpcss2 = "../_template_/_site_/default_project/_res/dummy.css";
-FI.tabletcss = "../_template_/_site_/default_project/_res/tablet.css?c";
+FI.tabletcss = "../_template_/_site_/default_project/_res/tablet.css?e";
 //-->
 </script>
-<script src="../_template_/_site_/default_project/_res/js/smp.js?c"></script>
-<script src="../_template_/_site_/default_project/_res/js/common.js?c" defer></script>
+<script src="../_template_/_site_/default_project/_res/js/smp.js?e"></script>
+<script src="../_template_/_site_/default_project/_res/js/common.js?e" defer></script>
 <script src="../_template_/_site_/default_project/_res/js/pagetop_fade.js" defer></script>
 <script type="text/javascript">
 //<!--
@@ -50,13 +50,14 @@ FI.bousai_info_data = json;
 //-->
 </script>
 <script src="https://www.city.chigasaki.kanagawa.jp/bousai_info.js"></script>
-<script src="../_template_/_site_/default_project/_res/js/saigai_info_link.js" type="text/javascript" defer></script>
+<script src="../_template_/_site_/default_project/_res/js/saigai_info_link.js?e" type="text/javascript" defer></script>
+<script src="../_template_/_site_/default_project/_res/js/ml_header.js" defer></script>
 <script src="../_template_/_site_/default_project/_res/js/articleall.js" async></script>
 <script src="../_template_/_site_/default_project/_res/js/init.js"></script>
 <script src="../_template_/_site_/default_project/_res/js/fm_util.js" async></script>
 <script src="../_template_/_site_/default_project/_res/js/over.js" async></script>
-<script src="../_template_/_site_/default_project/_res/js/dropdown_menu.js?c" defer></script>
-<link id="cmncss" href="../_template_/_site_/default_project/_res/default.css?c" rel="stylesheet" type="text/css" class="pconly">
+<script src="../_template_/_site_/default_project/_res/js/dropdown_menu.js?e" defer></script>
+<link id="cmncss" href="../_template_/_site_/default_project/_res/default.css?e" rel="stylesheet" type="text/css" class="pconly">
 <link class="pconly" id="bgcss" href="../_template_/_site_/default_project/_res/dummy.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 //<!--
@@ -127,8 +128,39 @@ javascriptの使用を有効にしなければ、一部の機能が正確に動�
 <script type="text/javascript" src="https://www.google.co.jp/coop/cse/brand?form=cse-search-box&lang=ja"></script>
 </div>
 </div>
+<div id="kinkyuicon">
+<p class="kinkyubtn"><button type="button">緊急情報</button></p>
+<!-- ▲▲▲ END kinkyuicon ▲▲▲ --></div>
 </div>
 </div>
+<div id="kinkyuinfo">
+<div class="cotainer">
+<!--緊急情報
+----------------------------------------------------------------------------------->
+<div id="kinkyu_mail">
+<div class="kinkyuhead">
+<h2>緊急情報</h2>
+<p class="list"><a href="../1038257/index.html">防災・緊急情報</a></p>
+</div>
+<div class="kinkyuwrap">
+<div id="ml_header_contents">
+<p>現在、情報はありません。</p>
+<!-- ▲▲▲ END ml_header_contents ▲▲▲ --></div>
+<ul class="listlink hide" id="kinkyu_mail_link">
+<li><a href="../1056502.html">緊急情報一覧</a></li>
+</ul>
+<!-- ▲▲▲ END kinkyuwrap ▲▲▲ --></div>
+<!-- ▲▲▲ END kinkyu_mail ▲▲▲ --></div>
+<!--重要なお知らせ（全ページ配信）
+----------------------------------------------------------------------------------->
+<div id="headerkinkyu">
+<h2>重要なお知らせ</h2>
+<div class="kinkyuwrap">
+<p>現在、情報はありません。</p>
+<!-- ▲▲▲ END kinkyuwrap ▲▲▲ --></div>
+<!-- ▲▲▲ END headerkinkyu ▲▲▲ --></div>
+<!-- ▲▲▲ END cotainer ▲▲▲ --></div>
+<!-- ▲▲▲ END kinkyuinfo ▲▲▲ --></div>
 </header>
 <hr class="hide">
 <!-- グローバルナビ -->
@@ -351,7 +383,6 @@ javascriptの使用を有効にしなければ、一部の機能が正確に動�
 </div>
 </div>
 </li>
-<li id="jssmpbtmnavi03"><a href="../chatbot.html"><span>AIチャットボット</span></a></li>
 <li id="jssmpbtmnavi04" class="pagetop"><a href="#wrap"><span>ページ先頭</span></a></li>
 </ul>
 </nav>
