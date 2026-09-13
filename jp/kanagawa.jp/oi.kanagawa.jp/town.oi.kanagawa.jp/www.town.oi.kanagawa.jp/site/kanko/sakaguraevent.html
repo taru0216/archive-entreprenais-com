@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
-<meta name="keywords" content="">
+<meta name="keywords" content="地酒,日本酒,酒蔵見学">
 <meta name="description" content="">
 <meta property="og:type" content="artcle" />
 <meta property="og:locale" content="ja_JP" />
 <meta property="og:image" content="https://www.town.oi.kanagawa.jp/img/ogp-oi.png" />
-<meta property="og:title" content="大井町観光サイト" />
+<meta property="og:title" content="酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座" />
 <meta property="og:site_name" content="神奈川県大井町ホームページ" />
 <meta property="og:description" content="" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>大井町観光サイト - 神奈川県大井町ホームページ</title>
+<title>酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座 - 神奈川県大井町ホームページ</title>
 <style  media="all">
 @import url("/ssi/css/site-kanko.css");
 @import url("/ssi/css/sp-site-kanko.css") screen and (max-width: 670px);
@@ -33,11 +33,6 @@
 <script src="/ssi/js/common.js"></script>
 <script src="/ssi/js/footstep.js"></script>
 <link rel="stylesheet"  href="/ssi/css/footstep.css">
-<script src="/ssi/js/slick.js"></script>
-<script src="/ssi/js/kanko-slideshow.js"></script>
-<script src="/ssi/js/clock.js"></script>
-<script src="/ssi/js/jibuntokei.js"></script>
-<script src="/ssi/js/kanko-tokei.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RP1PD9YBY"></script>
 <script>
@@ -49,7 +44,15 @@
   gtag('config', 'UA-110024015-1');
 </script>
 </head>
-<body id="kanko_top">
+<body id="kanko_detail">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <!-- コンテナここから -->
 <div id="container">
 
@@ -66,7 +69,7 @@
 </div>
 <div id="header2">
 <!-- ヘッダーここから -->
-<div id="he_left"><h1 id="logo"><a href="/site/kanko"><img src="/img/kanko/logo_kanko.png" alt="大井町観光サイト" width="247" height="83"></a></h1></div>
+<div id="he_left"><p id="logo"><a href="/site/kanko/"><img src="/img/kanko/logo_kanko.png" alt="大井町観光サイト" width="247" height="83"></a></p></div>
 <div id="he_right">
 <div id="he_right_a">
 
@@ -131,17 +134,35 @@
 <div id="mymainback" class="cf">
 
 <!-- ぱんくずナビここから -->
+<div id="pankuzu_wrap">
+<!-- [[pankuzu_start]] -->
+<div class="pankuzu">
+<span class="pankuzu_class pankuzu_class_top"><a href="/">トップページ</a></span>
+<span class="pankuzu_mark"> &gt; </span>
+<span class="pankuzu_class"><a href="/site/kanko/">大井町観光サイト</a></span>
+<span class="pankuzu_mark"> &gt; </span>
+<span class="pankuzu_class"><span class="pankuzu_class"><a href="/site/kanko/list19.html">特産・グルメ</a></span><span class="pankuzu_mark"> &gt; </span><span class="pankuzu_class"><a href="/site/kanko/list19-106.html">地酒</a></span><span class="pankuzu_mark"> &gt; </span></span>
+<span class="pankuzu_mark"> &gt; </span>
+<span class="pankuzu_class pankuzu_class_current">酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座</span>
+</div>
+<!-- [[pankuzu_end]] -->
+
+<!-- [[pankuzu_life_start]] --><!-- [[pankuzu_life_end]] -->
+</div>
 <!-- ぱんくずナビここまで -->
 
 <!-- サイト専用ヘッダーここから -->
 <!-- サイト専用ヘッダーここまで -->
 
-<div id="kanko_top_photo"></div>
-
 <!-- サイドバー1ここから -->
 <div id="sidebar1" class="cf">
+<!-- サブサイト共通自由記入エリア ここから -->
+<!-- [[item_free_area_3000_head]] --><!-- [[item_free_area_3000_tail]] -->
+<!-- サブサイト共通自由記入エリア ここまで -->
 
 <!-- 左メニューここから -->
+<div id="subsite_menu_wrap">
+
 <div class="subsite_menu" id="kanko_menu_nature">
 <div class="sidebar1_b acc_title"><img src="/img/kanko/ttl_cat01.png" alt="自然・景観" width="300" height="84"></div>
 <div class="sidebar_border">
@@ -224,77 +245,98 @@
 </div>
 </div>
 </div>
+
+</div>
 <!-- 左メニューここまで -->
 
+<!-- SNSボタンここから -->
+<div id="button_sns_wrap">
+<!--
+--><!--
+--><div id="sns_button_facebook">
+<script>
+	var url = htmlspecialchars_URL(location.href);
+	document.write('<a href="https://www.facebook.com/sharer/sharer.php?u='+url+'" target="_blank">facebookシェア</a>');
+</script>
+</div><!--
+--><div id="sns_button_twitter">
+<script>
+	var url = htmlspecialchars_URL(location.href);
+	var encstr = encodeURI(document.title);
+	document.write('<a href="https://twitter.com/share?url='+url+'&text='+encstr+'" target="_blank">Twitterツイート</a>');
+</script>
+</div><!--
+--><div id="sns_button_line">
+<script>
+	var url = htmlspecialchars_URL(location.href);
+	document.write('<a href="http://line.me/R/msg/text/?'+url+'" target="_blank">LINEで送る</a>');
+</script>
+</div>
+</div>
+<!-- SNSボタンここまで -->
+
+<div id="common_banner_link">
+<ul><li><a href=""><img src="/img/kanko/bnr_mitsukaranai_kanko.jpg" width="145" height="130" alt="見つからないときは"></a></li><!--
+--><li><a href=""><img src="/img/kanko/bnr_faq_kanko.jpg" width="145" height="130" alt="よくある質問"></a></li></ul>
+</div>
+
+<!-- サブサイト共通自由記入エリア ここから -->
+<!-- [[item_free_area_3001_head]] --><!-- [[item_free_area_3001_tail]] -->
+<!-- サブサイト共通自由記入エリア ここまで -->
 </div>
 <!-- サイドバー1ここまで -->
 
 <!-- メインここから -->
-<div id="main" class="cf">
+<div id="main">
 <div id="main_a">
 <hr class="hide">
 <p class="hide"><a id="skip">本文</a></p>
 
-<!-- column1ここから -->
-<div id="kanko_main_column1">
-<div class="kanko_main_box">
-
-<div class="kanko_main_box_left">
-<!-- 新着情報ここから -->
-
-<div class="list_type_a_list cf">
-<h2 class="list_type_a_title"><span>新着情報</span></h2>
-
-<div class="list_ccc">
-<ul>
-<li><div class="list_pack"><span class="span_e"><span class="article_date">2026年9月1日更新</span><span class="article_title"><a href="/site/kanko/shoubuenn.html">花菖蒲の株無料配布のご案内</a></span></span><span class="span_d"><span><img src="/uploaded/image/s/6822.JPG" alt="せせらぎの郷花菖蒲園" width="200"></span></span></div></li><li><div class="list_pack"><span class="span_e"><span class="article_date">2026年9月1日更新</span><span class="article_title"><a href="/site/kanko/sakaguraevent.html">酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座</a></span></span><span class="span_d"><span><img src="/uploaded/image/s/10893.png" alt="酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座" width="200"></span></span></div></li><li><div class="list_pack"><span class="span_e"><span class="article_date">2026年2月4日更新</span><span class="article_title"><a href="/site/kanko/ooi-cb-kaika.html">2026年 おおいゆめの里 早咲桜開花状況</a></span></span><span class="span_d"><span><img src="/uploaded/image/s/7183.JPG" alt="表紙" width="200"></span></span></div></li><li><div class="list_pack"><span class="span_e"><span class="article_date">2025年11月1日更新</span><span class="article_title"><a href="/site/kanko/pizza-hiking.html">ハイキングコースモニターツアーのお誘い</a></span></span><span class="span_d"><span><img src="/uploaded/image/s/10369.JPG" alt="4" width="200"></span></span></div></li><!-- [[section_information_more_head]] --><!-- [[section_information_more_tail]] -->
-</ul>
-<div class="link_box">
-<!-- [[section_information2_kako_head]] --><span class="link_ichiran"><a href="/site/kanko/index-2.html">新着情報一覧</a></span><!-- [[section_information2_kako_tail]] -->
+<div id="main_header">
+<h1>酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座</h1>
 </div>
-</div>
-
-</div>
-
-<!-- 新着情報ここまで -->
-</div>
-
-<div class="kanko_main_box_right">
-<!-- 町民時計ここから -->
-<div id="kanko_clock">
-<h2><span>大井魅力時計</span></h2>
-<div id="kanko_tokei_photo"></div>
-<p class="kanko_tokei_ttl"><span>「大井魅力時計の一枚」</span>掲載写真大募集！</p>
-<p class="kanko_tokei_txt">写真が1分ごとに切り替わり、みなさんに投稿いただいた写真で時を刻みます。</p>
-<div class="kanko_tokei_link"><a href="/site/kanko/miryoku-dokei.html">募集はこちら</a></div>
-</div>
-<!-- 町民時計ここまで -->
-</div>
-
-</div>
-</div>
-<!-- column1ここまで -->
-
-<!-- column2ここから -->
-<div id="kanko_main_column2">
-<div class="kanko_main_box">
-
-<ul id="kanko_bnr_list">
-<li id="kanko_bnr_list1"><a href="/soshiki/10/map-ooimachi.html"><img src="/img/kanko/top_bnr_map.jpg" alt="大井町マップ" width="270" height="270"></a></li><!--
---><li id="kanko_bnr_list2"><a href="/soshiki/10/kankojohosi.html"><img src="/img/kanko/top_bnr_pamphlet.jpg" alt="観光パンフレット" width="270" height="270"></a></li><!--
---><li id="kanko_bnr_list3"><a href="/soshiki/4/acsess.html"><img src="/img/kanko/top_bnr_access.jpg" alt="交通アクセス" width="270" height="270"></a></li><!--
---><li id="kanko_bnr_list4"><iframe title="大井町のマップ" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52076.337296625046!2d139.13109121731244!3d35.336505700532435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019a7abbeb0fd15%3A0x7aed7bbc4da3a27f!2z56We5aWI5bed55yM6Laz5p-E5LiK6YOh5aSn5LqV55S6!5e0!3m2!1sja!2sjp!4v1512728838764" width="270" height="270" frameborder="0" style="border:0" allowfullscreen></iframe></li>
-</ul>
-
-</div>
-</div>
-<!-- column2ここまで -->
 
 <!-- main_bodyここから -->
 <div id="main_body">
+<div id="content_header" class="text_r"><span><a id="print_mode_link" href="javascript:print_mode();">印刷用ページを表示する</a></span><span>更新日：2026年9月1日更新</span></div>
 
 
+<div class="detail_free" ><p><img alt="酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座" src="/uploaded/image/10893.png" style="height:433px; width:300px"></p>
 
+<p><a href="/uploaded/attachment/19928.pdf">酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座 [PDFファイル／300KB]</a><br>
+<strong>10月10日（土曜日）酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座を開催します！</strong><br>
+​大井町地酒で乾杯推進協議会は、酒蔵見学と日本酒プロデューサー上杉孝久氏に よるお酒の飲み方講座を開催します。<br>
+大井町が誇る2つの酒造の内の1つ、石井醸造が会場です。<br>
+地酒の試飲・お酒に合う軽食・お持ち帰りいただけるお酒もご用意しております。</p>
+
+<h2>日時</h2>
+
+<p>2026年10月10日（土曜日）11時30分～13時45分</p>
+
+<h2>会場</h2>
+
+<p>石井醸造株式会社（大井町上大井954）<br>
+※駐車場はありませんので公共交通機関をご利用ください。会場ではお酒の試飲、販売も行います。<br>
+※酒蔵見学中はスリッパに履き替えていただきます。スリッパは会場にてご用意します。<br>
+※本イベント実施時は仕込みの期間ではありません。</p>
+
+<h2>定員</h2>
+
+<p>20名（先着順）<br>
+※20歳未満の参加は不可となります。</p>
+
+<h2>料金</h2>
+
+<p>2,000円/1人</p>
+
+<h2>申込方法</h2>
+
+<p>申し込み開始日時：令和8年9月7日（月曜日）8時30分～</p>
+
+<p>大井町役場地域振興課（大井町地酒で乾杯推進協議会事務局）に直接か電話。<br>
+または下記申込フォームよりお申し込みください。<br>
+<a href="https://logoform.jp/form/VbqU/1760720">【酒蔵見学＆日本酒プロデューサーによるお酒の飲み方講座】申込フォーム​</a><span class="external_link_text">＜外部リンク＞</span></p>
+</div>
 
 
 
@@ -310,12 +352,18 @@
 <span class="section_footer_address">神奈川県足柄上郡大井町金子1995番地</span><br>
 <span class="section_footer_grpname">代表</span><br>
 <span class="section_footer_tel">Tel：0465-85-5013</span> <span class="section_footer_fax">Fax：0465-82-3295</span>
-<p class="list_email"><a href="https://www.town.oi.kanagawa.jp/form/detail.php?sec_sec1=10&lif_id=3881">メールでのお問い合わせはこちら</a></p>
+<p class="list_email"><a href="https://www.town.oi.kanagawa.jp/form/detail.php?sec_sec1=10&lif_id=31342">メールでのお問い合わせはこちら</a></p>
 </div>
 </div>
 <!-- section_footerここまで -->
 
-<!-- [[add-template-pdf]] -->
+<div class="pdf_download">
+<p class="pdf_img"><a href="https://get.adobe.com/jp/reader/"><img src="/uploaded/library/get_adobe_reader.png" width="158" height="39" alt="Adobe Reader" class="img_b"></a><span class="external_link_text">＜外部リンク＞</span></p>
+<p class="tenpu_txt">
+PDF形式のファイルをご覧いただく場合には、Adobe社が提供するAdobe Readerが必要です。<br>
+Adobe Readerをお持ちでない方は、バナーのリンク先からダウンロードしてください。（無料）<br class="floatend">
+</p>
+</div>
 <!-- [[add-template-windowsmediaplayer]] -->
 
 </div>
@@ -331,21 +379,6 @@
 
 <!-- site専用フッターここから -->
 <!-- site専用フッターここまで -->
-
-<!-- バナー広告ここから -->
-<div id="kanko_pr_bg">
-<div id="kanko_pr">
-<h2><span>外部リンク</span></h2>
-<div id="kanko_pr_banner">
-
-<ul>
-<li><a href="/adv/ba.php?id=21" onclick="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/21'});" onkeypress="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/21'});"><img src="/uploaded/banner/21_img1.jpg" alt="おおい自然園" width="150" height="50" class="img_b"></a></li><li><a href="/adv/ba.php?id=23" onclick="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/23'});" onkeypress="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/23'});"><img src="/uploaded/banner/23_img1.jpg" alt="大井よさこいひょうたん祭" width="150" height="50" class="img_b"></a></li><li><a href="/adv/ba.php?id=54" onclick="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/54'});" onkeypress="javascript:gtag('event','click',{'event_category':'banner','event_label':'/banner-subsite/54'});"><img src="/uploaded/banner/54_img1.png" alt="あしがらローカルブランディング推進協議会" width="150" height="50" class="img_b"></a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<!-- バナー広告ここまで -->
 
 </div><!-- 3カラム終わり -->
 
@@ -368,7 +401,7 @@
 <!-- author_infoここから -->
 <div id="author_info">
 <div id="author_box">
-<div class="f_logo"><a href="/"><img src="/img/kanko/logo_footer.png" alt="大井町役場" width="187" height="77"></a></div>
+<div class="f_logo"><a href="/"><img src="/img/kanko/logo_footer.png" alt="大井町役場" width="207" height="84"></a></div>
 <p>
 <span class="f_author"><a href="/soshiki/10/">地域振興課</a></span><br>
 <span class="f_address">〒258-8501　神奈川県足柄上郡大井町金子1995番地</span><br>
