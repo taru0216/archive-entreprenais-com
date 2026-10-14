@@ -1,0 +1,147 @@
+name: Crawl Municipalities (All ~1,747)
+
+# 全自治体（~1,747市区町村）の公式トップページをシードに再帰探索クロールする
+# 無人量産パイプライン Phase2（builder #90 / epic #87）の収集レイヤー。
+#
+# - シード = 各自治体の公式トップ URL（marche-targets-all.csv の url 列）
+# - 再帰探索: 同一ドメイン・関連語フィルタ（特産/農産/道の駅/旬/イベント/ふるさと納税）
+# - バウンド: depth_limit / page_budget / 関連語フィルタ / ドメイン許可リスト（= シードドメイン）
+# - 行儀: robots.txt 尊重・download_delay・AutoThrottle
+# - 冪等: 1自治体=meta.json TTL スキップ。fail-fast: false で一部失敗を許容
+# - 並列粒度: ⌈√N⌉ ≈ 42 shard（shard_targets.py --batch-size で算出）、各 shard は
+#   レンジ内の自治体を逐次ループ
+#
+# 就寝前 kick（workflow_dispatch）で朝まで自律で回す。途中失敗は次回実行で TTL 回収。
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_csv:
+        description: "全自治体ターゲット CSV"
+        required: false
+        default: ".data/crawl-targets/marche-targets-all.csv"
+      batch_size:
+        description: "1 shard あたり自治体数（⌈√N⌉≈42 shard を狙うなら 42）"
+        required: false
+        default: "42"
+      max_age_days:
+        description: "TTL（この日数より古い場合のみ再クロール）"
+        required: false
+        default: "7"
+      depth_limit:
+        description: "再帰探索の深さ上限（トップ=0）"
+        required: false
+        default: "3"
+      page_budget:
+        description: "自治体あたりページ数バジェット"
+        required: false
+        default: "40"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "crawl-municipalities-all"
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+      target_csv: ${{ steps.resolve.outputs.target_csv }}
+      batch_size: ${{ steps.resolve.outputs.batch_size }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch resolved municipality master from builder repo & build targets CSV
+        run: |
+          # builder リポの解決済みマスタ（official_url 入り）を取得し targets CSV を生成。
+          # マスタの SSOT は builder（factory-entreprenais-com-builder）側にある。
+          MASTER_URL="https://raw.githubusercontent.com/taru0216/factory-entreprenais-com-builder/main/data/municipality-master.csv"
+          mkdir -p .data/crawl-targets
+          curl -fsSL "$MASTER_URL" -o /tmp/municipality-master.csv
+          python3 scripts/build_targets_from_master.py \
+            --master /tmp/municipality-master.csv \
+            --out .data/crawl-targets/marche-targets-all.csv
+
+      - name: Resolve inputs
+        id: resolve
+        run: |
+          echo "target_csv=${{ github.event.inputs.target_csv || '.data/crawl-targets/marche-targets-all.csv' }}" >> "$GITHUB_OUTPUT"
+          echo "batch_size=${{ github.event.inputs.batch_size || '42' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate shard matrix (⌈√N⌉)
+        id: gen
+        run: |
+          # batch-size モード: start/end ではなく shard_id を使い、各ジョブが
+          # --num-shards/--shard-id でレンジ分割する。shard_targets は 256 上限で
+          # 自動調整する。
+          python3 scripts/shard_targets.py \
+            --csv "${{ steps.resolve.outputs.target_csv }}" \
+            --batch-size "${{ steps.resolve.outputs.batch_size }}" \
+            --output-json
+
+  crawl:
+    needs: shard
+    if: needs.shard.outputs.matrix != '{"include":[]}'
+    strategy:
+      matrix: ${{ fromJson(needs.shard.outputs.matrix) }}
+      max-parallel: 42
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild targets CSV from builder master (same as shard job)
+        run: |
+          MASTER_URL="https://raw.githubusercontent.com/taru0216/factory-entreprenais-com-builder/main/data/municipality-master.csv"
+          mkdir -p .data/crawl-targets
+          curl -fsSL "$MASTER_URL" -o /tmp/municipality-master.csv
+          python3 scripts/build_targets_from_master.py \
+            --master /tmp/municipality-master.csv \
+            --out .data/crawl-targets/marche-targets-all.csv
+
+      - name: Install Scrapy
+        run: pip install scrapy --quiet
+
+      - name: "Crawl shard ${{ matrix.shard_id }} (rows ${{ matrix.start }}–${{ matrix.end }})"
+        id: crawl
+        run: |
+          # shard_targets.py が算出した行レンジ start/end を直接渡す（再計算しない）。
+          python3 scripts/crawl_cities.py \
+            --target-csv "${{ needs.shard.outputs.target_csv }}" \
+            --row-start "${{ matrix.start }}" \
+            --row-end "${{ matrix.end }}" \
+            --max-age-days "${{ github.event.inputs.max_age_days || '7' }}" \
+            --depth-limit "${{ github.event.inputs.depth_limit || '3' }}" \
+            --page-budget "${{ github.event.inputs.page_budget || '40' }}"
+
+      - name: "Commit & push HTML archive (shard ${{ matrix.shard_id }})"
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "No HTML changes to commit."
+            exit 0
+          fi
+          COUNT=$(git diff --cached --name-only | grep -c "index\.html" || true)
+          git commit -m "[bot] municipalities crawl ${TODAY} shard-${{ matrix.shard_id }} (${COUNT} pages)"
+          # rebase-retry で shard 間の push 競合を吸収する
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break || {
+              echo "push attempt ${attempt} failed, retrying..."
+              sleep $((attempt * 5))
+            }
+          done
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Crawl shard ${{ matrix.shard_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_saved | ${{ steps.crawl.outputs.pages_saved || 0 }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| pages_skipped | ${{ steps.crawl.outputs.pages_skipped || 0 }} |" >> $GITHUB_STEP_SUMMARY
