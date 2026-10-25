@@ -1439,8 +1439,8 @@ $(function() {
     
           
 
-              <script id="chatbot-load" src="//chatbot.smart-lgov.jp/view/js/chatbot.js?1791509776" data-chatbot-endpoint="//chatbot.smart-lgov.jp/v1/" data-chatbot-id="chatbot_atsugi" data-chatbot-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9jb2RlIjoiMjAxMjEyIiwic2VydmljZV9uYW1lIjoiU01BUlQgQ0hBVEJPVCJ9.Uq8ZVis5UA2-YidvEIjh_eMr_Klg_Y8RtOnipnHj-3c" data-chatbot-ui="1"></script>
-                          <link rel="stylesheet" href="//www.city.atsugi.kanagawa.jp/theme/base/css/chatbot/chatbot_custom_type_1.css?1791509776">
+              <script id="chatbot-load" src="//chatbot.smart-lgov.jp/view/js/chatbot.js?1792659826" data-chatbot-endpoint="//chatbot.smart-lgov.jp/v1/" data-chatbot-id="chatbot_atsugi" data-chatbot-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9jb2RlIjoiMjAxMjEyIiwic2VydmljZV9uYW1lIjoiU01BUlQgQ0hBVEJPVCJ9.Uq8ZVis5UA2-YidvEIjh_eMr_Klg_Y8RtOnipnHj-3c" data-chatbot-ui="1"></script>
+                          <link rel="stylesheet" href="//www.city.atsugi.kanagawa.jp/theme/base/css/chatbot/chatbot_custom_type_1.css?1792659826">
       
                   
 
@@ -1532,6 +1532,7 @@ function spGetPageURL() {
   var errorFlag = false;
   var inputText = $('#sp-number-search-input').val(); // 検索するID取得
   var errorMessage = '';
+  var API_PATH_TYPE = resolveApiPathType(cms_api_domain);
   //エラーチェック
   //数値チェック
   if(inputText.match(/[^0-9]+/)) {
@@ -1550,7 +1551,7 @@ function spGetPageURL() {
     /*検索ID取得*/
     $.ajax({
       type: 'get',
-      url: '//' + cms_api_domain + '/v1/page/get_page_contents.json',
+      url: '//' + cms_api_domain + '/' + API_PATH_TYPE + '/page/get_page_contents.json',
       data: {
         app_version: cms_app_version,
         app_id: cms_app_id,
