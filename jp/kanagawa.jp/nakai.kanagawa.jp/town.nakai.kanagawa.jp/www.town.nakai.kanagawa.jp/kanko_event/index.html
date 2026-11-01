@@ -744,7 +744,7 @@ $(function() {
             </article>
 
                                                                                                         
-              
+          
                   
 
 
@@ -767,7 +767,7 @@ $(function() {
     <ul class="banner-list">
                                       <li>
             <a href="https://www.town.nakai.kanagawa.jp/recommend/3734.html" target="_blank">
-              <img alt="新しい生涯学習施設整備に向けて" src="//www.town.nakai.kanagawa.jp/material/images/group/1/atarashiisyougaigakusyuushisetunimukete.png">
+              <img alt="新しい生涯学習施設整備に向けて" src="//www.town.nakai.kanagawa.jp/material/images/group/21/atarashiisyougaigakusyuushisetunimukete.png">
             </a>
           </li>
                             </ul>
@@ -1267,9 +1267,10 @@ function spGetPageURL() {
     $('#sp-number-search-container').append('<p class="error-message">' + errorMessage + '</p>');
   } else {
     /*検索ID取得*/
+    var API_PATH_TYPE = resolveApiPathType(cms_api_domain);
     $.ajax({
       type: 'get',
-      url: '//' + cms_api_domain + '/v1/page/get_page_contents.json',
+      url: '//' + cms_api_domain + '/' + API_PATH_TYPE + '/page/get_page_contents.json',
       data: {
         app_version: cms_app_version,
         app_id: cms_app_id,
@@ -1317,8 +1318,8 @@ function spGetPageURL() {
     
           
 
-              <script id="chatbot-load" src="//chatbot.smart-lgov.jp/view/js/chatbot.js?1792940508" data-chatbot-endpoint="//chatbot.smart-lgov.jp/v1/" data-chatbot-id="chatbot_nakai" data-chatbot-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9jb2RlIjoiMjExMjkwIiwic2VydmljZV9uYW1lIjoiU01BUlQgQ0hBVEJPVCJ9.-4cRSElwB0w37F3z5YGwcVvFjfyTeRnJcNsXesJHSeA" data-chatbot-ui="1"></script>
-                          <link rel="stylesheet" href="//www.town.nakai.kanagawa.jp/theme/base/css/chatbot/chatbot_custom_type_1.css?1792940508">
+              <script id="chatbot-load" src="//chatbot.smart-lgov.jp/view/js/chatbot.js?1793545293" data-chatbot-endpoint="//chatbot.smart-lgov.jp/v1/" data-chatbot-id="chatbot_nakai" data-chatbot-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9jb2RlIjoiMjExMjkwIiwic2VydmljZV9uYW1lIjoiU01BUlQgQ0hBVEJPVCJ9.-4cRSElwB0w37F3z5YGwcVvFjfyTeRnJcNsXesJHSeA" data-chatbot-ui="1"></script>
+                          <link rel="stylesheet" href="//www.town.nakai.kanagawa.jp/theme/base/css/chatbot/chatbot_custom_type_1.css?1793545293">
       
                 <script src="//www.town.nakai.kanagawa.jp/theme/base/js/external.js"></script>
             </body>
